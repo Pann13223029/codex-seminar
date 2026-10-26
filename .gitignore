@@ -1,0 +1,3 @@
+.DS_Store
+**/outputs/
+**/scripts/__pycache__/

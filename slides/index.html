@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Codex for Research</title>
+<style>
+  /* One accent, hairlines instead of cards, square corners throughout. */
+  :root {
+    --paper: #f6f6f4;
+    --ink: #1c1f23;
+    --muted: #5f6670;
+    --soft: #9aa1a8;
+    --line: #d6d9d5;
+    --accent: #1f4e8c;
+    --accent-tint: #dbe4f0;
+    --ease: cubic-bezier(.16, 1, .3, 1);
+  }
+  @property --p { syntax: "<number>"; inherits: false; initial-value: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: var(--paper); color: var(--ink);
+    font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif; font-variant-numeric: tabular-nums lining-nums; }
+  #stage { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+  .slide { position: absolute; inset: 0; padding: 56px 80px 64px; display: none; flex-direction: column; overflow: hidden; }
+  .slide.active { display: flex; }
+  .body { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 34px; min-height: 0; }
+  h1 { font-size: 66px; font-weight: 600; line-height: 1.04; letter-spacing: -0.02em; margin: 0; max-width: 15ch; }
+  h2 { font-size: 40px; font-weight: 600; line-height: 1.12; letter-spacing: -0.015em; margin: 0; max-width: 30ch; }
+  h3 { font-size: 21px; font-weight: 600; margin: 0 0 6px; }
+  p { font-size: 22px; line-height: 1.42; margin: 0; }
+  .muted { color: var(--muted); }
+  .small { font-size: 17px; }
+  .accent { color: var(--accent); }
+  .num { font-weight: 600; letter-spacing: -0.02em; }
+  .big { font-size: 64px; line-height: 1; }
+  .huge { font-size: 96px; line-height: .95; }
+  .rule { border-top: 1px solid var(--ink); padding: 16px 0 18px; }
+  .hair { border-top: 1px solid var(--line); padding: 16px 0 18px; }
+  .tall-rows > * { padding-top: var(--row, 26px) !important; padding-bottom: var(--row, 26px) !important; }
+  .tall-rows .arrow { padding-top: 24px !important; }
+  .statement { font-size: 28px; line-height: 1.32; max-width: 40ch; border-left: 3px solid var(--accent); padding-left: 22px; }
+  .grid { display: grid; gap: 28px 40px; }
+  .footer { position: absolute; left: 80px; right: 80px; bottom: 24px; display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); }
+  .arrow { color: var(--soft); font-size: 22px; align-self: start; }
+  /* data marks */
+  .ring { --p: var(--to); width: 210px; height: 210px; border-radius: 50%; background: conic-gradient(var(--c, var(--accent)) calc(var(--p) * 1%), var(--line) 0); display: grid; place-items: center; }
+  .ring::after { content: ""; width: 168px; height: 168px; border-radius: 50%; background: var(--paper); grid-area: 1 / 1; }
+  .ring > span { grid-area: 1 / 1; z-index: 1; font-size: 44px; font-weight: 600; }
+  .hrow { display: grid; grid-template-columns: 180px 1fr 90px; align-items: center; gap: 16px; font-size: 20px; }
+  .hbar { height: 30px; background: var(--accent); transform-origin: left center; }
+  .vbars { display: flex; align-items: flex-end; justify-content: space-around; height: 300px; border-bottom: 2px solid var(--ink); }
+  .vbar { width: 96px; background: var(--accent); position: relative; transform-origin: bottom center; }
+  .vbar span { position: absolute; top: -34px; left: -20px; right: -20px; text-align: center; font-size: 24px; font-weight: 600; }
+  .vbar.tail { background: repeating-linear-gradient(135deg, var(--accent) 0 9px, var(--accent-tint) 9px 18px); }
+  .vlabels { display: flex; justify-content: space-around; padding-top: 10px; font-size: 18px; color: var(--muted); }
+  .vlabels div { width: 96px; text-align: center; }
+  .div-row { display: grid; grid-template-columns: 170px 1fr 1fr; align-items: center; height: 58px; }
+  .div-left { position: relative; height: 42px; border-right: 2px solid var(--ink); }
+  .div-right { position: relative; height: 42px; }
+  .div-left i, .div-right i { position: absolute; top: 0; bottom: 0; font-style: normal; font-size: 19px; font-weight: 600; display: flex; align-items: center; padding: 0 12px; white-space: nowrap; color: #fff; }
+  .div-left i { right: 0; background: var(--accent); transform-origin: right center; }
+  .div-right i { left: 0; background: var(--soft); transform-origin: left center; }
+  .timeline { position: relative; height: 170px; }
+  .timeline .axis { position: absolute; left: 0; right: 0; top: 60px; height: 2px; background: var(--ink); }
+  .tick { position: absolute; top: 52px; width: 2px; height: 18px; background: var(--ink); }
+  .tick span { position: absolute; top: 26px; left: -28px; width: 58px; text-align: center; font-size: 17px; color: var(--muted); }
+  .gap { position: absolute; top: 48px; height: 26px; background: var(--accent); transform-origin: left center; }
+  .gap-label { position: absolute; top: 4px; font-size: 18px; font-weight: 600; color: var(--accent); white-space: nowrap; }
+  .pol { display: flex; align-items: flex-end; justify-content: space-around; height: 260px; border-bottom: 2px solid var(--ink); }
+  .pol .pair { display: flex; align-items: flex-end; gap: 10px; }
+  .pol .b { width: 64px; position: relative; transform-origin: bottom center; }
+  .pol .b span { position: absolute; top: -28px; left: -16px; right: -16px; text-align: center; font-size: 19px; font-weight: 600; }
+  .legend { display: flex; gap: 26px; font-size: 16px; color: var(--muted); }
+  .legend i { display: inline-block; width: 14px; height: 14px; vertical-align: -1px; margin-right: 8px; }
+  img.fig { width: 100%; max-height: 420px; object-fit: contain; display: block; mix-blend-mode: multiply; }
+  .check { display: grid; grid-template-columns: 34px 1fr; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 20px; }
+  .check b { color: var(--accent); }
+  .check.open b { color: var(--soft); }
+  .tag { font-size: 15px; color: var(--accent); font-weight: 600; margin-top: 6px; }
+  .res { display: grid; grid-template-columns: 1.7fr 1fr; gap: 44px; align-items: center; }
+  .res img { width: 100%; max-height: 470px; object-fit: contain; display: block; mix-blend-mode: multiply; }
+  .res.stack { grid-template-columns: 1fr !important; gap: 30px; }
+  .res.stack .note { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
+  .res.stack .note h3 { margin-top: 0; grid-row: 1; }
+  .res.stack .note p { grid-row: 2; }
+  .note h3 { font-size: 19px; margin-top: 18px; }
+  .note h3:first-child { margin-top: 0; }
+  .note p { font-size: 18px; color: var(--muted); }
+  table.data { border-collapse: collapse; width: 100%; font-size: 17px; }
+  table.data th { text-align: left; font-weight: 600; color: var(--muted); font-size: 15px; padding: 0 10px 8px 0; border-bottom: 1px solid var(--ink); }
+  table.data td { padding: .45em 10px .45em 0; border-bottom: 1px solid var(--line); }
+  table.data td.n, table.data th.n { text-align: right; }
+  table.data tr.hl td { color: var(--accent); font-weight: 600; }
+  #nav { position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); color: var(--muted); font: 13px "Avenir Next", Arial, sans-serif; }
+  #progress { position: absolute; left: 0; top: 0; height: 4px; background: var(--accent); transition: width .4s var(--ease); }
+
+  /* Motion: elements enter in reading order and charts grow from their
+     baseline, so the eye follows the argument. Off under reduced motion. */
+  @media (prefers-reduced-motion: no-preference) {
+    .slide.active .in { animation: rise .7s var(--ease) both; animation-delay: calc(var(--i, 0) * 85ms); }
+    .slide.active .hbar, .slide.active .div-left i, .slide.active .div-right i, .slide.active .gap { animation: growx .9s var(--ease) both; animation-delay: calc(350ms + var(--j, 0) * 90ms); }
+    .slide.active .vbar, .slide.active .pol .b { animation: growy .9s var(--ease) both; animation-delay: calc(350ms + var(--j, 0) * 90ms); }
+    .slide.active .ring { animation: sweep 1.2s var(--ease) both; animation-delay: calc(250ms + var(--j, 0) * 120ms); }
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  @keyframes growx { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes growy { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  @keyframes sweep { from { --p: 0; } to { --p: var(--to); } }
+
+  .code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 17px; line-height: 1.5; background: #fff; border: 1px solid var(--line); padding: 18px 22px; white-space: pre-wrap; margin: 0; }
+  .code b { color: var(--accent); font-weight: 600; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; }
+  .two h3 { font-size: 24px; }
+  .two p { font-size: 21px; padding: 10px 0; border-top: 1px solid var(--line); }
+  .loop { display: grid; grid-template-columns: repeat(9, auto); align-items: center; gap: 14px; font-size: 26px; font-weight: 600; }
+  .loop span.step { border: 1px solid var(--ink); padding: 14px 18px; }
+  .loop span.step.accent { border-color: var(--accent); color: var(--accent); }
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- 1 Title -->
+<section class="slide">
+  <div class="body">
+    <div class="grid" style="grid-template-columns: 1.6fr 1fr; align-items: center;">
+      <div>
+        <p class="muted in" style="font-size:20px;margin-bottom:22px">Seminar workshop</p>
+        <h1 class="in">Codex for Research</h1>
+        <p class="muted in" style="margin-top:22px">Let the agent do the work. Keep the judgement.</p>
+      </div>
+      <div class="in" style="display:flex;flex-direction:column;gap:18px">
+        <div class="rule"><h3>Install</h3><p class="muted small">5 minutes, free account works</p></div>
+        <div class="hair"><h3>Two real projects</h3><p class="muted small">A thesis and a data case study</p></div>
+        <div class="hair"><h3>Your turn</h3><p class="muted small">A step-by-step guide on GitHub</p></div>
+      </div>
+    </div>
+    <div class="in small muted" style="line-height:1.6">Pann Phetra, College of Sustainability and Tourism<br>Ritsumeikan Asia Pacific University</div>
+  </div>
+</section>
+
+<!-- 2 Chatbot vs agent -->
+<section class="slide">
+  <h2 class="in">A chatbot answers. An agent works in your folder.</h2>
+  <div class="body">
+    <div class="two in">
+      <div><h3 class="muted">Chatbot</h3><p>Replies in a chat window</p><p>You copy results out by hand</p><p>Cannot run anything</p><p>Forgets what it told you</p></div>
+      <div><h3 class="accent">Agent (Codex)</h3><p>Reads and writes files in one folder</p><p>Saves results where you work</p><p>Runs code and checks the output</p><p>Every change can be reviewed and undone</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 What you need -->
+<section class="slide">
+  <h2 class="in">What you need</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="rule"><div class="big num accent">1</div><h3 style="margin-top:14px">A ChatGPT account</h3><p class="muted small">Codex is in every plan, including Free. Limits vary.</p></div>
+      <div class="rule"><div class="big num accent">2</div><h3 style="margin-top:14px">The ChatGPT desktop app</h3><p class="muted small">macOS, Windows or Linux</p></div>
+      <div class="rule"><div class="big num accent">3</div><h3 style="margin-top:14px">One folder</h3><p class="muted small">Your project, or my example data</p></div>
+    </div>
+    <p class="statement in">Guide: github.com/Pann13223029/codex-seminar</p>
+  </div>
+</section>
+
+<!-- 4 Install -->
+<section class="slide">
+  <h2 class="in">Install in four steps</h2>
+  <div class="body">
+    <div class="in tall-rows" style="display:grid;grid-template-columns:80px 1fr 1.4fr;font-size:24px;--row:20px">
+      <div class="rule num accent">1</div><div class="rule"><b>Download</b> the ChatGPT desktop app</div><div class="rule muted">learn.chatgpt.com/docs/quickstart</div>
+      <div class="hair num accent">2</div><div class="hair"><b>Sign in</b> with your ChatGPT account</div><div class="hair muted">Free works</div>
+      <div class="hair num accent">3</div><div class="hair"><b>Open a folder</b></div><div class="hair muted">Codex only sees this folder</div>
+      <div class="hair num accent">4</div><div class="hair"><b>Choose Codex</b>, then New chat</div><div class="hair muted">In the ChatGPT dropdown</div>
+    </div>
+    <p class="muted in">Live demo now. Optional: install Git so you can review and undo changes.</p>
+  </div>
+</section>
+
+<!-- 5 The loop -->
+<section class="slide">
+  <h2 class="in">The way of working</h2>
+  <div class="body">
+    <div class="loop in">
+      <span class="step">Brief</span><span class="arrow">→</span><span class="step accent">Plan</span><span class="arrow">→</span><span class="step">One small step</span><span class="arrow">→</span><span class="step accent">Check</span><span class="arrow">→</span><span class="step">Next</span>
+    </div>
+    <div class="grid in" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="hair"><h3>Brief once</h3><p class="muted small">AGENTS.md: the project, the data, the rules</p></div>
+      <div class="hair"><h3>Plan before work</h3><p class="muted small">"Write a plan and wait for my OK"</p></div>
+      <div class="hair"><h3>Check every step</h3><p class="muted small">Small steps are easy to check and undo</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 AGENTS.md -->
+<section class="slide">
+  <h2 class="in">AGENTS.md: the brief Codex reads first</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: 1.3fr 1fr; align-items:center">
+<pre class="code"><b># Project brief</b>
+- Question: does "4 in 10 plants generate"
+  understate how much waste is covered?
+
+<b>## Files</b>
+- data/incinerators.csv: one row per plant-year
+
+<b>## Rules</b>
+- Plan first; wait for my OK.
+- Never change the original data.
+- Every number must come from code you ran.
+- Never invent references or statistics.</pre>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="rule"><h3>Write it once</h3><p class="muted small">Codex reads it before every task in that folder</p></div>
+        <div class="hair"><h3>Put your rules in it</h3><p class="muted small">Your standards apply every time</p></div>
+        <div class="hair"><h3>Template in step 02</h3><p class="muted small">Copy, fill in, done</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 Good prompt -->
+<section class="slide">
+  <h2 class="in">A prompt that works</h2>
+  <div class="body">
+<pre class="code in" style="font-size:20px">I want to know <b>[goal]</b>.
+Use <b>[which files]</b>. Save results to <b>[where]</b>.
+Before changing anything, <b>write a plan</b> and tell me
+<b>how I can check</b> each result. <b>Wait for my OK.</b></pre>
+    <div class="grid in" style="grid-template-columns: repeat(4, 1fr);">
+      <div class="hair"><h3>Goal</h3><p class="muted small">The question, not the code</p></div>
+      <div class="hair"><h3>Files</h3><p class="muted small">Where to read and write</p></div>
+      <div class="hair"><h3>Check</h3><p class="muted small">How you will verify</p></div>
+      <div class="hair"><h3>Stop</h3><p class="muted small">Wait for your OK</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 Example 1 -->
+<section class="slide">
+  <h2 class="in">Example 1: my graduation thesis</h2>
+  <div class="body">
+    <p class="in" style="font-size:26px;max-width:40ch">Japan says about 4 in 10 waste incinerators generate electricity. Is that low?</p>
+    <div class="grid in" style="grid-template-columns: repeat(3, 1fr); justify-items: center; text-align: center;">
+      <div><div class="ring" style="--to:41.1;--c:var(--soft);--j:0"><span>41%</span></div><p style="margin-top:16px"><b>of plants</b></p></div>
+      <div><div class="ring" style="--to:80.1;--j:1"><span>80%</span></div><p style="margin-top:16px"><b>of waste</b></p></div>
+      <div><div class="ring" style="--to:70.5;--j:2"><span>70%</span></div><p style="margin-top:16px"><b>of capacity</b></p></div>
+    </div>
+    <p class="muted in small">20 years of Ministry spreadsheets, 23,593 records linked into 1,690 plant histories. FY2024 shown.</p>
+  </div>
+</section>
+
+<!-- 9 Who did what -->
+<section class="slide">
+  <h2 class="in">Who did what</h2>
+  <div class="body">
+    <div class="two in">
+      <div><h3 class="accent">The AI (Codex, Claude Code)</h3><p>Helped write the code that reads 20 spreadsheets</p><p>Wrote and ran the statistics I specified</p><p>Built figures, tables and this kind of deck</p><p>Drafted text from sources I had checked</p></div>
+      <div><h3>Me</h3><p>The question and what counts as an answer</p><p>Every definition: what "generates" means</p><p>Checking the numbers against the data</p><p>What the results mean, and the final text</p></div>
+    </div>
+    <p class="statement in">Fast hands, not the brain. The thesis declares how AI was used.</p>
+  </div>
+</section>
+
+<!-- 10 Checks -->
+<section class="slide">
+  <h2 class="in">Make mistakes hard to miss</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="rule"><h3>Tests in the code</h3><p class="muted small">Plants that must link are checked every run; the result cannot change if the rows are shuffled</p></div>
+      <div class="rule"><h3>The build stops</h3><p class="muted small">If a number in the text no longer matches the results file, the thesis will not build</p></div>
+      <div class="rule"><h3>A mock examiner</h3><p class="muted small">An AI attacks the thesis, another defends it, I decide what to fix</p></div>
+    </div>
+    <p class="statement in">Ask the agent to check its own work, then check the check yourself.</p>
+  </div>
+</section>
+
+<!-- 11 Example 2 -->
+<section class="slide">
+  <h2 class="in">Example 2: a data analytics capstone</h2>
+  <div class="body">
+    <p class="in" style="font-size:26px;max-width:42ch">Google Merchandise Store, one year of web analytics, 903,653 sessions in BigQuery. Which channels deserve the marketing budget?</p>
+    <div class="grid in" style="grid-template-columns: 1fr 1fr 1fr;">
+      <div class="rule"><div class="big num accent"><span data-count="41">41</span>%</div><p class="muted small" style="margin-top:8px">of revenue came from Google's own employees, hidden as "Referral"</p></div>
+      <div class="rule"><div class="big num"><span data-count="98.8" data-decimals="1">98.8</span>%</div><p class="muted small" style="margin-top:8px">of the top 1% "likely buyers" in Google's own teaching model were Google staff</p></div>
+      <div class="rule"><div class="big num"><span data-count="89">89</span>%</div><p class="muted small" style="margin-top:8px">of Display's credit came from one corporate buyer</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 Lesson from capstone -->
+<section class="slide">
+  <h2 class="in">Ask who is buying before you model</h2>
+  <div class="body">
+    <div class="two in">
+      <div><h3 class="accent">What worked</h3><p>Asking "who is actually buying?" before modelling</p><p>Rebuilding Google's lab from its own code to test it</p><p>Checking my filter against the true source: 99.2% correct</p></div>
+      <div><h3>What went wrong</h3><p>The AI stated facts about the lab from memory, twice wrongly</p><p>Caught only by checking the original source</p><p>Rule since then: verify before you present</p></div>
+    </div>
+    <p class="statement in">"Analysis designed and directed by me; code written with AI assistance."</p>
+  </div>
+</section>
+
+<!-- 13 Missing-value trap -->
+<section class="slide">
+  <h2 class="in">One rule for blanks, two different answers</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: 1.2fr 1fr; align-items: end;">
+      <div>
+        <div class="vbars" style="height:280px">
+          <div class="vbar" style="height:115px;--j:0"><span>41.1%</span></div>
+          <div class="vbar tail" style="height:278px;--j:1"><span>99.5%</span></div>
+        </div>
+        <div class="vlabels"><div style="width:160px">Blank = zero</div><div style="width:160px">Blanks dropped</div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="rule"><p>Share of FY2024 plants with a generator.</p></div>
+        <div class="hair"><p class="muted small">In 2024 the survey left 595 non-generators blank; in 2005 it wrote 0. Drop the blanks and you get 417 of 419.</p></div>
+        <div class="hair"><p class="accent"><b>Always ask: how were missing values treated?</b></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 14 Skills -->
+<section class="slide">
+  <h2 class="in">Skills: save a workflow, reuse it</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: 1.2fr 1fr; align-items:center">
+<pre class="code">.agents/skills/coverage-check/<b>SKILL.md</b>
+
+---
+<b>name:</b> coverage-check
+<b>description:</b> Calculate generator coverage
+  for a fiscal year. Use when the user asks
+  about coverage. Not for other analyses.
+---
+1. Read the definitions in AGENTS.md.
+2. Calculate the three shares.
+3. Tell the user one number to check by hand.</pre>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="rule"><h3>Make one</h3><p class="muted small">Type <b>$skill-creator</b> and describe the job</p></div>
+        <div class="hair"><h3>Use it</h3><p class="muted small">Type <b>$coverage-check</b>, or just ask; the description decides when it runs</p></div>
+        <div class="hair"><h3>Keep it small</h3><p class="muted small">One job per skill, checks built in</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 15 Your turn -->
+<section class="slide">
+  <h2 class="in">Your turn: the guide</h2>
+  <div class="body">
+    <div class="in tall-rows" style="display:grid;grid-template-columns:110px 1fr;font-size:22px;--row:14px">
+      <div class="rule num accent">00</div><div class="rule">Install and sign in</div>
+      <div class="hair num accent">01</div><div class="hair">First task: create, review and undo a change</div>
+      <div class="hair num accent">02</div><div class="hair">Your project: brief, plan, small steps, prompt templates</div>
+      <div class="hair num accent">03</div><div class="hair">Verify and disclose</div>
+      <div class="hair num accent">04</div><div class="hair">Make a skill</div>
+      <div class="hair num accent">99</div><div class="hair"><b>No project?</b> Follow my example with copy-and-paste prompts</div>
+    </div>
+    <p class="statement in">github.com/Pann13223029/codex-seminar</p>
+  </div>
+</section>
+
+<!-- 16 Verify and disclose -->
+<section class="slide">
+  <h2 class="in">Before you use any result</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: 1fr 1fr; gap: 0 56px;">
+      <div class="check"><b>✓</b>Recompute two numbers by hand</div>
+      <div class="check"><b>✓</b>Check every reference exists</div>
+      <div class="check"><b>✓</b>Ask how blanks were treated</div>
+      <div class="check"><b>✓</b>Ask "what could be wrong?"</div>
+      <div class="check"><b>✓</b>Check what each definition counts</div>
+      <div class="check"><b>✓</b>Rewrite what you cannot explain</div>
+    </div>
+    <p class="statement in">Disclose it. APU treats undisclosed AI help as possible plagiarism. Template in step 03.</p>
+  </div>
+</section>
+
+<!-- 17 Pitfalls -->
+<section class="slide">
+  <h2 class="in">Four ways to get it wrong</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: repeat(2, 1fr); row-gap: 34px;">
+      <div class="rule"><h3>Private data in the folder</h3><p class="muted small">Interviews, personal data, passwords: keep them out</p></div>
+      <div class="rule"><h3>Invented references</h3><p class="muted small">They look real. Search for every one</p></div>
+      <div class="hair"><h3>Trusting a confident answer</h3><p class="muted small">Ask for the source and the file behind each number</p></div>
+      <div class="hair"><h3>Handing over the thinking</h3><p class="muted small">The question and the meaning are yours</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 18 Thanks -->
+<section class="slide">
+  <div class="body">
+    <p class="muted in" style="font-size:22px">If you remember one thing</p>
+    <p class="in" style="font-size:46px;font-weight:600;line-height:1.18;letter-spacing:-0.015em;max-width:26ch">Let the agent do the work. <span class="accent">Keep the judgement</span>, and check before you trust.</p>
+    <div class="grid in" style="grid-template-columns: 1fr 1fr;">
+      <div class="rule"><h3>The guide</h3><p class="muted small">github.com/Pann13223029/codex-seminar</p></div>
+      <div class="rule"><h3>Questions</h3><p class="muted small">Thank you</p></div>
+    </div>
+  </div>
+</section>
+
+<div id="progress"></div>
+<div class="footer"><span>Codex for Research</span><span id="count"></span></div>
+</div>
+<div id="nav">Arrow keys or click to move. F for full screen.</div>
+<script>
+  const slides = [...document.querySelectorAll('.slide')];
+  const stage = document.getElementById('stage');
+  const BASE_W = 1280, MIN_H = 720, MAX_H = 860;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let i = 0;
+  try { i = Math.min(slides.length - 1, Math.max(0, parseInt(location.hash.slice(1), 10) - 1 || 0)); } catch (e) {}
+  let shown = 0;
+
+  // Reading order for the entrance sequence.
+  slides.forEach(slide => slide.querySelectorAll('.in').forEach((el, k) => el.style.setProperty('--i', k)));
+
+  function format(value, decimals) {
+    return value.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+  }
+  // Key numbers count up when their slide opens; the final value is in the
+  // markup, so the page reads correctly without script or motion.
+  function countUp(slide) {
+    if (reduceMotion) return;
+    slide.querySelectorAll('[data-count]').forEach(el => {
+      const target = parseFloat(el.dataset.count);
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      const start = performance.now(), duration = 1100;
+      const tick = now => {
+        const t = Math.min(1, (now - start) / duration);
+        el.textContent = format(target * (1 - Math.pow(1 - t, 3)), decimals);
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  }
+
+  function show(n) {
+    if (shown++ > 0) document.getElementById('nav').style.display = 'none';
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, k) => s.classList.toggle('active', k === i));
+    countUp(slides[i]);
+    document.getElementById('count').textContent = (i + 1) + ' / ' + slides.length;
+    document.getElementById('progress').style.width = ((i + 1) / slides.length * 100) + '%';
+    history.replaceState(null, '', '#' + (i + 1));
+  }
+  // Fill the window: keep the design width, give the stage the window's
+  // shape (within limits so layouts stay balanced), then scale uniformly.
+  function fit() {
+    const ratio = window.innerWidth / window.innerHeight;
+    let w = BASE_W, h = BASE_W / ratio;
+    if (h < MIN_H) { h = MIN_H; w = MIN_H * ratio; }
+    if (h > MAX_H) { h = MAX_H; }
+    const scale = Math.min(window.innerWidth / w, window.innerHeight / h);
+    stage.style.width = w + 'px';
+    stage.style.height = h + 'px';
+    stage.style.transform = 'translate(' + (window.innerWidth - w * scale) / 2 + 'px,' + (window.innerHeight - h * scale) / 2 + 'px) scale(' + scale + ')';
+  }
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight', 'PageDown', ' ', 'Enter'].includes(e.key)) { e.preventDefault(); show(i + 1); }
+    if (['ArrowLeft', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); show(i - 1); }
+    if (e.key === 'Home') show(0);
+    if (e.key === 'End') show(slides.length - 1);
+    if (e.key === 'f' || e.key === 'F') { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); }
+  });
+  document.addEventListener('click', e => { show(e.clientX > window.innerWidth / 3 ? i + 1 : i - 1); });
+  window.addEventListener('resize', fit);
+  window.addEventListener('hashchange', () => {
+    const n = parseInt(location.hash.slice(1), 10);
+    if (n && n - 1 !== i) show(n - 1);
+  });
+  fit(); show(i);
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+# Codex for Research: a Seminar Workshop
+
+Use Codex, OpenAI's coding agent, to do real research work in a folder on your
+own laptop: read data, write and run analysis code, make charts and draft
+notes, while you stay in charge of every decision and check the results.
+
+Seminar session by Pann Phetra (College of Sustainability and Tourism,
+Ritsumeikan Asia Pacific University). The slides are in [slides](slides/).
+
+## What you need
+
+1. A **ChatGPT account**. Codex is included in every ChatGPT plan, including
+   Free; usage limits vary by plan
+   ([OpenAI Help Center](https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan)).
+2. A laptop running **macOS, Windows or Linux** with the **ChatGPT desktop
+   app** installed ([official quickstart](https://learn.chatgpt.com/docs/quickstart)).
+3. Optional but recommended: **Git**. The app uses it to show what Codex
+   changed and to undo changes.
+4. Either your own seminar project in a folder, or nothing at all: the
+   [follow-my-example track](99-follow-my-example/) gives you data and
+   copy-and-paste prompts.
+
+> **Privacy:** do not put personal data, interview transcripts, unpublished
+> data you are not allowed to share, or passwords into a folder you open with
+> Codex. Treat it like sending the files to an outside service.
+
+> **Academic integrity:** APU treats undisclosed AI assistance as a possible
+> form of plagiarism. If AI helps with a thesis or assignment, say so. Step 03
+> shows how.
+
+## Follow the workshop
+
+| Open | What you will do |
+| --- | --- |
+| [00: Install and sign in](00-install/) | Install the ChatGPT desktop app, sign in, open Codex. |
+| [01: Your first task](01-first-task/) | Open a folder, ask Codex to explain it, review a change and undo it. |
+| [02: Work on your own project](02-your-project/) | Write a short brief, ask for a plan first, then work in small steps. |
+| [03: Verify and disclose](03-verify-and-disclose/) | Check the results yourself and write an AI-use statement. |
+| [04: Make a skill](04-make-a-skill/) | Turn a workflow you repeat into a reusable skill. |
+| [99: Follow my example](99-follow-my-example/) | No project? Repeat a small version of my thesis analysis with ready prompts. |
+
+Follow **00 → 01**, then either **02 → 03 → 04** with your own project, or
+the **99** track, which walks through the same ideas with prepared data.
+
+## Words used here
+
+- **Agent:** an AI that can act in your folder (read files, write files, run
+  programs) instead of only answering in a chat.
+- **Prompt:** the instruction you type.
+- **Brief (`AGENTS.md`):** a file of standing instructions Codex reads before
+  every task in that folder.
+- **Skill:** a saved, reusable workflow (a folder with a `SKILL.md` file) that
+  Codex can run again on request.
+
+## About the screenshots
+
+Each step has marked places for screenshots (`assets/screenshots/`). Codex
+changes quickly, so if a button looks different from the text, follow the
+linked official page.
