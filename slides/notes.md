@@ -15,7 +15,7 @@ screen; `#N` in the address jumps to slide N.
 | 6 | The way of working | 1:30 | 10:00 |
 | 7 | AGENTS.md | 1:30 | 11:30 |
 | 8 | A good prompt has six parts | 2:30 | 14:00 |
-| 9 | Let a free chatbot write the prompt | 2:00 | 16:00 |
+| 9 | Let a regular chatbot write the prompt | 2:00 | 16:00 |
 | 10 | Example 1: my thesis | 2:00 | 18:00 |
 | 11 | Who did what | 2:30 | 20:30 |
 | 12 | Make mistakes hard to miss | 2:00 | 22:30 |
@@ -25,8 +25,8 @@ screen; `#N` in the address jumps to slide N.
 | 16 | Three example skills | 2:30 | 31:00 |
 | 17 | Make your own skill | 2:00 | 33:00 |
 | 18 | Slides that do not look AI-generated | 2:00 | 35:00 |
-| 19 | Your turn: the guide | 2:00 | 37:00 |
-| 20 | Before you use any result | 1:30 | 38:30 |
+| 19 | Your turn: pick a route | 2:00 | 37:00 |
+| 20 | Check one number yourself | 1:30 | 38:30 |
 | 21 | Four ways to get it wrong | 1:00 | 39:30 |
 | 22 | Thanks and questions | 5:30 | 45:00 |
 
@@ -47,13 +47,14 @@ Codex, New chat. Type: "What folder are you working in, and what files can
 you see? Do not change anything." If the demo fails, move on: step 00 of the
 guide has it.
 
-**5. Free plan.** Most of you are on Free: Codex runs GPT-6 Luna, the
+**5. Free plan.** Point at the two bars: the same allowance, spent on one
+long chat or on small planned tasks. Most of you are on Free: Codex runs GPT-6 Luna, the
 efficient model, with limited usage. One task per chat, Light effort for
 quick jobs, plan first, draft prompts in a regular chat. Plus users: stay on
 Luna today.
 
-**6. The loop.** Brief, plan, one small step, check, next. Most bad
-experiences come from skipping the plan or the check.
+**6. The loop.** Brief, plan, you approve, one small step, you check, next.
+The two blue boxes are yours. Most bad experiences come from skipping them.
 
 **7. AGENTS.md.** A file of standing instructions Codex reads before every
 task. Show the rules: plan first, never change original data, every number
@@ -103,10 +104,13 @@ with another prompt. No file editing by hand.
 state the takeaway; one accent per slide; every number from the memo. The
 "don't" list is what makes slides look AI-generated.
 
-**19. Your turn.** Walk the table: install, prompting guide, skills, then
-your own project or a practice track (98 survey, 99 thesis data).
+**19. Your turn.** Walk the route: install, first task, prompting guide,
+then the blue question. Own project: skills (04A), then 02 and 03. No
+project: track 98 (survey to slides) or 99 (my thesis data).
 
-**20. Verify and disclose.** Read the checklist aloud. Undisclosed AI help
+**20. Verify and disclose.** Show the formula: one COUNTIFS in Excel or
+Sheets gives 417 / 1014 = 41.1%, the same as Codex. Then the other three
+checks. Undisclosed AI help
 can count as plagiarism, so check your course rules; step 03 has a template.
 
 **21. Pitfalls.** Private data, invented references, trusting confident
