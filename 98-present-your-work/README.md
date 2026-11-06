@@ -48,16 +48,19 @@ Codex will ask you a few things. Suggested answers:
 | Remove the duplicate submission? | Yes, keep one copy. |
 | Which groups to compare? | Domestic and international, as defined in AGENTS.md. |
 | How to treat skipped questions? | Leave them out of that question's results and report how many were skipped. |
+| It shows a plan and waits. | Read it. If it looks right, reply `OK`. |
+
+> Python or pandas missing? See [Get ready for the data tracks](../00-install/#get-ready-for-the-data-tracks-python).
 
 ## Step 3: Check it yourself (5 minutes)
 
 1. Open `outputs/responses_anonymous.csv`. **Are the email and name
    columns gone?** If not, stop and tell Codex.
 2. Open `data/beppu_visitor_survey_SYNTHETIC.csv` in Excel or Google
-   Sheets. Filter "Where are you visiting from?" to the rows that start
-   with **Japan**, then count how many gave **4 or 5** for "Information
-   available in my language". Divide by the number of domestic rows. Does
-   it match Codex's number? (Remember the duplicate row.)
+   Sheets ([how](../help/computer-basics.md#open-a-csv-file-in-a-spreadsheet)).
+   Use the formulas in [computer basics](../help/computer-basics.md#count-rows-without-filters-use-a-formula)
+   to count the domestic answers, and those rating "Information available
+   in my language" 4 or 5. Does the share match Codex's number?
 3. Read the quotes in `outputs/survey_summary.md`. Are they exact answers
    from the data?
 
@@ -78,7 +81,7 @@ then reply `OK`.
 2. Ask Codex to check it against the design rules:
 
 ```text
-Check outputs/deck/index.html against the checklist in the presentation-page design guide. For each item, say done or not done, and fix anything not done.
+Check outputs/deck/index.html against the checklist in .agents/skills/presentation-page/references/design-guide.md. For each item, say done or not done, then fix at most the three most important problems.
 ```
 
 ## Step 6: Save it as a PDF (2 minutes)
@@ -95,10 +98,12 @@ You get one slide per page, which works on any computer and in any LMS.
 ## Step 7: Make it yours
 
 - Edit the AI-use note on the last slide so it is true for you.
-- Try another theme: `Rebuild the deck with the editorial theme.`
-- Use your own survey: put the export in a new folder with an `AGENTS.md`
-  like this one, and repeat steps 2-6.
+- Try another theme without rebuilding: `In outputs/deck/index.html, change only data-theme on the html tag to editorial.`
+- Use your own survey: first install the skills for your own projects
+  ([04, Part A](../04-make-a-skill/#part-a-install-the-example-skills-5-minutes)),
+  then put the export in a new folder with an `AGENTS.md` like this one and
+  repeat steps 2-6.
 
 ## Finished?
 
-Compare your numbers with [answer-key/ANSWERS.md](answer-key/ANSWERS.md).
+Compare your numbers with [the answer key](../answer-keys/98-present-your-work.md).

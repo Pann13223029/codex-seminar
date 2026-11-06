@@ -11,7 +11,8 @@ Time: about 40 minutes. No programming needed. You will use two of the
 ## The question
 
 Japan's headline statistic says only about **4 in 10** municipal
-incinerators generate electricity. That sounds low. But a small plant and a
+incinerators generate electricity (the Ministry of the Environment's FY2024
+summary: 415 of 991 incineration facilities, 41.9%). That sounds low. But a small plant and a
 huge plant each count as one. Is most of the **waste** actually burned at
 plants that generate?
 
@@ -54,8 +55,7 @@ flowchart TD
    (inside `codex-seminar-main`) and choose **Codex**.
 3. The folder already contains `AGENTS.md` (the project brief), the data,
    and the two skills it uses (in a hidden folder `.agents/skills`), so
-   there is nothing to install. Do not open `answer-key/` until you have
-   your own results.
+   there is nothing to install.
 
 ## Step 1: Check that Codex read the brief (2 minutes)
 
@@ -66,7 +66,7 @@ Read AGENTS.md and summarize the project, the data and the rules in five bullet 
 ## Step 2: Analyse with `$data-explore` (10 minutes)
 
 ```text
-$data-explore I want to know whether "only about 4 in 10 incinerators generate electricity" understates how much waste is covered. For FY2005 and FY2024, calculate: (1) the share of records with a generator, (2) the share of waste burned at records that generate, and (3) the share of design capacity at records with a generator. Use the definitions in AGENTS.md.
+$data-explore I want to know whether "only about 4 in 10 incinerators generate electricity" understates how much waste is covered. For FY2005 and FY2024, calculate: (1) the share of records with a generator, (2) the share of waste burned at records that generate, and (3) the share of design capacity at records with a generator. Use the definitions in AGENTS.md. Also tell me the FY2024 share with a generator if blank power values were dropped instead of counted as zero.
 ```
 
 The skill makes Codex describe the data and ask about the decisions that
@@ -77,26 +77,29 @@ change the answer before calculating. Suggested answers:
 | How should blanks be treated? | As zero, as AGENTS.md says. Also tell me what the FY2024 share would be if blanks were dropped instead. |
 | Are there duplicates to remove? | Keep all rows: each row is a different plant in a different year. |
 | What counts as "has a generator"? | power_capacity_kw above zero, as AGENTS.md says. |
+| It shows a plan and waits. | Read it. If it looks right, reply `OK`. |
 
-> If Codex says Python or a package is missing, ask:
-> `What do I need to install, and how? Do not install anything yourself.`
+> Python or pandas missing? See [Get ready for the data tracks](../00-install/#get-ready-for-the-data-tracks-python).
 
-✅ Look at the answer to the blanks question. The two ways of treating
-blanks give very different FY2024 numbers. Which one is right, and why?
+✅ Look at the FY2024 share with blanks dropped. The two ways of treating
+blanks give very different numbers. Which one is right, and why?
 
 ## Step 3: Check one number yourself (5 minutes)
 
 Do this **by hand**, without Codex:
 
-1. Open `data/incinerators_fy2005_fy2024.csv` in Excel or Google Sheets.
-2. Filter `fiscal_year` to **2024**. Count the rows.
-3. Filter `power_capacity_kw` to values **greater than 0**. Count again.
-4. Divide. Does it match the first percentage in `outputs/findings.md`?
+1. Open `data/incinerators_fy2005_fy2024.csv` in Excel or Google Sheets
+   ([how](../help/computer-basics.md#open-a-csv-file-in-a-spreadsheet)).
+2. Use the formulas in [computer basics](../help/computer-basics.md#count-rows-without-filters-use-a-formula)
+   to count FY2024 records, and FY2024 records with `power_capacity_kw`
+   above zero. Divide.
+3. Does it match the **FY2024 share of records with a generator** in
+   `outputs/findings.md`?
 
 Then ask Codex to check itself:
 
 ```text
-List three ways the numbers in outputs/findings.md could be wrong. Test each one and tell me whether the results change.
+List three ways the numbers in outputs/findings.md could be wrong, test the most likely one, and tell me whether the result changes.
 ```
 
 ## Step 4: Make slides with `$presentation-page` (10 minutes)
@@ -165,6 +168,6 @@ Using facility_id, find the plants that appear in both FY2005 and FY2024. For th
 
 ## Finished?
 
-Compare your numbers with [answer-key/ANSWERS.md](answer-key/ANSWERS.md).
+Compare your numbers with [the answer key](../answer-keys/99-follow-my-example.md).
 If yours differ, ask Codex why: the most common cause is a different
 definition or a different treatment of blanks.

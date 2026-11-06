@@ -123,9 +123,24 @@ Limits: Change only what is needed to fix this error. Do not rewrite the script.
 7. **Correct, do not restart.** If the result is off, say what is wrong:
    "The chart should compare groups, not years."
 
+## Make your usage last
+
+Codex usage is limited on every plan, and most on Free. Each message makes
+Codex read files, think and run code, so a sloppy task can use a lot.
+
+| Habit | Why it saves usage |
+| --- | --- |
+| **One task per chat.** Start a **New chat** for each new job. | Long chats make Codex re-read everything that came before. |
+| **Use Light effort for quick jobs,** High only for analysis. | Higher effort means longer thinking. |
+| **Plan first, then approve.** | Fixing a wrong plan is cheap; redoing finished work is not. |
+| **Keep the folder small.** Only the files the task needs. | Codex reads less to understand the project. |
+| **Draft the prompt in a regular chat** (next section). | A normal chat in Claude, Gemini or ChatGPT does not use your Codex allowance. (ChatGPT **Work** mode does: it shares Codex's limits.) |
+| **Check with a spreadsheet,** not another Codex run. | A hand check is free and teaches you more. |
+| **On Plus or higher: stay on GPT-6 Luna** for workshop tasks. | It is the most efficient model; save Astra, Max and Ultra for hard problems. |
+
 ## Let a chatbot write the prompt for you
 
-You can use a free chat (Claude, Gemini or ChatGPT) to turn a rough idea
+You can use a regular chat (Claude, Gemini, or ChatGPT in **Chat** mode, not Work) to turn a rough idea
 into a well-structured Codex prompt. The chatbot asks you questions, then
 writes the prompt; you paste the result into Codex.
 
@@ -179,5 +194,6 @@ Start by asking me your first question.
 Before doing anything, interview me: ask me up to five questions, one at a time, about what I want, which files to use, what the result should look like and how I will check it. Then write the task back to me as Goal, Context, Task, Output, Checks and Limits, and wait for my OK before starting.
 ```
 
-Next: [02: Work on your own project](../02-your-project/), or a practice
-track: [98](../98-present-your-work/) or [99](../99-follow-my-example/).
+Next: with your own project, [04: Skills, Part A](../04-make-a-skill/#part-a-install-the-example-skills-5-minutes)
+then [02](../02-your-project/); without one, a practice track:
+[98](../98-present-your-work/) or [99](../99-follow-my-example/).

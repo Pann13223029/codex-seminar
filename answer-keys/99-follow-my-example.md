@@ -2,7 +2,7 @@
 
 Open this only after you have your own results. All numbers use the
 definitions in `AGENTS.md` (blank power values treated as zero). They match
-the published analysis in the author's thesis.
+the analysis in the author's thesis.
 
 ## Step 2: Rows
 
@@ -11,7 +11,7 @@ the published analysis in the author's thesis.
 | 2005 | 1,318 |
 | 2024 | 1,014 |
 
-## Step 4: The three percentages
+## Step 2: The three percentages
 
 | Measure | FY2005 | FY2024 |
 | --- | --: | --: |
@@ -23,7 +23,7 @@ So yes: about 4 in 10 **plants** have a generator, but about 8 in 10
 **tonnes of waste** are burned at plants that generate. The big plants are
 the ones that generate, so counting plants understates coverage.
 
-## Step 5: The missing-value trap
+## Step 2: The missing-value trap
 
 In FY2024, `power_capacity_kw` is blank for **595** records, zero for 2 and
 positive for 417. In FY2005 there are no blanks: non-generators were
@@ -42,7 +42,7 @@ A second definition check: counting records that **generate**
 (power_generated_mwh > 0) instead of records **with a generator** gives
 40.4% in FY2024 (410 of 1,014). Close, but not the same thing.
 
-## Step 8: Skill test (FY2024, Tokyo)
+## Step 5: Skill test (FY2024, Tokyo)
 
 | Measure | Tokyo FY2024 |
 | --- | --: |

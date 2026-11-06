@@ -11,9 +11,12 @@ Ritsumeikan Asia Pacific University).
 
 ## What you need
 
-1. A **ChatGPT account**. Codex is included in every ChatGPT plan, including
-   Free; usage limits vary by plan
-   ([OpenAI Help Center](https://help.openai.com/en/articles/11369540-using-codex-with-your-chatgpt-plan)).
+1. A **ChatGPT account**. The **Free plan is enough** for this workshop:
+   it includes Codex in the desktop app with **GPT-6 Luna**, OpenAI's most
+   efficient model, with usage limits (still rolling out, so a few accounts may not see it yet)
+   ([Codex pricing](https://learn.chatgpt.com/docs/pricing),
+   [models](https://learn.chatgpt.com/docs/models)). Everything here was
+   tested with Luna.
 2. A laptop running **macOS, Windows or Linux** with the **ChatGPT desktop
    app** installed ([official quickstart](https://learn.chatgpt.com/docs/quickstart)).
 3. Optional but recommended: **Git**. The app uses it to show what Codex
@@ -22,13 +25,20 @@ Ritsumeikan Asia Pacific University).
    [follow-my-example track](99-follow-my-example/) gives you data and
    copy-and-paste prompts.
 
+> **On the Free plan?** Usage is limited, so keep each chat to one task,
+> use the **Light** reasoning setting for quick jobs, and draft long prompts
+> in a free chat first. See [make your usage last](prompt-guide/#make-your-usage-last).
+
 > **Privacy:** do not put personal data, interview transcripts, unpublished
 > data you are not allowed to share, or passwords into a folder you open with
 > Codex. Treat it like sending the files to an outside service.
 
-> **Academic integrity:** APU treats undisclosed AI assistance as a possible
-> form of plagiarism. If AI helps with a thesis or assignment, say so. Step 03
-> shows how.
+> **Academic integrity:** undisclosed AI help can count as plagiarism under
+> university rules, including APU's. Check your course rules, and if AI helps
+> with a thesis or assignment, say so. Step 03 shows how.
+
+> **Stuck on a basic step** (unzipping, hidden folders, opening a CSV,
+> counting rows)? See [computer basics](help/computer-basics.md).
 
 ## Your route through the workshop
 

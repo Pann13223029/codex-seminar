@@ -13,26 +13,36 @@ Create a file called notes.md with five made-up seminar meeting notes, each with
 
 Codex writes a real file in your folder. Open it to check.
 
-## 2. Ask it to change the file
+## 2. Save a snapshot
+
+A snapshot (Git) lets you see exactly what Codex changes later, and undo it.
+It needs Git (see [step 00](../00-install/#recommended-install-git)).
+
+```text
+Make this folder a Git repository if it is not one yet, and save a snapshot of all files with the message "notes created".
+```
+
+## 3. Ask it to change the file
 
 ```text
 Rewrite notes.md so all action items are collected in a table at the top, with columns Date, Action and Owner. Keep the original notes below the table.
 ```
 
-## 3. Review the change
+## 4. Review the change
 
-Look at what changed before you accept it. If Git is installed, the app's
-review panel shows the lines that were added and removed.
+Look at what changed before you accept it. Because you saved a snapshot,
+the app's review panel shows the lines that were added and removed. You can
+also ask: `Show me exactly what changed since the last snapshot.`
 
-> Screenshot: `assets/screenshots/01-review.png`
+<!-- Screenshot to add: ![](../assets/screenshots/01-review.png) -->
 
 Ask yourself: is this what I asked for? Did it change anything I did not ask
 it to change?
 
-## 4. Undo it
+## 5. Undo it
 
 ```text
-Undo your last change to notes.md and confirm the file is back to how it was.
+Undo your last change to notes.md by restoring it from the last snapshot, then confirm it matches the snapshot.
 ```
 
 Then open the file and check for yourself.

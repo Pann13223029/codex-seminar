@@ -18,8 +18,10 @@ student who may not program, so explain every step in plain English.
 ## Steps
 
 0. **Check the tools.** Check that Python with pandas and matplotlib is
-   available. If not, tell the user in plain English what is missing and
-   how to install it, and wait. Never install anything without their OK.
+   available. If Python itself is missing, explain in plain English how to
+   install it on the user's system (Windows or Mac) and stop. If only pandas
+   or matplotlib is missing, ask permission, then install them with pip for
+   the user's account. Never install anything without their OK.
 1. **Describe before touching.** Report rows and columns, what each column
    seems to mean, data types, and for each column the number of blanks,
    zeros and unusual values (negative numbers, impossible dates, typos in

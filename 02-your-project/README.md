@@ -27,9 +27,12 @@ Codex reads a file called `AGENTS.md` in your folder before every task
 ([official guide](https://learn.chatgpt.com/docs/agent-configuration/agents-md)).
 It is where you write what the project is and the rules Codex must follow.
 
-Create `AGENTS.md` in your folder and fill in this template:
+You do not need to write it yourself. Codex creates it from a template and
+interviews you to fill it in. Copy and paste:
 
-```md
+```text
+Create a file called AGENTS.md in this folder from the template below. Then ask me questions one at a time to fill in every part in [square brackets], and keep the Rules section as it is unless I ask to change it. When we are done, show me the finished file.
+
 # Project brief
 
 ## What this project is

@@ -17,8 +17,10 @@ may not program; explain each step in plain English.
 ## Steps
 
 0. **Check the tools.** Check that Python with pandas and matplotlib is
-   available. If not, tell the user in plain English what is missing and
-   how to install it, and wait. Never install anything without their OK.
+   available. If Python itself is missing, explain in plain English how to
+   install it on the user's system (Windows or Mac) and stop. If only pandas
+   or matplotlib is missing, ask permission, then install them with pip for
+   the user's account. Never install anything without their OK.
 1. **Protect respondents first.** Before any analysis, find columns with
    personal data (email, name, phone, student ID, free-text that names
    people). Write `scripts/anonymize.py` that saves

@@ -39,7 +39,7 @@ You can read each recipe in the [skills folder](../skills/).
 **Code → Download ZIP**, then unzip it. You now have a folder called
 `codex-seminar-main` (in Downloads, unless you moved it).
 
-> Screenshot: `assets/screenshots/04-download-zip.png`
+<!-- Screenshot to add: ![](../assets/screenshots/04-download-zip.png) -->
 
 **A2. Open that folder in Codex.** In the ChatGPT desktop app, open the
 folder `codex-seminar-main` and choose **Codex** (as in
@@ -55,7 +55,7 @@ Codex **will ask for your permission**: skills live in a protected
 folder (`.agents`) outside the one you opened. Read what it wants to do,
 then approve. If you do not approve, nothing is installed.
 
-> Screenshot: `assets/screenshots/04-approve.png`
+<!-- Screenshot to add: ![](../assets/screenshots/04-approve.png) -->
 
 **A4. Check they are installed.** Start a **New chat** and paste:
 
@@ -64,10 +64,16 @@ Which skills can you use right now? List each skill's name and its one-line desc
 ```
 
 ✅ You should see `data-explore`, `survey-summary` and
-`presentation-page`. You can also type `$` in the message box to see the
-list.
+`presentation-page`. You can also type `$` in the message box, or open
+**Skills** in the app's sidebar, to see them.
 
 > Not there? Close and reopen the ChatGPT app, then try A4 again.
+
+If you open folder 98 or 99 later, Codex may list a skill twice (the copy in
+your home folder and the one in the track folder). That is fine.
+
+**Own project?** Your next step is [02: Work on your own project](../02-your-project/).
+Come back for Part B after step 03.
 
 ---
 
@@ -77,13 +83,13 @@ Open the folder `99-follow-my-example` (inside `codex-seminar-main`) in
 Codex and paste:
 
 ```text
-$data-explore What share of FY2024 incinerators have a generator? Follow the definitions in AGENTS.md.
+$data-explore Do only the first step: describe this data in plain English. Do not calculate anything or create any files yet.
 ```
 
-Watch what the skill makes Codex do: describe the data first, ask about
-blanks and definitions, then calculate, chart and give you one number to
-check by hand. You did not have to ask for any of that. **That is what a
-skill is for.**
+Watch what the skill makes Codex do: it lists every column and flags
+blanks, zeros and odd values, without you asking for any of that. **That is
+what a skill is for.** (Track 99 runs the full analysis, so this short
+check saves your usage.)
 
 How Codex decides to use a skill:
 
@@ -162,7 +168,7 @@ $meeting-notes notes/meeting-1.md
 **D3. Test it without the name.** Start a **New chat** and paste:
 
 ```text
-Can you tidy up my notes from the last meeting?
+Can you tidy up the meeting notes in notes/meeting-1.md?
 ```
 
 Did Codex use `meeting-notes` on its own? If not, improve the
