@@ -1,0 +1,47 @@
+# Answer key (synthetic data)
+
+All responses are made up. After removing the one duplicate submission
+there are **120 responses**: 60 domestic and 60 international.
+
+## Rating questions (1-5)
+
+| Question | Answers | Mean | Share 4 or 5 | Domestic mean | International mean |
+| --- | --: | --: | --: | --: | --: |
+| Overall satisfaction | 120 | 3.87 | 67.5% | 4.03 | 3.70 |
+| Onsen experience | 120 | 4.34 | 90.0% | 4.27 | 4.42 |
+| Ease of getting around | 115 (5 skipped) | 3.30 | 40.0% | 3.53 | 3.05 |
+| Information in my language | 120 | 3.50 | 50.8% | 4.37 | **2.63** |
+| Value for money | 117 (3 skipped) | 3.44 | 48.7% | 3.37 | 3.50 |
+| Would recommend | 120 | 3.78 | 60.0% | 3.92 | 3.65 |
+
+## The main finding
+
+"Information available in my language", share answering 4 or 5:
+
+| Group | Share 4 or 5 | Distribution (1/2/3/4/5) |
+| --- | --: | --- |
+| Domestic (n = 60) | **85.0%** (51 of 60) | 0 / 0 / 9 / 20 / 31 |
+| International (n = 60) | **16.7%** (10 of 60) | 7 / 18 / 25 / 10 / 0 |
+
+Onsen is the strength for everyone (90% give 4 or 5); language
+information is the biggest gap for international visitors.
+
+## "What could be improved?" (open answers)
+
+83 of 120 respondents wrote something. A reasonable grouping:
+
+| Theme | Answers | Example (exact) |
+| --- | --: | --- |
+| Getting around by bus | 23 | "Buses between sights are infrequent." |
+| Information and language | 19 | "More signs and maps in English, Korean and Chinese." |
+| Crowds and parking | 23 | "Some areas felt crowded on weekends." |
+| Payment | 10 | "More card payment at small shops." |
+| Opening hours | 8 | "Shops close early in the evening." |
+
+Your themes may be grouped differently; the counts of the exact answers
+should match.
+
+## Privacy check
+
+`outputs/responses_anonymous.csv` must not contain the columns "Email
+address" or "Name (optional)".

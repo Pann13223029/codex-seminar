@@ -3,10 +3,10 @@
 No project of your own? Repeat a small version of the analysis from my
 graduation thesis on Japan's waste incinerators, using the same public data
 and the prompts below. You will practise every idea in steps 02-04: a brief,
-plan first, small steps, checking by hand, writing it up, and making a
-skill.
+plan first, checking by hand, presenting, and making a skill.
 
-Time: 30-45 minutes. No programming needed.
+Time: about 40 minutes. No programming needed. You will use two of the
+[example skills](../skills/) and make one of your own.
 
 ## The question
 
@@ -15,135 +15,126 @@ incinerators generate electricity. That sounds low. But a small plant and a
 huge plant each count as one. Is most of the **waste** actually burned at
 plants that generate?
 
-## The nine steps at a glance
+## The six steps at a glance
 
 ```mermaid
 flowchart TD
-    subgraph U["Understand"]
-        S1["1 Check the brief"] --> S2["2 Explore the data"]
-    end
-    subgraph A["Analyse"]
-        S3["3 Ask for a plan<br/>wait for your OK"] --> S4["4 Run the analysis"]
-    end
-    subgraph C["Check"]
-        S5["5 Check one number<br/>by hand in a spreadsheet"]
-    end
-    subgraph S["Share"]
-        S6["6 Make a chart"] --> S7["7 Write a memo"]
-    end
-    subgraph R["Reuse and disclose"]
-        S8["8 Make a skill"] --> S9["9 AI-use statement"]
-    end
-    S2 --> S3
-    S4 --> S5
-    S5 --> S6
-    S7 --> S8
-    S9 --> K(["Compare with the answer key"])
+    S1["1 Check the brief"] --> S2["2 Analyse with $data-explore<br/>answer its questions"]
+    S2 --> S3["3 Check one number by hand"]
+    S3 --> S4["4 Make slides with $presentation-page"]
+    S4 --> S5["5 Make your own skill<br/>with $skill-creator"]
+    S5 --> S6["6 AI-use statement"]
+    S6 --> K(["Compare with the answer key"])
 ```
 
 ## What your folder will look like
 
 ```
 99-follow-my-example/
-├── AGENTS.md                         the brief (given)
+├── AGENTS.md                  the brief (given)
 ├── data/
 │   └── incinerators_fy2005_fy2024.csv   the data (given, never changed)
-├── scripts/
-│   └── coverage.py                   step 4: Codex writes it
+├── scripts/                   step 2: code Codex writes and runs
 ├── outputs/
-│   ├── coverage.csv                  step 4: the three percentages
-│   ├── coverage.png                  step 6: the chart
-│   └── memo.md                       step 7: the memo
-└── .agents/skills/coverage-check/
-    └── SKILL.md                      step 8: your skill
+│   ├── results.csv            step 2: the three percentages
+│   ├── *.png                  step 2: charts
+│   ├── findings.md            step 2: the findings memo
+│   └── deck/index.html        step 4: your slides
+└── .agents/skills/            hidden folder of skills
+    ├── data-explore/          given
+    ├── presentation-page/     given
+    └── coverage-check/        step 5: the skill you make
 ```
 
-## Set up (5 minutes)
+## Before you start
 
-1. On this repository's GitHub page, choose **Code → Download ZIP** and
-   unzip it.
+1. Download this repository: on its GitHub page choose **Code → Download
+   ZIP**, then unzip it.
 2. In the ChatGPT desktop app, open the folder **`99-follow-my-example`**
-   (not the whole repository) and switch to **Codex**.
-3. The folder already contains:
-   - `AGENTS.md`: the project brief. Read it; Codex reads it before every task.
-   - `data/incinerators_fy2005_fy2024.csv`: the data.
+   (inside `codex-seminar-main`) and choose **Codex**.
+3. The folder already contains `AGENTS.md` (the project brief), the data,
+   and the two skills it uses (in a hidden folder `.agents/skills`), so
+   there is nothing to install. Do not open `answer-key/` until you have
+   your own results.
 
-Do not open `answer-key/` until you have your own results.
-
-## Step 1: Check that Codex read the brief
+## Step 1: Check that Codex read the brief (2 minutes)
 
 ```text
 Read AGENTS.md and summarize the project, the data and the rules in five bullet points. Do not change any files.
 ```
 
-## Step 2: Explore the data
+## Step 2: Analyse with `$data-explore` (10 minutes)
 
 ```text
-Look at data/incinerators_fy2005_fy2024.csv. Tell me how many rows there are for each fiscal year, what each column means, and how many values are missing in each column. Do not change any files.
+$data-explore I want to know whether "only about 4 in 10 incinerators generate electricity" understates how much waste is covered. For FY2005 and FY2024, calculate: (1) the share of records with a generator, (2) the share of waste burned at records that generate, and (3) the share of design capacity at records with a generator. Use the definitions in AGENTS.md.
 ```
 
-✅ Check: you should see two fiscal years with different numbers of rows.
+The skill makes Codex describe the data and ask about the decisions that
+change the answer before calculating. Suggested answers:
 
-## Step 3: Ask for a plan first
-
-```text
-I want to know whether "only about 4 in 10 incinerators generate electricity" understates how much waste is covered. Before writing any code, give me a short plan: three percentages you would calculate for each fiscal year, the exact formula for each using the column names, and two things that could make the numbers wrong. Wait for my OK.
-```
-
-Read the plan. The three percentages should be:
-
-1. Share of **records** with a generator.
-2. Share of **waste burned** (throughput) at records that **generate**.
-3. Share of **design capacity** at records with a generator.
-
-If the plan is different, tell Codex what to change.
-
-## Step 4: Run the analysis
-
-```text
-OK. Write a short Python script, scripts/coverage.py, that calculates the three percentages for FY2005 and FY2024, saves them to outputs/coverage.csv, and prints a small table. Run it and show me the table. Explain each line of the script in one sentence.
-```
+| If Codex asks... | You can answer... |
+| --- | --- |
+| How should blanks be treated? | As zero, as AGENTS.md says. Also tell me what the FY2024 share would be if blanks were dropped instead. |
+| Are there duplicates to remove? | Keep all rows: each row is a different plant in a different year. |
+| What counts as "has a generator"? | power_capacity_kw above zero, as AGENTS.md says. |
 
 > If Codex says Python or a package is missing, ask:
 > `What do I need to install, and how? Do not install anything yourself.`
 
-## Step 5: Check one number yourself
+✅ Look at the answer to the blanks question. The two ways of treating
+blanks give very different FY2024 numbers. Which one is right, and why?
+
+## Step 3: Check one number yourself (5 minutes)
 
 Do this **by hand**, without Codex:
 
 1. Open `data/incinerators_fy2005_fy2024.csv` in Excel or Google Sheets.
 2. Filter `fiscal_year` to **2024**. Count the rows.
 3. Filter `power_capacity_kw` to values **greater than 0**. Count again.
-4. Divide. Does it match Codex's first percentage?
+4. Divide. Does it match the first percentage in `outputs/findings.md`?
 
 Then ask Codex to check itself:
 
 ```text
-List three ways the percentages in outputs/coverage.csv could be wrong (for example how blanks were treated or how "generate" was defined). Test each one and tell me whether the results change.
+List three ways the numbers in outputs/findings.md could be wrong. Test each one and tell me whether the results change.
 ```
 
-## Step 6: Make a chart
+## Step 4: Make slides with `$presentation-page` (10 minutes)
 
 ```text
-Make one clear bar chart comparing the three percentages for FY2005 and FY2024, saved as outputs/coverage.png. Use plain labels a non-specialist can read. Then explain in two sentences what the chart shows.
+$presentation-page Make a 5-minute deck from outputs/findings.md for a seminar class. Use the editorial theme.
 ```
 
-## Step 7: Write a one-page memo
+Codex first shows an **outline**. Check that every slide title states a
+takeaway and every number comes from `findings.md`, then reply `OK`.
+
+Then:
+
+1. Double-click `outputs/deck/index.html` to open it. Arrow keys move;
+   **F** is full screen.
+2. To save a PDF, print from **Chrome** or **Edge**: Destination **Save as
+   PDF**, Margins **None**, tick **Background graphics**.
+
+## Step 5: Make your own skill (10 minutes)
+
+You just did a check you could repeat for any year or prefecture. Save it
+as a skill. Copy and paste:
 
 ```text
-Write outputs/memo.md: a one-page memo for a policy reader. Include the three FY2024 percentages, how they changed since FY2005, what they mean in plain English, the chart, and two limitations of the data. Do not claim anything the data cannot show, such as why plants were built or closed.
+$skill-creator Create a skill called coverage-check for this project. Given a fiscal year (and optionally a prefecture), it should calculate the three coverage percentages from data/incinerators_fy2005_fy2024.csv using the definitions in AGENTS.md, save the results to outputs/, and report one number the user should check by hand and how. It should be used when I ask about generator coverage or the coverage check, and not for other analyses. Keep it instruction-only, with no scripts. Save it in this project's .agents/skills folder.
 ```
 
-Read the memo. Change anything you would not say yourself.
+If the skill creator asks questions:
 
-## Step 8: Turn it into a skill
+| If Codex asks... | You can answer... |
+| --- | --- |
+| When should it trigger? | When I ask about generator coverage or the coverage check. |
+| Instructions only, or scripts too? | Instructions only. |
+| Where should it be saved? | In this project's `.agents/skills` folder. |
+| Anything it must never do? | Never change the data file. Never claim why plants were built or closed. |
 
-You have just done a workflow you could repeat for any year or region.
-Save it as a skill (see [04: Make a skill](../04-make-a-skill/)):
-
-```text
-$skill-creator Create a skill called coverage-check for this project. Given a fiscal year (and optionally a prefecture), it should calculate the three coverage percentages from data/incinerators_fy2005_fy2024.csv using the definitions in AGENTS.md, save the results to outputs/, and report one number the user should check by hand and how. It should trigger when I ask about generator coverage or the coverage check, and not for other analyses. Keep it instruction-only, with no scripts.
-```
+Codex will ask for **permission** to write in `.agents`, a protected
+folder. Approve it.
 
 Test it in a **new chat**:
 
@@ -151,7 +142,13 @@ Test it in a **new chat**:
 $coverage-check Run the coverage check for FY2024 for Tokyo only.
 ```
 
-## Step 9: Write your AI-use statement
+Then look inside it:
+
+```text
+Show me the SKILL.md you made for coverage-check and explain each part in plain English.
+```
+
+## Step 6: Write your AI-use statement (2 minutes)
 
 ```text
 Look at what we did in this folder. Draft a two-sentence AI-use statement saying what you did and what I checked myself. Do not exaggerate either part.

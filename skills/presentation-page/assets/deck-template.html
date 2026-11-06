@@ -1,0 +1,233 @@
+<!doctype html>
+<!--
+  Deck template for the presentation-page skill.
+  Theme: set data-theme on <html> to "editorial", "bold" or "field".
+  One <section class="slide"> per slide. Replace the example slides; keep
+  only the layouts you need. Works offline: no fonts or scripts from the web.
+  Save as PDF: open in Chrome or Edge, Print, Destination "Save as PDF",
+  Margins "None", tick "Background graphics".
+-->
+<html lang="en" data-theme="editorial">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deck title</title>
+<style>
+  :root {
+    --font: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --mono: "SF Mono", Menlo, Consolas, monospace;
+  }
+  /* Theme 1: calm editorial. Off-white paper, near-black ink, one deep blue. */
+  [data-theme="editorial"] { --bg: #f6f5f1; --ink: #1d1f22; --muted: #5d636b; --line: #d7d8d3; --accent: #1f4e8c; --accent-soft: #dce5f1; --bar2: #a9afb6; }
+  /* Theme 2: bold dark. Charcoal background, warm amber accent. */
+  [data-theme="bold"] { --bg: #15181c; --ink: #f1f0ec; --muted: #a8adb3; --line: #33383e; --accent: #e8a33d; --accent-soft: #3a3226; --bar2: #5d646c; }
+  /* Theme 3: field report. Light grey-green paper, forest green accent. */
+  [data-theme="field"] { --bg: #f2f4f1; --ink: #1b2420; --muted: #56625b; --line: #d2d8d2; --accent: #2f6b4f; --accent-soft: #dbe8df; --bar2: #a7b1aa; }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: var(--bg); color: var(--ink); font-family: var(--font); font-variant-numeric: tabular-nums lining-nums; }
+  #stage { position: absolute; left: 0; top: 0; width: 1280px; height: 720px; transform-origin: 0 0; }
+  .slide { position: absolute; inset: 0; padding: 64px 88px 72px; display: none; flex-direction: column; gap: 32px; overflow: hidden; }
+  .slide.active { display: flex; }
+  .slide > .body { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 32px; min-height: 0; }
+
+  h1 { font-size: 64px; line-height: 1.05; letter-spacing: -0.02em; font-weight: 650; margin: 0; max-width: 18ch; }
+  h2 { font-size: 40px; line-height: 1.15; letter-spacing: -0.015em; font-weight: 650; margin: 0; max-width: 32ch; }
+  h3 { font-size: 22px; font-weight: 650; margin: 0 0 6px; }
+  p, li { font-size: 24px; line-height: 1.45; margin: 0; }
+  .muted { color: var(--muted); }
+  .small { font-size: 18px; }
+  .accent { color: var(--accent); }
+  .kicker { font-size: 18px; color: var(--muted); }
+  .rule { border-top: 2px solid var(--ink); padding-top: 18px; }
+  .hair { border-top: 1px solid var(--line); padding-top: 18px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 64px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 48px; }
+  .source { font-size: 15px; color: var(--muted); }
+  .footer { position: absolute; left: 88px; right: 88px; bottom: 26px; display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); }
+
+  /* Layout: big number */
+  .big-number { font-size: 120px; line-height: .95; font-weight: 650; letter-spacing: -0.03em; color: var(--accent); }
+  /* Layout: statement */
+  .statement { font-size: 44px; line-height: 1.25; font-weight: 600; max-width: 28ch; border-left: 4px solid var(--accent); padding-left: 28px; }
+  /* Layout: quote */
+  blockquote { margin: 0; font-size: 36px; line-height: 1.35; max-width: 30ch; }
+  blockquote::before { content: "\201C"; color: var(--accent); }
+  blockquote::after { content: "\201D"; color: var(--accent); }
+  /* Layout: list of up to three points */
+  ol.points { list-style: none; padding: 0; margin: 0; display: grid; gap: 22px; counter-reset: p; }
+  ol.points li { counter-increment: p; display: grid; grid-template-columns: 56px 1fr; border-top: 1px solid var(--line); padding-top: 18px; }
+  ol.points li::before { content: counter(p); font-weight: 650; color: var(--accent); }
+  /* Layout: horizontal bar chart. Set --v to the value as a percentage of the longest bar. */
+  .bars { display: grid; gap: 14px; }
+  .bar { display: grid; grid-template-columns: 260px 1fr 90px; align-items: center; gap: 18px; font-size: 20px; }
+  .bar .track { height: 34px; }
+  .bar .fill { height: 100%; width: calc(var(--v) * 1%); background: var(--bar2); }
+  .bar.key .fill { background: var(--accent); }
+  .bar.key { font-weight: 650; }
+  .bar .val { text-align: right; font-weight: 650; }
+  /* Layout: image or chart file */
+  figure { margin: 0; display: grid; gap: 10px; }
+  figure img { max-width: 100%; max-height: 430px; object-fit: contain; }
+  figcaption { font-size: 15px; color: var(--muted); }
+  /* Layout: table */
+  table { border-collapse: collapse; width: 100%; font-size: 20px; }
+  th { text-align: left; font-size: 16px; color: var(--muted); font-weight: 600; border-bottom: 2px solid var(--ink); padding: 0 12px 8px 0; }
+  td { border-bottom: 1px solid var(--line); padding: 10px 12px 10px 0; }
+  td.n, th.n { text-align: right; }
+  tr.key td { color: var(--accent); font-weight: 650; }
+
+  #progress { position: absolute; left: 0; top: 0; height: 4px; background: var(--accent); }
+  #hint { position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); color: var(--muted); font: 13px var(--font); }
+
+  /* Save as PDF: every slide on its own 1280 x 720 page. */
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    html, body { height: auto; overflow: visible; }
+    #stage { position: static; transform: none !important; height: auto; }
+    .slide { display: flex !important; position: relative; width: 1280px; height: 720px; }
+    .slide + .slide { break-before: page; }
+    #progress, #hint, .footer { display: none !important; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- LAYOUT: title -->
+<section class="slide">
+  <div class="body">
+    <p class="kicker">Course name, seminar or event</p>
+    <h1>A title that says what the audience will learn</h1>
+    <p class="muted">One sentence on the question or the data.</p>
+  </div>
+  <p class="small muted">Your name · Date</p>
+</section>
+
+<!-- LAYOUT: statement (one sentence the audience must remember) -->
+<section class="slide">
+  <div class="body">
+    <p class="statement">One finding, in one sentence, with its number.</p>
+  </div>
+</section>
+
+<!-- LAYOUT: big number -->
+<section class="slide">
+  <h2>The title states the takeaway, not the topic</h2>
+  <div class="body">
+    <div class="grid2" style="align-items:end">
+      <div><div class="big-number">41%</div><p class="muted" style="margin-top:14px">What the number counts, in plain words</p></div>
+      <div class="hair"><p>One or two sentences of context: compared with what, and why it matters.</p></div>
+    </div>
+  </div>
+  <p class="source">Source: name of the data, year. n = number of records or people.</p>
+</section>
+
+<!-- LAYOUT: bar chart (highlight the bar that matters with class="bar key") -->
+<section class="slide">
+  <h2>Compare a few groups on one measure</h2>
+  <div class="body">
+    <div class="bars">
+      <div class="bar"><span>Group A</span><div class="track"><div class="fill" style="--v:62"></div></div><span class="val">3.1</span></div>
+      <div class="bar key"><span>Group B</span><div class="track"><div class="fill" style="--v:100"></div></div><span class="val">5.0</span></div>
+      <div class="bar"><span>Group C</span><div class="track"><div class="fill" style="--v:80"></div></div><span class="val">4.0</span></div>
+    </div>
+  </div>
+  <p class="source">Measure and unit. Source, year. n = ...</p>
+</section>
+
+<!-- LAYOUT: compare two sides -->
+<section class="slide">
+  <h2>Two groups, two different stories</h2>
+  <div class="body">
+    <div class="grid2">
+      <div class="rule"><h3>Side A</h3><p class="muted">Point with its number.</p></div>
+      <div class="rule"><h3 class="accent">Side B</h3><p class="muted">Point with its number.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- LAYOUT: up to three points -->
+<section class="slide">
+  <h2>Three things to take away</h2>
+  <div class="body">
+    <ol class="points">
+      <li><p>First point, short.</p></li>
+      <li><p>Second point, short.</p></li>
+      <li><p>Third point, short.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- LAYOUT: quote (exact words, no names) -->
+<section class="slide">
+  <div class="body">
+    <blockquote>An exact quote from your data or a source.</blockquote>
+    <p class="muted small">Who said it, without identifying them. Source.</p>
+  </div>
+</section>
+
+<!-- LAYOUT: chart image made from your data -->
+<section class="slide">
+  <h2>A chart from your own data</h2>
+  <div class="body">
+    <figure>
+      <img src="chart.png" alt="Describe what the chart shows">
+      <figcaption>What to look at first. Source, year. n = ...</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- LAYOUT: table -->
+<section class="slide">
+  <h2>A small table, one row highlighted</h2>
+  <div class="body">
+    <table>
+      <tr><th>Group</th><th class="n">Value</th><th class="n">n</th></tr>
+      <tr><td>Group A</td><td class="n">3.1</td><td class="n">60</td></tr>
+      <tr class="key"><td>Group B</td><td class="n">5.0</td><td class="n">60</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- LAYOUT: sources and AI-use note (always the last slide) -->
+<section class="slide">
+  <h2>Sources and methods</h2>
+  <div class="body">
+    <div class="hair"><p class="small">Data: name, publisher, year, link.</p></div>
+    <div class="hair"><p class="small">References in your course's citation style.</p></div>
+    <div class="hair"><p class="small muted">AI use: this deck was laid out with OpenAI Codex from content I wrote and checked.</p></div>
+  </div>
+</section>
+
+<div id="progress"></div>
+<div class="footer"><span>Deck title</span><span id="count"></span></div>
+</div>
+<div id="hint">Arrow keys or click to move · F for full screen · Print to save as PDF</div>
+<script>
+  const slides = [...document.querySelectorAll('.slide')];
+  const stage = document.getElementById('stage');
+  let i = Math.max(0, Math.min(slides.length - 1, (parseInt(location.hash.slice(1), 10) || 1) - 1));
+  function show(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, k) => s.classList.toggle('active', k === i));
+    document.getElementById('count').textContent = (i + 1) + ' / ' + slides.length;
+    document.getElementById('progress').style.width = ((i + 1) / slides.length * 100) + '%';
+    history.replaceState(null, '', '#' + (i + 1));
+  }
+  function fit() {
+    const scale = Math.min(innerWidth / 1280, innerHeight / 720);
+    stage.style.transform = 'translate(' + (innerWidth - 1280 * scale) / 2 + 'px,' + (innerHeight - 720 * scale) / 2 + 'px) scale(' + scale + ')';
+  }
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); show(i + 1); }
+    if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); show(i - 1); }
+    if (e.key === 'f' || e.key === 'F') document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
+  });
+  document.addEventListener('click', e => { document.getElementById('hint').style.display = 'none'; show(e.clientX > innerWidth / 3 ? i + 1 : i - 1); });
+  addEventListener('resize', fit);
+  fit(); show(i);
+</script>
+</body>
+</html>

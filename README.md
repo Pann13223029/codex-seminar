@@ -35,13 +35,18 @@ Ritsumeikan Asia Pacific University).
 ```mermaid
 flowchart TD
     A["00 Install and sign in"] --> B["01 First task"]
-    B --> C{"Do you have your own project?"}
-    C -- "Yes" --> D["02 Work on your project"]
+    B --> PG["Prompting guide<br/>six parts of a good prompt"]
+    PG --> C{"Do you have your own project?"}
+    C -- "Yes" --> K["04 Part A<br/>Install the example skills"]
+    K --> D["02 Work on your project"]
     D --> E["03 Verify and disclose"]
-    E --> F["04 Make a skill"]
-    C -- "No" --> G["99 Follow my example<br/>prepared data and copy-and-paste prompts"]
-    F --> H(["Finished: a result you checked<br/>and an AI-use statement"])
-    G --> H
+    E --> F["04 Parts B to D<br/>Make your own skill"]
+    C -- "No" --> G{"Data or a survey?"}
+    G -- "Data" --> G1["99 Follow my example<br/>public incinerator data,<br/>skills included"]
+    G -- "Survey" --> G2["98 Present your work<br/>practice survey to slides,<br/>skills included"]
+    F --> H(["Finished: a result you checked,<br/>slides and an AI-use statement"])
+    G1 --> H
+    G2 --> H
 ```
 
 ## How you will work with Codex
@@ -67,13 +72,18 @@ flowchart TD
 | --- | --- |
 | [00: Install and sign in](00-install/) | Install the ChatGPT desktop app, sign in, open Codex. |
 | [01: Your first task](01-first-task/) | Open a folder, ask Codex to explain it, review a change and undo it. |
+| [Prompting guide](prompt-guide/) | The six parts of a good prompt, before-and-after examples, and a prompt builder for any free chatbot. |
 | [02: Work on your own project](02-your-project/) | Write a short brief, ask for a plan first, then work in small steps. |
 | [03: Verify and disclose](03-verify-and-disclose/) | Check the results yourself and write an AI-use statement. |
-| [04: Make a skill](04-make-a-skill/) | Turn a workflow you repeat into a reusable skill. |
-| [99: Follow my example](99-follow-my-example/) | No project? Repeat a small version of my thesis analysis with ready prompts. |
+| [04: Skills, step by step](04-make-a-skill/) | Install the example skills, use one, and make your own, all by copy-and-paste prompts. |
+| [98: Present your work](98-present-your-work/) | A practice survey → checked summary → slides and PDF, with two example skills. |
+| [99: Follow my example](99-follow-my-example/) | Repeat a small version of my thesis analysis with the example skills, then make your own skill. |
+| [Example skills](skills/) | `data-explore`, `survey-summary` and `presentation-page`, ready to install. |
 
-Follow **00 → 01**, then either **02 → 03 → 04** with your own project, or
-the **99** track, which walks through the same ideas with prepared data.
+Follow **00 → 01 → Prompting guide**, then either your own project
+(**04 Part A → 02 → 03 → 04 Parts B to D**) or a practice track: **98**
+(survey to slides) or **99** (data analysis). The practice tracks already
+include the example skills, so there is nothing to install.
 
 ## Words used here
 

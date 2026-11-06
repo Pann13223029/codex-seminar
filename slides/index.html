@@ -231,17 +231,31 @@
 
 <!-- 7 Good prompt -->
 <section class="slide">
-  <h2 class="in">A prompt that works</h2>
+  <h2 class="in">A good prompt has six parts</h2>
   <div class="body">
-<pre class="code in" style="font-size:20px">I want to know <b>[goal]</b>.
-Use <b>[which files]</b>. Save results to <b>[where]</b>.
-Before changing anything, <b>write a plan</b> and tell me
-<b>how I can check</b> each result. <b>Wait for my OK.</b></pre>
-    <div class="grid in" style="grid-template-columns: repeat(4, 1fr);">
-      <div class="hair"><h3>Goal</h3><p class="muted small">The question, not the code</p></div>
-      <div class="hair"><h3>Files</h3><p class="muted small">Where to read and write</p></div>
-      <div class="hair"><h3>Check</h3><p class="muted small">How you will verify</p></div>
-      <div class="hair"><h3>Stop</h3><p class="muted small">Wait for your OK</p></div>
+    <div class="in tall-rows" style="display:grid;grid-template-columns:200px 1fr;font-size:22px;--row:12px">
+      <div class="rule num accent">1 Goal</div><div class="rule">What you want, and what it is for</div>
+      <div class="hair num accent">2 Context</div><div class="hair">Which files, who reads it, what your words mean</div>
+      <div class="hair num accent">3 Task</div><div class="hair">The steps, in order</div>
+      <div class="hair num accent">4 Output</div><div class="hair">Format, length, where to save it</div>
+      <div class="hair num accent">5 Checks</div><div class="hair">How you will know it is right</div>
+      <div class="hair num accent">6 Limits</div><div class="hair">What not to do; plan first, wait for my OK</div>
+    </div>
+    <p class="statement in" style="font-size:24px">"analyse my data" becomes six labelled lines. Examples to copy: prompt-guide/</p>
+  </div>
+</section>
+
+<!-- 7b Prompt builder -->
+<section class="slide">
+  <h2 class="in">Let a free chatbot write the prompt</h2>
+  <div class="body">
+    <div class="loop in" style="grid-template-columns: repeat(9, auto); font-size:22px">
+      <span class="step">Rough idea</span><span class="arrow">→</span><span class="step accent">Prompt builder<br><span class="muted small">in Claude, Gemini or ChatGPT</span></span><span class="arrow">→</span><span class="step">It asks you questions</span><span class="arrow">→</span><span class="step accent">Six-part prompt</span><span class="arrow">→</span><span class="step">Codex</span>
+    </div>
+    <div class="grid in" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="hair"><h3>Why</h3><p class="muted small">Thinking it through is the hard part. A chat is a good place for it, and it saves your Codex usage</p></div>
+      <div class="hair"><h3>Careful</h3><p class="muted small">The chatbot cannot see your files: it uses [placeholders] you fill in</p></div>
+      <div class="hair"><h3>Never</h3><p class="muted small">Paste private data into the chat. Describe it instead</p></div>
     </div>
   </div>
 </section>
@@ -333,25 +347,53 @@ Before changing anything, <b>write a plan</b> and tell me
 
 <!-- 14 Skills -->
 <section class="slide">
-  <h2 class="in">Skills: save a workflow, reuse it</h2>
+  <h2 class="in">Three example skills, ready to install</h2>
+  <div class="body">
+    <div class="loop in" style="grid-template-columns: repeat(7, auto); font-size:22px">
+      <span class="step">Your data</span><span class="arrow">→</span><span class="step accent">$data-explore<br><span class="muted small">or $survey-summary</span></span><span class="arrow">→</span><span class="step">A memo you checked</span><span class="arrow">→</span><span class="step accent">$presentation-page</span>
+    </div>
+    <div class="grid in" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="rule"><h3>data-explore</h3><p class="muted small">Any spreadsheet: asks how blanks count, charts, findings, one number to check by hand</p></div>
+      <div class="rule"><h3>survey-summary</h3><p class="muted small">Forms export: removes names and emails, tables, themes with exact quotes</p></div>
+      <div class="rule"><h3>presentation-page</h3><p class="muted small">Findings to slides: outline first, one file, opens offline, saves as PDF</p></div>
+    </div>
+    <p class="muted in">Install by pasting one prompt (step 04, Part A). No files to create by hand.</p>
+  </div>
+</section>
+
+<!-- 14b Make your own -->
+<section class="slide">
+  <h2 class="in">Make your own skill in one prompt</h2>
   <div class="body">
     <div class="grid in" style="grid-template-columns: 1.2fr 1fr; align-items:center">
-<pre class="code">.agents/skills/coverage-check/<b>SKILL.md</b>
-
----
-<b>name:</b> coverage-check
-<b>description:</b> Calculate generator coverage
-  for a fiscal year. Use when the user asks
-  about coverage. Not for other analyses.
----
-1. Read the definitions in AGENTS.md.
-2. Calculate the three shares.
-3. Tell the user one number to check by hand.</pre>
+<pre class="code"><b>$skill-creator</b> I want a new skill called
+meeting-notes. It turns my rough meeting
+notes into a five-line summary, decisions,
+and a table of Task, Who and By when.
+It must never invent tasks, names or dates;
+mark anything unclear with [CHECK].
+Use it when I ask to tidy meeting notes.</pre>
       <div style="display:flex;flex-direction:column;gap:16px">
-        <div class="rule"><h3>Make one</h3><p class="muted small">Type <b>$skill-creator</b> and describe the job</p></div>
-        <div class="hair"><h3>Use it</h3><p class="muted small">Type <b>$coverage-check</b>, or just ask; the description decides when it runs</p></div>
-        <div class="hair"><h3>Keep it small</h3><p class="muted small">One job per skill, checks built in</p></div>
+        <div class="rule"><h3>Create</h3><p class="muted small">Codex asks a few questions, then writes SKILL.md for you</p></div>
+        <div class="hair"><h3>Test</h3><p class="muted small">Type <b>$meeting-notes</b>, or just ask; the description decides</p></div>
+        <div class="hair"><h3>Improve</h3><p class="muted small">"Add a Status column to my skill." One more prompt</p></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- 14c Design -->
+<section class="slide">
+  <h2 class="in">Slides that do not look AI-generated</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="rule" style="border-top:8px solid #1f4e8c"><h3>editorial</h3><p class="muted small">Off-white, deep blue. Most seminar talks</p></div>
+      <div class="rule" style="border-top:8px solid #e8a33d"><h3>bold</h3><p class="muted small">Charcoal, amber. Pitches and bright rooms</p></div>
+      <div class="rule" style="border-top:8px solid #2f6b4f"><h3>field</h3><p class="muted small">Grey-green, forest. Fieldwork and tourism</p></div>
+    </div>
+    <div class="two in">
+      <div><h3 class="accent">Do</h3><p>Titles that state the takeaway</p><p>One idea and one accent per slide</p><p>Every number from your memo, with a source</p></div>
+      <div><h3 class="muted">Don't</h3><p>Gradients, glow, emoji bullets</p><p>Three identical icon cards</p><p>"Unlock", "elevate", "delve"</p></div>
     </div>
   </div>
 </section>
@@ -360,13 +402,13 @@ Before changing anything, <b>write a plan</b> and tell me
 <section class="slide">
   <h2 class="in">Your turn: the guide</h2>
   <div class="body">
-    <div class="in tall-rows" style="display:grid;grid-template-columns:110px 1fr;font-size:22px;--row:14px">
-      <div class="rule num accent">00</div><div class="rule">Install and sign in</div>
-      <div class="hair num accent">01</div><div class="hair">First task: create, review and undo a change</div>
-      <div class="hair num accent">02</div><div class="hair">Your project: brief, plan, small steps, prompt templates</div>
-      <div class="hair num accent">03</div><div class="hair">Verify and disclose</div>
-      <div class="hair num accent">04</div><div class="hair">Make a skill</div>
-      <div class="hair num accent">99</div><div class="hair"><b>No project?</b> Follow my example with copy-and-paste prompts</div>
+    <div class="in tall-rows" style="display:grid;grid-template-columns:150px 1fr;font-size:21px;--row:10px">
+      <div class="rule num accent">00 · 01</div><div class="rule">Install, sign in, first task</div>
+      <div class="hair num accent">Prompts</div><div class="hair">Six parts, examples to copy, the prompt builder</div>
+      <div class="hair num accent">04</div><div class="hair">Install the example skills, then make your own</div>
+      <div class="hair num accent">02 · 03</div><div class="hair">Your own project: brief, plan, verify, disclose</div>
+      <div class="hair num accent">98</div><div class="hair"><b>No project?</b> A practice survey to slides and PDF</div>
+      <div class="hair num accent">99</div><div class="hair"><b>No project?</b> My thesis data, then your own skill</div>
     </div>
     <p class="statement in">github.com/Pann13223029/codex-seminar</p>
   </div>

@@ -52,5 +52,5 @@ Then open the file and check for yourself.
 3. **Ask, do not assume.** If you are not sure what Codex did, ask it:
    `What exactly did you change, and why?`
 
-Next: [02: Work on your own project](../02-your-project/), or the
-[follow-my-example track](../99-follow-my-example/) if you have no project.
+Next: the [prompting guide](../prompt-guide/), then
+[04: Skills, Part A](../04-make-a-skill/#part-a-install-the-example-skills-5-minutes).

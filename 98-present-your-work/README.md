@@ -1,0 +1,104 @@
+# 98: Present your work
+
+Turn a survey into a short, good-looking presentation in about 40 minutes,
+using two of the example skills. No programming needed.
+
+You will use a **synthetic** (made-up) survey of visitors to Beppu, shaped
+exactly like a Google Forms export, including the email addresses real
+exports contain. Later you can run the same steps on your own survey.
+
+```mermaid
+flowchart LR
+    D["Survey export<br/>CSV"] --> S["$survey-summary<br/>anonymize, tables, themes"]
+    S --> M["outputs/survey_summary.md<br/>you check it"]
+    M --> P["$presentation-page<br/>outline, then slides"]
+    P --> H["outputs/deck/index.html"]
+    H --> F["Save as PDF"]
+```
+
+## Before you start
+
+- Download this repository: on its GitHub page choose **Code → Download
+  ZIP**, then unzip it.
+- In the ChatGPT app, open the folder **`98-present-your-work`** (inside
+  `codex-seminar-main`) and choose **Codex**.
+- Nothing to install: this folder already contains the two skills it uses,
+  in a hidden folder `.agents/skills`. Check with:
+  `Which skills can you use right now? List their names.`
+
+## Step 1: Check the brief (2 minutes)
+
+```text
+Read AGENTS.md and summarize the project, the data and the rules in five bullet points. Do not change any files.
+```
+
+✅ Codex should mention that the data is synthetic and that names and
+emails must be removed.
+
+## Step 2: Summarize the survey (10 minutes)
+
+```text
+$survey-summary Summarize this survey for my presentation. Compare domestic and international visitors.
+```
+
+Codex will ask you a few things. Suggested answers:
+
+| If Codex asks... | You can answer... |
+| --- | --- |
+| Remove the duplicate submission? | Yes, keep one copy. |
+| Which groups to compare? | Domestic and international, as defined in AGENTS.md. |
+| How to treat skipped questions? | Leave them out of that question's results and report how many were skipped. |
+
+## Step 3: Check it yourself (5 minutes)
+
+1. Open `outputs/responses_anonymous.csv`. **Are the email and name
+   columns gone?** If not, stop and tell Codex.
+2. Open `data/beppu_visitor_survey_SYNTHETIC.csv` in Excel or Google
+   Sheets. Filter "Where are you visiting from?" to the rows that start
+   with **Japan**, then count how many gave **4 or 5** for "Information
+   available in my language". Divide by the number of domestic rows. Does
+   it match Codex's number? (Remember the duplicate row.)
+3. Read the quotes in `outputs/survey_summary.md`. Are they exact answers
+   from the data?
+
+## Step 4: Make the slides (10 minutes)
+
+```text
+$presentation-page Make a 7-minute deck from outputs/survey_summary.md for my seminar. Use the field theme.
+```
+
+Codex first shows an **outline**: a list of slides, each with a title that
+states the takeaway. Read it. Change anything you would not say yourself,
+then reply `OK`.
+
+## Step 5: Open and check the deck (5 minutes)
+
+1. Double-click `outputs/deck/index.html`. It opens in your browser. Use
+   the arrow keys; press **F** for full screen.
+2. Ask Codex to check it against the design rules:
+
+```text
+Check outputs/deck/index.html against the checklist in the presentation-page design guide. For each item, say done or not done, and fix anything not done.
+```
+
+## Step 6: Save it as a PDF (2 minutes)
+
+Open the deck in **Chrome** or **Edge**, then **Print** (`Ctrl P` or
+`⌘ P`):
+
+- Destination: **Save as PDF**
+- Margins: **None**
+- Options: tick **Background graphics**
+
+You get one slide per page, which works on any computer and in any LMS.
+
+## Step 7: Make it yours
+
+- Edit the AI-use note on the last slide so it is true for you.
+- Try another theme: `Rebuild the deck with the editorial theme.`
+- Use your own survey: put the export in a new folder with an `AGENTS.md`
+  like this one, and repeat steps 2-6.
+
+## Finished?
+
+Compare your numbers with [answer-key/ANSWERS.md](answer-key/ANSWERS.md).

@@ -8,23 +8,26 @@ screen; `#N` in the address jumps to slide N.
 | # | Slide | Time | Running |
 | --: | --- | --: | --: |
 | 1 | Title | 1:00 | 1:00 |
-| 2 | Chatbot vs agent | 2:00 | 3:00 |
-| 3 | What you need | 1:30 | 4:30 |
-| 4 | Install in four steps (live demo) | 4:00 | 8:30 |
-| 5 | The way of working | 2:00 | 10:30 |
-| 6 | AGENTS.md | 2:00 | 12:30 |
-| 7 | A prompt that works | 2:00 | 14:30 |
-| 8 | Example 1: my thesis | 2:30 | 17:00 |
-| 9 | Who did what | 3:00 | 20:00 |
-| 10 | Make mistakes hard to miss | 2:30 | 22:30 |
-| 11 | Example 2: capstone | 2:30 | 25:00 |
-| 12 | Ask who is buying | 2:30 | 27:30 |
-| 13 | One rule for blanks | 2:30 | 30:00 |
-| 14 | Skills | 3:30 | 33:30 |
-| 15 | Your turn: the guide | 2:30 | 36:00 |
-| 16 | Before you use any result | 2:00 | 38:00 |
-| 17 | Four ways to get it wrong | 1:30 | 39:30 |
-| 18 | Thanks and questions | 5:30 | 45:00 |
+| 2 | Chatbot vs agent | 1:30 | 2:30 |
+| 3 | What you need | 1:00 | 3:30 |
+| 4 | Install in four steps (live demo) | 3:30 | 7:00 |
+| 5 | The way of working | 1:30 | 8:30 |
+| 6 | AGENTS.md | 1:30 | 10:00 |
+| 7 | A good prompt has six parts | 2:30 | 12:30 |
+| 8 | Let a free chatbot write the prompt | 2:00 | 14:30 |
+| 9 | Example 1: my thesis | 2:00 | 16:30 |
+| 10 | Who did what | 2:30 | 19:00 |
+| 11 | Make mistakes hard to miss | 2:00 | 21:00 |
+| 12 | Example 2: capstone | 2:00 | 23:00 |
+| 13 | Ask who is buying | 2:00 | 25:00 |
+| 14 | One rule for blanks | 2:00 | 27:00 |
+| 15 | Three example skills | 2:30 | 29:30 |
+| 16 | Make your own skill | 2:00 | 31:30 |
+| 17 | Slides that do not look AI-generated | 2:00 | 33:30 |
+| 18 | Your turn: the guide | 2:00 | 35:30 |
+| 19 | Before you use any result | 1:30 | 37:00 |
+| 20 | Four ways to get it wrong | 1:00 | 38:00 |
+| 21 | Thanks and questions | 7:00 | 45:00 |
 
 ## Talking points
 
@@ -50,47 +53,60 @@ experiences come from skipping the plan or the check.
 task. Show the rules: plan first, never change original data, every number
 from code you ran, never invent references.
 
-**7. Prompt.** Goal, files, check, stop. "Wait for my OK" is the most useful
-sentence in the workshop.
+**7. Six parts.** Goal, Context, Task, Output, Checks, Limits. Read one
+"vague vs better" pair from the prompting guide aloud. For quick questions
+two parts are enough; for anything that changes files, use all six.
 
-**8. Thesis.** The question: 4 in 10 plants generate, is that low? By waste
+**8. Prompt builder.** Paste the prompt builder into a free chatbot; it
+interviews you and writes the six-part prompt. Saves Codex usage and forces
+you to think. Two cautions: it cannot see your files, so it uses
+[placeholders]; never paste private data into it.
+
+**9. Thesis.** The question: 4 in 10 plants generate, is that low? By waste
 it is 8 in 10. The work: 20 years of Ministry spreadsheets, 23,593 records
 linked into 1,690 plant histories even though the official IDs broke twice.
 
-**9. Who did what.** Be concrete about the split. The AI helped write the
+**10. Who did what.** Be concrete about the split. The AI helped write the
 code and drafts; I set the question and definitions, checked the numbers,
 and decided what the results mean. The thesis declares this.
 
-**10. Checks.** Tests that run every time, a build that refuses to finish if
+**11. Checks.** Tests that run every time, a build that refuses to finish if
 a number in the text drifts from the results, and a mock examiner. The point
 for them: make your own mistakes hard to miss.
 
-**11. Capstone.** Google Merchandise Store analytics. Three surprises:
+**12. Capstone.** Google Merchandise Store analytics. Three surprises:
 employees were 41% of revenue, Google's own teaching model ranked mostly
 staff as likely buyers, and one corporate account made Display look good.
 
-**12. Lesson.** Asking "who is actually buying?" mattered more than model
+**13. Lesson.** Asking "who is actually buying?" mattered more than model
 choice. And the honest part: the AI stated facts from memory, twice wrongly;
 checking the original source caught it.
 
-**13. Blanks.** The same data, two rules for blanks: 41.1% or 99.5%. Students
+**14. Blanks.** The same data, two rules for blanks: 41.1% or 99.5%. Students
 meet this in the follow-along track, so it is a preview.
 
-**14. Skills.** A folder with SKILL.md: name, description, steps. Make one
-with `$skill-creator`; call it with `$name`. The description decides when it
-runs on its own.
+**15. Three example skills.** data-explore for any spreadsheet,
+survey-summary for form exports, presentation-page for slides. They chain:
+data, checked memo, slides. Installing is one pasted prompt (step 04).
 
-**15. Your turn.** Walk through the guide table. No project? Track 99 has data
-and copy-and-paste prompts, ending with making a skill and an AI-use
-statement.
+**16. Make your own.** `$skill-creator` with one prompt; Codex asks a few
+questions and writes the file. Test with `$meeting-notes`, then improve it
+with another prompt. No file editing by hand.
 
-**16. Verify and disclose.** Read the checklist aloud. APU treats undisclosed
+**17. Design.** Three themes so decks differ but never look sloppy. Titles
+state the takeaway; one accent per slide; every number from the memo. The
+"don't" list is what makes slides look AI-generated.
+
+**18. Your turn.** Walk the table: install, prompting guide, skills, then
+your own project or a practice track (98 survey, 99 thesis data).
+
+**19. Verify and disclose.** Read the checklist aloud. APU treats undisclosed
 AI help as possible plagiarism; step 03 has a template.
 
-**17. Pitfalls.** Private data, invented references, trusting confident
+**20. Pitfalls.** Private data, invented references, trusting confident
 answers, handing over the thinking.
 
-**18. Close.** "Let the agent do the work. Keep the judgement." Then
+**21. Close.** "Let the agent do the work. Keep the judgement." Then
 questions.
 
 ## Likely questions

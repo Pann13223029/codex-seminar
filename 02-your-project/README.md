@@ -58,6 +58,10 @@ Summarize the instructions in AGENTS.md in five bullet points.
 
 ## 3. Ask for a plan before any work
 
+Not sure how to phrase it? Use the six parts in the
+[prompting guide](../prompt-guide/), or its prompt builder.
+
+
 ```text
 I want to [goal]. Before changing any files, write a short plan: the steps, which files you will create, how I can check each result, and anything you need from me. Wait for my OK.
 ```
@@ -102,6 +106,13 @@ Using my results in outputs/ and my notes, draft an outline for a [10-minute pre
 ```text
 Explain what [script] does, step by step, for someone who has never programmed. Then tell me what I would need to change to run it on [my data].
 ```
+
+## Or use the example skills
+
+Instead of the templates above, the [example skills](../skills/) run whole
+workflows: `$data-explore` for a data file, `$survey-summary` for a survey
+export, and `$presentation-page` to turn your findings into slides. Install
+them with [04: Skills, Part A](../04-make-a-skill/#part-a-install-the-example-skills-5-minutes).
 
 ## When something goes wrong
 
