@@ -42,8 +42,9 @@ flowchart LR
 
 ## Step 1: Look at the example (5 minutes)
 
-Double-click `example/index.html`. It is the site of a fictional student,
-made from `example/profile.md`. Try the **EN / 日本語** button, and make the
+Double-click `example/index.html`, or open it online:
+[the example site](https://pann13223029.github.io/codex-seminar/97-portfolio-site/example/).
+It is the site of a fictional student, made from `example/profile.md`. Try the **EN / 日本語** button, and make the
 window narrow to see how it looks on a phone. Your site will have the same
 parts:
 
