@@ -46,7 +46,8 @@ colours; each theme already has one accent.
 - Stock photos that only decorate, and AI images presented as real places.
 - More than one accent colour, more than one font family.
 - 3D charts, pie charts with many slices, charts without units or sources.
-- Text smaller than 18 px, or grey text on grey.
+- Body text smaller than 18 px (source lines, captions and the footer may
+  be smaller), or grey text on grey.
 - Made-up numbers, quotes, references or "example" data left in the deck.
 - Every slide animated. The template has no animation on purpose.
 

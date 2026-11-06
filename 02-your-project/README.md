@@ -120,7 +120,7 @@ them with [04: Skills, Part A](../04-make-a-skill/#part-a-install-the-example-sk
 ## When something goes wrong
 
 - **It did something you did not ask for:** `Undo that and explain why you did it.`
-- **It is stuck or looping:** start a new chat and give a smaller task.
+- **It is stuck or repeats itself:** start a new chat and give a smaller task.
 - **An error message:** paste it and ask `What does this mean in plain English, and what is the smallest fix?`
 - **You do not understand the result:** `Explain this as if to a classmate.`
 

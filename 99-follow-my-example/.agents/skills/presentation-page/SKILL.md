@@ -38,8 +38,9 @@ step in plain English.
    list each number with where it came from.
 6. **Tell the user how to use it:** double-click `outputs/deck/index.html`
    to open it in a browser; arrow keys move; F is full screen; to save a
-   PDF, print from Chrome or Edge with Destination "Save as PDF", Margins
-   "None" and "Background graphics" ticked.
+   PDF, print from Chrome or Edge with Destination "Save as PDF", then
+   under "More settings" set Margins to "None" and tick "Background
+   graphics".
 
 ## Rules
 

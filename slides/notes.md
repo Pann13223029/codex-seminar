@@ -10,7 +10,7 @@ screen; `#N` in the address jumps to slide N.
 | 1 | Title | 1:00 | 1:00 |
 | 2 | Chatbot vs agent | 1:30 | 2:30 |
 | 3 | What you need | 1:00 | 3:30 |
-| 4 | Install in five steps (live demo) | 3:30 | 7:00 |
+| 4 | Install in six steps (live demo) | 3:30 | 7:00 |
 | 5 | On the Free plan: make your usage last | 1:30 | 8:30 |
 | 6 | The way of working | 1:30 | 10:00 |
 | 7 | AGENTS.md | 1:30 | 11:30 |
@@ -40,10 +40,12 @@ reads, writes and runs files. That is why it is useful, and why you review
 what it did.
 
 **3. What you need.** Free account works. Point to the GitHub guide; they can
-follow along now or later.
+follow along now or later. Two ways to get it: Code → Download ZIP, or
+paste the link into Codex and let it download the guide and walk them
+through it.
 
 **4. Install (live).** Open the app, sign in, open an empty folder, choose
-Codex, New chat. Type: "What folder are you working in, and what files can
+Codex, New chat, set Power to Luna High. Type: "What folder are you working in, and what files can
 you see? Do not change anything." If the demo fails, move on: step 00 of the
 guide has it.
 
@@ -94,7 +96,7 @@ meet this in the follow-along track, so it is a preview.
 
 **16. Three example skills.** data-explore for any spreadsheet,
 survey-summary for form exports, presentation-page for slides. They chain:
-data, checked memo, slides. Installing is one pasted prompt (step 04).
+data, checked memo (findings.md or survey_summary.md), slides. Installing is one pasted prompt (step 04).
 
 **17. Make your own.** `$skill-creator` with one prompt; Codex asks a few
 questions and writes the file. Test with `$meeting-notes`, then improve it
@@ -105,7 +107,7 @@ state the takeaway; one accent per slide; every number from the memo. The
 "don't" list is what makes slides look AI-generated.
 
 **19. Your turn.** Walk the route: install, first task, prompting guide,
-then the blue question. Own project: skills (04A), then 02 and 03. No
+then the blue question. Own project: skills (04A), then 02, 03 and 04B. No
 project: track 98 (survey to slides) or 99 (my thesis data).
 
 **20. Verify and disclose.** Show the formula: one COUNTIFS in Excel or
@@ -114,7 +116,7 @@ checks. Undisclosed AI help
 can count as plagiarism, so check your course rules; step 03 has a template.
 
 **21. Pitfalls.** Private data, invented references, trusting confident
-answers, handing over the thinking.
+answers, letting AI do your thinking.
 
 **22. Close.** "Let the agent do the work. Keep the judgement." Then
 questions.

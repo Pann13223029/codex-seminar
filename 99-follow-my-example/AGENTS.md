@@ -25,7 +25,8 @@
 ## Definitions
 - A record "has a generator" when power_capacity_kw is above zero.
 - A record "generates" when power_generated_mwh is above zero.
-- Treat blank power values as zero (not reported).
+- Treat blank power values as zero. In FY2024 a blank usually means no
+  generator (see data/README.md).
 
 ## Rules
 - Explain what you will do and wait for my OK before changing files.

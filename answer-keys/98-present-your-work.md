@@ -14,6 +14,9 @@ there are **120 responses**: 60 domestic and 60 international.
 | Value for money | 117 (3 skipped) | 3.44 | 48.7% | 3.37 | 3.50 |
 | Would recommend | 120 | 3.78 | 60.0% | 3.92 | 3.65 |
 
+Shares and means use only the people who answered that question (for
+example, 46 of the 115 who rated "Ease of getting around" = 40.0%).
+
 ## The main finding
 
 "Information available in my language", share answering 4 or 5:

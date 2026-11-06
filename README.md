@@ -11,9 +11,9 @@ Ritsumeikan Asia Pacific University).
 
 ## What you need
 
-1. A **ChatGPT account**. The **Free plan is enough** for this workshop:
-   it includes Codex in the desktop app with **GPT-6 Luna**, OpenAI's most
-   efficient model, with usage limits (still rolling out, so a few accounts may not see it yet)
+1. A **ChatGPT account**. The **Free plan is enough**. It includes Codex in
+   the desktop app with the **GPT-6 Luna** model, with usage limits. Some
+   accounts may not have it yet
    ([Codex pricing](https://learn.chatgpt.com/docs/pricing),
    [models](https://learn.chatgpt.com/docs/models)). Everything here was
    tested with Luna.
@@ -39,6 +39,50 @@ Ritsumeikan Asia Pacific University).
 
 > **Stuck on a basic step** (unzipping, hidden folders, opening a CSV,
 > counting rows)? See [computer basics](help/computer-basics.md).
+
+## Get the workshop files
+
+You need a copy of this guide on your laptop for the practice tracks and
+the example skills. Choose one way.
+
+```mermaid
+flowchart LR
+    W["This page on GitHub"] --> Z["Green Code button<br/>then Download ZIP"]
+    Z --> U["Unzip it"]
+    W --> L["Copy the link<br/>of this page"]
+    L --> X["Paste it into Codex<br/>with the prompt below"]
+    U --> F["Folder<br/>codex-seminar-main"]
+    X --> F
+    F --> O["Open that folder<br/>in Codex"]
+```
+
+**Way 1: Download the ZIP.** No Codex needed. At the top of this page,
+click the green **Code** button, then **Download ZIP**. Unzip the file
+([how to unzip](help/computer-basics.md#unzip-the-downloaded-repository)).
+You get a folder called `codex-seminar-main`.
+
+<!-- Screenshot to add: ![](assets/screenshots/04-download-zip.png) -->
+
+**Way 2: Let Codex download it.** Do [step 00](00-install/) first. Then
+create a new empty folder, for example `workshop` in your Documents folder,
+open it in Codex, and paste:
+
+```text
+Download the workshop guide at https://github.com/Pann13223029/codex-seminar into a new folder here called codex-seminar-main. Use Git if it is installed; if it is not, download the ZIP file from GitHub and unzip it. Then read README.md and tell me in five short lines what to do first. Do not change any files.
+```
+
+Codex may ask your permission to use the internet. Read what it wants to
+do, then approve.
+
+**Then let Codex guide you.** Open the folder `codex-seminar-main` in
+Codex, start a **New chat**, and paste:
+
+```text
+Read README.md in this folder. Then guide me through the workshop one step at a time, in simple English. Start with the first thing I need to do. After each step, wait until I say it is done. When a step says to open another folder, tell me to open it myself in the app. Do not open the answer-keys folder. Do not change any files unless I ask.
+```
+
+You can still read every step yourself on this page. Codex is there to
+explain and to help when you are stuck.
 
 ## Your route through the workshop
 

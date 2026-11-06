@@ -25,12 +25,16 @@ may not program; explain each step in plain English.
    personal data (email, name, phone, student ID, free-text that names
    people). Write `scripts/anonymize.py` that saves
    `outputs/responses_anonymous.csv` without them, with a respondent number
-   instead. Never print personal data in the chat. Tell the user which
-   columns were removed. Never change the original export.
+   instead. Before removing an email or name column, add a column
+   `repeat_contact` that says yes when that email or name already appeared
+   in an earlier row; count these without printing them. Never print
+   personal data in the chat. Tell the user which columns were removed.
+   Never change the original export.
 2. **Describe the survey.** List each question, its type (single choice,
    rating 1-5, open text) and its number of answers and blanks. Report
-   duplicate submissions (identical rows, or the same respondent twice) and
-   ask whether to remove them.
+   duplicate submissions (rows with the same answers apart from the
+   timestamp, or rows marked `repeat_contact`) and ask whether to remove
+   them.
 3. **Rating questions.** For each rating question report the number of
    answers, the mean, and the share answering 4 or 5. Show the full
    distribution (how many 1s, 2s, 3s, 4s, 5s), because a mean alone hides it.

@@ -120,23 +120,23 @@ Limits: Change only what is needed to fix this error. Do not rewrite the script.
 4. **Say what done looks like:** the format, the length, where to save it.
 5. **Ask for a plan first** whenever files or numbers will change.
 6. **Ask how to check it,** every time.
-7. **Correct, do not restart.** If the result is off, say what is wrong:
+7. **Correct, do not restart.** If the result is wrong, say what is wrong:
    "The chart should compare groups, not years."
 
 ## Make your usage last
 
-Codex usage is limited on every plan, and most on Free. Each message makes
-Codex read files, think and run code, so a sloppy task can use a lot.
+Codex usage is limited on most plans, and most tightly on Free. Each message makes
+Codex read files, think and run code, so an unclear task can use a lot.
 
 | Habit | Why it saves usage |
 | --- | --- |
 | **One task per chat.** Start a **New chat** for each new job. | Long chats make Codex re-read everything that came before. |
-| **Use Light effort for quick jobs,** High only for analysis. | Higher effort means longer thinking. |
+| **Use Light effort for quick jobs,** High for analysis and slides. | Higher effort means longer thinking. |
 | **Plan first, then approve.** | Fixing a wrong plan is cheap; redoing finished work is not. |
 | **Keep the folder small.** Only the files the task needs. | Codex reads less to understand the project. |
-| **Draft the prompt in a regular chat** (next section). | A normal chat in Claude, Gemini or ChatGPT does not use your Codex allowance. (ChatGPT **Work** mode does: it shares Codex's limits.) |
+| **Draft the prompt in a regular chat** (next section). | Claude and Gemini do not use your Codex allowance. In ChatGPT, use regular **Chat**, not **Work**: Work shares Codex's limits. |
 | **Check with a spreadsheet,** not another Codex run. | A hand check is free and teaches you more. |
-| **On Plus or higher: stay on GPT-6 Luna** for workshop tasks. | It is the most efficient model; save Astra, Max and Ultra for hard problems. |
+| **On Plus or higher: stay on GPT-6 Luna** for workshop tasks. | It is the most efficient model. Save the Astra model and the Max and Ultra effort levels for hard problems. |
 
 ## Let a chatbot write the prompt for you
 

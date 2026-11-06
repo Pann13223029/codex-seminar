@@ -6,7 +6,7 @@ Time: about 5 minutes.
 
 Download the app for your system from the
 [official quickstart](https://learn.chatgpt.com/docs/quickstart). It is
-available for macOS, Windows and Linux.
+available for macOS, Windows and Linux (Linux is in preview).
 
 <!-- Screenshot to add: ![](../assets/screenshots/00-download.png) -->
 
@@ -18,10 +18,8 @@ paid plans allow more Codex use.
 ## 3. Open a folder
 
 Create an empty folder for this workshop, for example `codex-practice` in
-your Documents folder. Then open it in the app:
-
-- **macOS:** press `⌘ O`, or use the open-folder option.
-- **Windows:** choose **Add new project**, or press `Ctrl O`.
+your Documents folder. Then open it in the app: press `⌘ O` (macOS) or
+`Ctrl O` (Windows) and choose the folder.
 
 Codex works **inside the folder you choose**. To change anything outside it, it must ask your permission first.
 
@@ -35,20 +33,24 @@ In the ChatGPT dropdown, select **Codex**, then start a **New chat**.
 
 ## 5. Choose the model and effort
 
-Below the message box there is a **model and reasoning control**.
+Below the message box there is a **model control**. Click it to see the
+**Power** slider: **Faster** uses less of your allowance, **Smarter** thinks
+longer. **Luna High** is one of the Power settings. To choose the model and
+the reasoning effort yourself, open **Advanced**.
 
 - **Free and Go plans:** Codex uses **GPT-6 Luna**, OpenAI's most efficient
-  model. You do not need to change anything.
+  model. Choose **Luna High** if you see it; otherwise leave the default.
 - **Plus or higher:** you can pick other models. For this workshop, choose
   **GPT-6 Luna** too: it handles these tasks well and uses the least of your
-  allowance. Leave **Astra**, **Max** and **Ultra** for very hard work.
+  allowance. Leave the **Astra** model, and the **Max** and **Ultra** effort
+  levels, for very hard work.
 
 **Reasoning effort** is how long the model thinks before acting:
 
 | Setting | Use it for |
 | --- | --- |
-| **Light** | Quick, clear jobs: explain a file, rename things, tidy notes |
-| **High** | The analysis and slide steps in this workshop (OpenAI's suggested start for Luna) |
+| **Light** (open **Advanced**, then choose Light) | Quick, clear jobs: explain a file, rename things, tidy notes |
+| **High** (the **Luna High** setting) | The analysis and slide steps in this workshop (OpenAI's suggested start for Luna) |
 
 More effort uses more of your allowance, so match it to the task.
 ([Official model guide](https://learn.chatgpt.com/docs/models))
@@ -69,12 +71,12 @@ Codex should name your folder and say it is empty.
 
 Git lets the app show exactly what Codex changed and lets you undo it.
 
-- **macOS:** open Terminal and run `git --version`; if Git is missing, macOS
-  offers to install it.
+- **macOS:** paste the prompt below. If Git is missing, macOS shows a
+  window that offers to install it; click **Install**.
 - **Windows:** install [Git for Windows](https://git-scm.com/download/win)
   with the default options.
 
-You can also ask Codex: `Is Git installed on this computer? If not, tell me how to install it, but do not install anything yourself.`
+Ask Codex: `Run git --version to check whether Git is installed. If it is not, tell me how to install it, but do not install anything yourself.`
 
 ## Get ready for the data tracks: Python
 

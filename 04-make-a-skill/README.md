@@ -36,8 +36,9 @@ You can read each recipe in the [skills folder](../skills/).
 > projects.
 
 **A1. Get the files.** On this repository's GitHub page choose
-**Code → Download ZIP**, then unzip it. You now have a folder called
-`codex-seminar-main` (in Downloads, unless you moved it).
+**Code → Download ZIP**, then unzip it, or let Codex download it
+([two ways](../#get-the-workshop-files)). You now have a folder called
+`codex-seminar-main`.
 
 <!-- Screenshot to add: ![](../assets/screenshots/04-download-zip.png) -->
 
@@ -51,8 +52,8 @@ folder `codex-seminar-main` and choose **Codex** (as in
 Install the three skills in the skills/ folder of this project for me. Copy each skill folder (data-explore, survey-summary and presentation-page, with everything inside them) into the folder .agents/skills in my home folder, and create that folder if it does not exist. Do not change anything else. When you are done, list the skills you installed and where.
 ```
 
-Codex **will ask for your permission**: skills live in a protected
-folder (`.agents`) outside the one you opened. Read what it wants to do,
+Codex **will ask for your permission**, because the skills folder
+(`.agents` in your home folder) is outside the folder you opened. Read what it wants to do,
 then approve. If you do not approve, nothing is installed.
 
 <!-- Screenshot to add: ![](../assets/screenshots/04-approve.png) -->
@@ -63,9 +64,10 @@ then approve. If you do not approve, nothing is installed.
 Which skills can you use right now? List each skill's name and its one-line description.
 ```
 
-✅ You should see `data-explore`, `survey-summary` and
+**Check:** You should see `data-explore`, `survey-summary` and
 `presentation-page`. You can also type `$` in the message box, or open
-**Skills** in the app's sidebar, to see them.
+**Skills** in the app's sidebar, to see them. (`$` works in **Codex**. In
+ChatGPT **Work** mode, skills use `@` instead.)
 
 > Not there? Close and reopen the ChatGPT app, then try A4 again.
 
@@ -83,7 +85,7 @@ Open the folder `99-follow-my-example` (inside `codex-seminar-main`) in
 Codex and paste:
 
 ```text
-$data-explore Do only the first step: describe this data in plain English. Do not calculate anything or create any files yet.
+$data-explore Only describe this data in plain English (step 1 of the skill). Do not install, calculate or create anything yet.
 ```
 
 Watch what the skill makes Codex do: it lists every column and flags
@@ -162,7 +164,7 @@ Create a file notes/meeting-1.md with realistic but messy notes from a 30-minute
 $meeting-notes notes/meeting-1.md
 ```
 
-✅ Check: are all four tasks there? Did it mark the vague deadline with
+**Check:** Are all four tasks there? Did it mark the vague deadline with
 `[CHECK]` instead of inventing a date?
 
 **D3. Test it without the name.** Start a **New chat** and paste:

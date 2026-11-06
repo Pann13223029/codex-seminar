@@ -18,8 +18,8 @@ flowchart LR
 
 ## Before you start
 
-- Download this repository: on its GitHub page choose **Code → Download
-  ZIP**, then unzip it.
+- Get the workshop files: download the ZIP, or let Codex download it
+  ([Get the workshop files](../#get-the-workshop-files)).
 - In the ChatGPT app, open the folder **`98-present-your-work`** (inside
   `codex-seminar-main`) and choose **Codex**.
 - Nothing to install: this folder already contains the two skills it uses,
@@ -32,7 +32,7 @@ flowchart LR
 Read AGENTS.md and summarize the project, the data and the rules in five bullet points. Do not change any files.
 ```
 
-✅ Codex should mention that the data is synthetic and that names and
+**Check:** Codex should mention that the data is synthetic and that names and
 emails must be removed.
 
 ## Step 2: Summarize the survey (10 minutes)
@@ -90,10 +90,11 @@ Open the deck in **Chrome** or **Edge**, then **Print** (`Ctrl P` or
 `⌘ P`):
 
 - Destination: **Save as PDF**
+- Click **More settings**
 - Margins: **None**
 - Options: tick **Background graphics**
 
-You get one slide per page, which works on any computer and in any LMS.
+You get one slide per page, which works on any computer and on your course website.
 
 ## Step 7: Make it yours
 

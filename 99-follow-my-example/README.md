@@ -12,7 +12,8 @@ Time: about 40 minutes. No programming needed. You will use two of the
 
 Japan's headline statistic says only about **4 in 10** municipal
 incinerators generate electricity (the Ministry of the Environment's FY2024
-summary: 415 of 991 incineration facilities, 41.9%). That sounds low. But a small plant and a
+summary: 415 of 991 incineration facilities, 41.9%; our practice data
+counts records a little differently, so you will get 41.1%). That sounds low. But a small plant and a
 huge plant each count as one. Is most of the **waste** actually burned at
 plants that generate?
 
@@ -49,8 +50,8 @@ flowchart TD
 
 ## Before you start
 
-1. Download this repository: on its GitHub page choose **Code → Download
-   ZIP**, then unzip it.
+1. Get the workshop files: download the ZIP, or let Codex download it
+   ([Get the workshop files](../#get-the-workshop-files)).
 2. In the ChatGPT desktop app, open the folder **`99-follow-my-example`**
    (inside `codex-seminar-main`) and choose **Codex**.
 3. The folder already contains `AGENTS.md` (the project brief), the data,
@@ -75,13 +76,13 @@ change the answer before calculating. Suggested answers:
 | If Codex asks... | You can answer... |
 | --- | --- |
 | How should blanks be treated? | As zero, as AGENTS.md says. Also tell me what the FY2024 share would be if blanks were dropped instead. |
-| Are there duplicates to remove? | Keep all rows: each row is a different plant in a different year. |
+| Are there duplicates to remove? | Keep all rows: each row is one plant in one year. A plant can appear once in 2005 and once in 2024. |
 | What counts as "has a generator"? | power_capacity_kw above zero, as AGENTS.md says. |
 | It shows a plan and waits. | Read it. If it looks right, reply `OK`. |
 
 > Python or pandas missing? See [Get ready for the data tracks](../00-install/#get-ready-for-the-data-tracks-python).
 
-✅ Look at the FY2024 share with blanks dropped. The two ways of treating
+**Check:** Look at the FY2024 share with blanks dropped. The two ways of treating
 blanks give very different numbers. Which one is right, and why?
 
 ## Step 3: Check one number yourself (5 minutes)
@@ -116,7 +117,8 @@ Then:
 1. Double-click `outputs/deck/index.html` to open it. Arrow keys move;
    **F** is full screen.
 2. To save a PDF, print from **Chrome** or **Edge**: Destination **Save as
-   PDF**, Margins **None**, tick **Background graphics**.
+   PDF**, click **More settings**, Margins **None**, tick **Background
+   graphics**.
 
 ## Step 5: Make your own skill (10 minutes)
 
@@ -157,10 +159,11 @@ Show me the SKILL.md you made for coverage-check and explain each part in plain 
 Look at what we did in this folder. Draft a two-sentence AI-use statement saying what you did and what I checked myself. Do not exaggerate either part.
 ```
 
-## Stretch: follow the same plants
+## Extra task (optional): follow the same plants
 
-My thesis found that the national rise mostly came from the list of plants
-changing, not from old plants adding generators. Check it:
+Between FY2005 and FY2024 the share rose from 22% to 41%. My thesis found
+this came mostly from changes in which plants exist, not from old plants
+adding generators. Check it:
 
 ```text
 Using facility_id, find the plants that appear in both FY2005 and FY2024. For those plants only, what share had a generator in each year? Compare it with the share among all records, and explain the difference in plain English.

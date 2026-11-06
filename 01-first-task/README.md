@@ -11,7 +11,10 @@ In your workshop folder, copy and paste:
 Create a file called notes.md with five made-up seminar meeting notes, each with a date, three bullet points and one action item. Then tell me what you created.
 ```
 
-Codex writes a real file in your folder. Open it to check.
+Codex writes a real file in your folder. Open it to check, or ask Codex:
+`Show me notes.md`.
+
+> **No Git?** Skip steps 2 and 5. In step 4, ask Codex what it changed.
 
 ## 2. Save a snapshot
 
@@ -22,6 +25,9 @@ It needs Git (see [step 00](../00-install/#recommended-install-git)).
 Make this folder a Git repository if it is not one yet, and save a snapshot of all files with the message "notes created".
 ```
 
+Codex may ask your permission first, because the snapshot folder (`.git`)
+is protected. Read the request, then approve.
+
 ## 3. Ask it to change the file
 
 ```text
@@ -30,9 +36,9 @@ Rewrite notes.md so all action items are collected in a table at the top, with c
 
 ## 4. Review the change
 
-Look at what changed before you accept it. Because you saved a snapshot,
-the app's review panel shows the lines that were added and removed. You can
-also ask: `Show me exactly what changed since the last snapshot.`
+Look at what changed. Because you saved a snapshot, the app's review pane
+can show the lines that were added and removed. The easiest way is to ask:
+`Show me exactly what changed since the last snapshot.`
 
 <!-- Screenshot to add: ![](../assets/screenshots/01-review.png) -->
 
@@ -62,5 +68,4 @@ Then open the file and check for yourself.
 3. **Ask, do not assume.** If you are not sure what Codex did, ask it:
    `What exactly did you change, and why?`
 
-Next: the [prompting guide](../prompt-guide/), then
-[04: Skills, Part A](../04-make-a-skill/#part-a-install-the-example-skills-5-minutes).
+Next: the [prompting guide](../prompt-guide/).

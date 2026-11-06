@@ -1,7 +1,7 @@
 # 03: Verify and disclose
 
-Codex is fast and usually right, which is exactly why mistakes slip
-through. Your name is on the work, so the checking is yours.
+Codex is fast and usually right. Because of this, its mistakes are easy to
+miss. Your name is on the work, so the checking is your job.
 
 ## The checklist
 
@@ -21,7 +21,7 @@ Before you use any result:
 - [ ] **Read every sentence you submit.** If you cannot explain a sentence in
       your own words, rewrite it or remove it.
 
-## What not to hand over
+## What stays your job
 
 - **Your judgement.** The research question, which result matters, and what
   it means are your decisions.
