@@ -1,3 +1,6 @@
 .DS_Store
 **/outputs/
 **/scripts/__pycache__/
+97-portfolio-site/site/
+97-portfolio-site/me/*
+!97-portfolio-site/me/README.md

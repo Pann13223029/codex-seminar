@@ -106,6 +106,7 @@ flowchart TD
     F --> H(["Finished: a result you checked,<br/>slides and an AI-use statement"])
     G1 --> H
     G2 --> H
+    H --> J(["After class: 97 Your portfolio site,<br/>live at yourname.github.io"])
 ```
 
 ## How you will work with Codex
@@ -137,12 +138,14 @@ flowchart TD
 | [04: Skills, step by step](04-make-a-skill/) | Install the example skills, use one, and make your own, all by copy-and-paste prompts. |
 | [98: Present your work](98-present-your-work/) | A practice survey → checked summary → slides and PDF, with two example skills. |
 | [99: Follow my example](99-follow-my-example/) | Repeat a small version of my thesis analysis with the example skills, then make your own skill. |
-| [Example skills](skills/) | `data-explore`, `survey-summary` and `presentation-page`, ready to install. |
+| [97: Your portfolio site, live](97-portfolio-site/) | **After class, for job hunting:** build a one-page portfolio site from your CV and put it online for free. |
+| [Example skills](skills/) | `data-explore`, `survey-summary`, `presentation-page` and `portfolio-page`, ready to install. |
 
 Follow **00 → 01 → Prompting guide**, then either your own project
 (**04 Part A → 02 → 03 → 04 Parts B to D**) or a practice track: **98**
 (survey to slides) or **99** (data analysis). The practice tracks already
-include the example skills, so there is nothing to install.
+include the example skills, so there is nothing to install. After class,
+**97** takes you from your CV to a portfolio site that is live online.
 
 ## Words used here
 

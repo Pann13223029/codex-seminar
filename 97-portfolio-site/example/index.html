@@ -1,0 +1,242 @@
+<!doctype html>
+<!--
+  Portfolio site template (one file, works offline, no fonts or scripts from the web).
+  Theme: set data-theme on <html> to "editorial", "bold" or "field".
+  Languages: English is always shown. For a Japanese version, add a
+  <span lang="ja"> next to each <span lang="en"> and keep the EN/日本語 button.
+  Without Japanese text, delete the button (class="lang-switch").
+  Replace every example text. Delete sections you do not need.
+-->
+<html lang="en" data-theme="editorial">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mika Tanaka | Tourism and data</title>
+<meta name="description" content="Mika Tanaka: a tourism student who turns visitor feedback into clear improvements. Looking for roles in tourism marketing and research from April 2027.">
+<meta property="og:title" content="Mika Tanaka | Tourism and data">
+<meta property="og:description" content="A tourism student who turns visitor feedback into clear improvements.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:,">
+<style>
+  :root { --font: "Avenir Next", "Segoe UI", "Hiragino Sans", "Yu Gothic UI", "Noto Sans JP", Arial, sans-serif; --max: 1040px; }
+  [data-theme="editorial"] { --bg: #f6f5f1; --card: #ffffff; --ink: #1d1f22; --muted: #5d636b; --line: #d7d8d3; --accent: #1f4e8c; --accent-soft: #dce5f1; }
+  [data-theme="bold"] { --bg: #15181c; --card: #1d2126; --ink: #f1f0ec; --muted: #a8adb3; --line: #33383e; --accent: #e8a33d; --accent-soft: #3a3226; }
+  [data-theme="field"] { --bg: #f2f4f1; --card: #ffffff; --ink: #1b2420; --muted: #56625b; --line: #d2d8d2; --accent: #2f6b4f; --accent-soft: #dbe8df; }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 18px; line-height: 1.6; font-variant-numeric: tabular-nums lining-nums; }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  .muted { color: var(--muted); }
+
+  /* Header */
+  header.top { position: sticky; top: 0; z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); }
+  header.top .wrap { display: flex; align-items: center; gap: 20px; height: 60px; }
+  .brand { font-weight: 650; color: var(--ink); text-decoration: none; margin-right: auto; }
+  nav.links { display: flex; gap: 20px; font-size: 15px; }
+  nav.links a { color: var(--muted); text-decoration: none; }
+  nav.links a:hover { color: var(--ink); }
+  .lang-switch { font: inherit; font-size: 14px; color: var(--ink); background: transparent; border: 1px solid var(--line); padding: 4px 10px; cursor: pointer; }
+
+  /* Hero */
+  .hero { padding: 72px 0 56px; }
+  .looking { font-size: 15px; color: var(--muted); margin: 0 0 18px; }
+  .looking b { color: var(--accent); font-weight: 600; }
+  h1 { font-size: clamp(38px, 6vw, 60px); line-height: 1.08; letter-spacing: -0.02em; margin: 0 0 18px; font-weight: 650; }
+  .pitch { font-size: clamp(19px, 2.2vw, 23px); line-height: 1.5; max-width: 40ch; margin: 0 0 32px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 44px; }
+  .btn { display: inline-block; padding: 11px 18px; border: 1.5px solid var(--accent); text-decoration: none; font-size: 16px; font-weight: 600; }
+  .btn.primary { background: var(--accent); color: var(--bg); }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; border-top: 1px solid var(--line); padding-top: 22px; }
+  .stat b { display: block; font-size: 30px; line-height: 1.1; color: var(--accent); font-weight: 650; }
+  .stat span { font-size: 15px; color: var(--muted); }
+
+  /* Sections */
+  section.part { padding: 56px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: 28px; line-height: 1.2; margin: 0 0 8px; font-weight: 650; }
+  .intro { color: var(--muted); margin: 0 0 32px; max-width: 60ch; }
+
+  /* Work cards */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .card { background: var(--card); border: 1px solid var(--line); padding: 24px; display: flex; flex-direction: column; gap: 10px; }
+  .card .tag { font-size: 14px; color: var(--muted); }
+  .card h3 { font-size: 21px; line-height: 1.3; margin: 0; }
+  .card dl { margin: 0; display: grid; gap: 8px; font-size: 16px; }
+  .card dt { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .card dd { margin: 0; }
+  .card .result { color: var(--accent); font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
+  .chips span { font-size: 13px; background: var(--accent-soft); color: var(--ink); padding: 3px 8px; }
+
+  /* Timeline */
+  ol.timeline { list-style: none; margin: 0; padding: 0; }
+  ol.timeline li { display: grid; grid-template-columns: 170px 1fr; gap: 20px; padding: 18px 0; border-top: 1px solid var(--line); }
+  ol.timeline .when { color: var(--muted); font-size: 15px; }
+  ol.timeline h3 { font-size: 18px; margin: 0 0 4px; }
+  ol.timeline p { margin: 0; font-size: 16px; }
+
+  /* Skills */
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+  .skills h3 { font-size: 15px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 8px; }
+  .skills ul { margin: 0; padding-left: 18px; font-size: 16px; }
+
+  /* Contact and footer */
+  .contact { font-size: 20px; }
+  .contact ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  footer { border-top: 1px solid var(--line); padding: 28px 0 48px; font-size: 14px; color: var(--muted); }
+
+  /* Languages: English shows by default; Japanese when html has data-lang="ja" */
+  body [lang="ja"] { display: none; }
+  html[data-lang="ja"] body [lang="en"] { display: none; }
+  html[data-lang="ja"] body [lang="ja"] { display: revert; }
+
+  @media (max-width: 720px) {
+    body { font-size: 17px; }
+    nav.links { display: none; }
+    .hero { padding: 44px 0 36px; }
+    .stats { grid-template-columns: 1fr; gap: 14px; }
+    ol.timeline li { grid-template-columns: 1fr; gap: 4px; }
+  }
+  @media print {
+    header.top, .actions, .lang-switch { display: none !important; }
+    body { font-size: 12pt; background: #fff; }
+    section.part, .hero { padding: 18px 0; }
+    .card { break-inside: avoid; }
+    a { color: inherit; text-decoration: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">Mika Tanaka</a>
+    <nav class="links" aria-label="Sections">
+      <a href="#work"><span lang="en">Work</span><span lang="ja">実績</span></a>
+      <a href="#experience"><span lang="en">Experience</span><span lang="ja">経歴</span></a>
+      <a href="#skills"><span lang="en">Skills</span><span lang="ja">スキル</span></a>
+      <a href="#contact"><span lang="en">Contact</span><span lang="ja">連絡先</span></a>
+    </nav>
+    <button class="lang-switch" type="button" aria-label="Switch language">EN / 日本語</button>
+  </div>
+</header>
+
+<main id="top">
+  <p class="wrap muted" style="padding-top:14px;margin:0;font-size:14px"><span lang="en">Example site for a fictional student. All names and facts are made up.</span><span lang="ja">架空の学生のサンプルです。名前や内容はすべて架空です。</span></p>
+  <!-- HERO: who you are, what you are looking for, and three numbers you can prove. -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="looking"><span lang="en">Looking for: <b>tourism marketing and research roles</b> from April 2027</span><span lang="ja">希望：<b>観光マーケティング・リサーチ職</b>（2027年4月入社）</span></p>
+      <h1>Mika Tanaka</h1>
+      <p class="pitch"><span lang="en">I turn what visitors say into changes a business can make. In my seminar I surveyed 120 visitors to Beppu and found the gap that mattered most: information in their language.</span><span lang="ja">お客様の声を、実行できる改善策に変えます。ゼミでは別府の観光客120人に調査を行い、最も大きな課題が「母語での情報」であることを明らかにしました。</span></p>
+      <div class="actions">
+        <a class="btn primary" href="#work"><span lang="en">See my work</span><span lang="ja">実績を見る</span></a>
+        <a class="btn" href="#contact"><span lang="en">Contact me</span><span lang="ja">連絡する</span></a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>120</b><span lang="en">visitors surveyed for my seminar project</span><span lang="ja">ゼミ調査の回答者数</span></div>
+        <div class="stat"><b><span lang="en">2 years</span><span lang="ja">2年</span></b><span lang="en">front desk at a ryokan, in English and Japanese</span><span lang="ja">旅館フロントでの勤務（英語・日本語）</span></div>
+        <div class="stat"><b>TOEIC 860</b><span lang="en">English score, 2026</span><span lang="ja">英語スコア（2026年）</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK: 2 to 4 stories. Problem, what you did, result. Most relevant to your target job first. -->
+  <section class="part" id="work">
+    <div class="wrap">
+      <h2><span lang="en">Selected work</span><span lang="ja">主な実績</span></h2>
+      <p class="intro"><span lang="en">Three projects, each with the problem, what I did and what changed.</span><span lang="ja">課題・取り組み・結果をまとめた3つのプロジェクトです。</span></p>
+      <div class="cards">
+        <article class="card">
+          <span class="tag"><span lang="en">Seminar research · 2026</span><span lang="ja">ゼミ研究・2026年</span></span>
+          <h3><span lang="en">What do visitors to Beppu miss most?</span><span lang="ja">別府の観光客に足りないものは何か</span></h3>
+          <dl>
+            <div><dt><span lang="en">Problem</span><span lang="ja">課題</span></dt><dd><span lang="en">The city wanted to know why international visitors rated their stay lower.</span><span lang="ja">海外からの観光客の満足度が低い理由を知りたいという課題がありました。</span></dd></div>
+            <div><dt><span lang="en">What I did</span><span lang="ja">取り組み</span></dt><dd><span lang="en">Designed a survey, collected 120 answers, and compared domestic and international visitors.</span><span lang="ja">調査票を設計し120件の回答を集め、国内・海外の観光客を比較しました。</span></dd></div>
+            <div><dt><span lang="en">Result</span><span lang="ja">結果</span></dt><dd class="result"><span lang="en">Language information was the biggest gap: 85% of domestic visitors were satisfied, but only 17% of international visitors.</span><span lang="ja">最大の差は母語での情報：満足と答えたのは国内85%、海外17%でした。</span></dd></div>
+          </dl>
+          <div class="chips"><span>Survey design</span><span>Excel</span><span>Codex</span></div>
+        </article>
+        <article class="card">
+          <span class="tag"><span lang="en">Part-time job · 2024 to now</span><span lang="ja">アルバイト・2024年〜現在</span></span>
+          <h3><span lang="en">A check-in guide guests can read</span><span lang="ja">ゲストが読めるチェックイン案内</span></h3>
+          <dl>
+            <div><dt><span lang="en">Problem</span><span lang="ja">課題</span></dt><dd><span lang="en">Guests asked the same questions about baths and meal times every evening.</span><span lang="ja">毎晩、お風呂や食事の時間について同じ質問が繰り返されていました。</span></dd></div>
+            <div><dt><span lang="en">What I did</span><span lang="ja">取り組み</span></dt><dd><span lang="en">Wrote a one-page guide in English, Chinese and Korean with the manager's approval.</span><span lang="ja">支配人の承認を得て、英語・中国語・韓国語の1枚の案内を作成しました。</span></dd></div>
+            <div><dt><span lang="en">Result</span><span lang="ja">結果</span></dt><dd class="result"><span lang="en">The ryokan now gives it to every international guest at check-in.</span><span lang="ja">現在、海外のお客様全員にチェックイン時に渡されています。</span></dd></div>
+          </dl>
+          <div class="chips"><span>Hospitality</span><span>Writing</span><span>English</span></div>
+        </article>
+        <article class="card">
+          <span class="tag"><span lang="en">Club · 2025</span><span lang="ja">サークル・2025年</span></span>
+          <h3><span lang="en">Running the festival booth</span><span lang="ja">学園祭の出店運営</span></h3>
+          <dl>
+            <div><dt><span lang="en">Problem</span><span lang="ja">課題</span></dt><dd><span lang="en">Long queues at lunchtime the year before.</span><span lang="ja">前年は昼時に長い行列ができていました。</span></dd></div>
+            <div><dt><span lang="en">What I did</span><span lang="ja">取り組み</span></dt><dd><span lang="en">Led a team of six, split ordering and cooking, and added a menu board with prices.</span><span lang="ja">6人のチームをまとめ、注文と調理を分け、価格入りのメニューボードを設置しました。</span></dd></div>
+            <div><dt><span lang="en">Result</span><span lang="ja">結果</span></dt><dd class="result"><span lang="en">We sold out both days.</span><span lang="ja">2日間とも完売しました。</span></dd></div>
+          </dl>
+          <div class="chips"><span>Teamwork</span><span>Operations</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE AND EDUCATION: newest first. -->
+  <section class="part" id="experience">
+    <div class="wrap">
+      <h2><span lang="en">Experience and education</span><span lang="ja">経歴・学歴</span></h2>
+      <ol class="timeline">
+        <li><span class="when">2024 to now</span><div><h3><span lang="en">Front desk (part-time), a ryokan in Beppu</span><span lang="ja">別府の旅館 フロント（アルバイト）</span></h3><p class="muted"><span lang="en">Check-in in English and Japanese; guest questions; the multilingual guide above.</span><span lang="ja">英語・日本語でのチェックイン対応、お客様対応、上記の多言語案内の作成。</span></p></div></li>
+        <li><span class="when">2023 to 2027</span><div><h3><span lang="en">BA in Tourism, Example University</span><span lang="ja">例大学 観光学部（学士）</span></h3><p class="muted"><span lang="en">Seminar on visitor experience and data. Graduating March 2027.</span><span lang="ja">観光客の体験とデータに関するゼミに所属。2027年3月卒業予定。</span></p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- SKILLS AND LANGUAGES: only what you could show in an interview. -->
+  <section class="part" id="skills">
+    <div class="wrap">
+      <h2><span lang="en">Skills and languages</span><span lang="ja">スキル・語学</span></h2>
+      <div class="skills">
+        <div><h3><span lang="en">Research</span><span lang="ja">リサーチ</span></h3><ul><li>Survey design</li><li>Excel (COUNTIFS, pivot tables)</li><li>Codex for analysis</li></ul></div>
+        <div><h3><span lang="en">Work</span><span lang="ja">業務</span></h3><ul><li>Guest service</li><li>Team leading (6 people)</li></ul></div>
+        <div><h3><span lang="en">Languages</span><span lang="ja">語学</span></h3><ul><li>Japanese (native)</li><li>English (TOEIC 860)</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT: email and professional links only. No phone number or home address. -->
+  <section class="part contact" id="contact">
+    <div class="wrap">
+      <h2><span lang="en">Contact</span><span lang="ja">連絡先</span></h2>
+      <p class="intro"><span lang="en">I would be glad to talk about roles in tourism marketing and research.</span><span lang="ja">観光マーケティング・リサーチ職について、ぜひお話しさせてください。</span></p>
+      <ul>
+        <li><a href="mailto:mika.tanaka@example.com">mika.tanaka@example.com</a></li>
+        <li><a href="https://www.linkedin.com/in/example">LinkedIn</a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span lang="en">Made with help from Codex; every fact checked by me. Updated November 2026.</span><span lang="ja">Codexの支援を受けて作成し、内容はすべて本人が確認しています。2026年11月更新。</span></div>
+</footer>
+
+<script>
+  // Language switch: remembers the choice when the browser allows it.
+  (function () {
+    var html = document.documentElement, btn = document.querySelector('.lang-switch');
+    function set(lang) {
+      html.setAttribute('data-lang', lang);
+      html.setAttribute('lang', lang);
+      try { localStorage.setItem('lang', lang); } catch (e) {}
+    }
+    var start = new URLSearchParams(location.search).get('lang');
+    if (!start) { try { start = localStorage.getItem('lang'); } catch (e) {} }
+    if (start === 'ja') set('ja');
+    if (btn) btn.addEventListener('click', function () { set(html.getAttribute('data-lang') === 'ja' ? 'en' : 'ja'); });
+  })();
+</script>
+</body>
+</html>
