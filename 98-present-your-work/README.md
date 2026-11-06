@@ -25,6 +25,11 @@ flowchart LR
 - Nothing to install: this folder already contains the two skills it uses,
   in a hidden folder `.agents/skills`. Check with:
   `Which skills can you use right now? List their names.`
+  You should see `survey-summary` and `presentation-page` (there may be many
+  others).
+- Do the [Python check](../00-install/#get-ready-for-the-data-tracks-python)
+  once. If Codex asks permission to use the internet to install pandas,
+  approve it.
 
 ## Step 1: Check the brief (2 minutes)
 
@@ -41,21 +46,28 @@ emails must be removed.
 $survey-summary Summarize this survey for my presentation. Compare domestic and international visitors.
 ```
 
-Codex will ask you a few things. Suggested answers:
+Codex may ask some of these questions, or it may use `AGENTS.md` and go
+straight on. Either is fine. Suggested answers:
 
 | If Codex asks... | You can answer... |
 | --- | --- |
 | Remove the duplicate submission? | Yes, keep one copy. |
+| It says it **kept** a duplicate without asking. | `Remove the duplicate, keep one copy, and run the summary again.` |
 | Which groups to compare? | Domestic and international, as defined in AGENTS.md. |
 | How to treat skipped questions? | Leave them out of that question's results and report how many were skipped. |
 | It shows a plan and waits. | Read it. If it looks right, reply `OK`. |
 
 > Python or pandas missing? See [Get ready for the data tracks](../00-install/#get-ready-for-the-data-tracks-python).
 
+**Check:** the summary should say **120** responses (60 domestic, 60
+international). If it says 121, the duplicate is still in: use the reply
+above.
+
 ## Step 3: Check it yourself (5 minutes)
 
 1. Open `outputs/responses_anonymous.csv`. **Are the email and name
-   columns gone?** If not, stop and tell Codex.
+   columns gone?** If not, stop and tell Codex. (The file may still contain
+   the duplicate row with a note in an extra column. That is fine.)
 2. Open `data/beppu_visitor_survey_SYNTHETIC.csv` in Excel or Google
    Sheets ([how](../help/computer-basics.md#open-a-csv-file-in-a-spreadsheet)).
    Use the formulas in [computer basics](../help/computer-basics.md#count-rows-without-filters-use-a-formula)
@@ -63,16 +75,22 @@ Codex will ask you a few things. Suggested answers:
    in my language" 4 or 5. Does the share match Codex's number?
 3. Read the quotes in `outputs/survey_summary.md`. Are they exact answers
    from the data?
+4. Read the themes. Each theme lists the answers in it. Does each answer
+   fit its theme? If one does not, tell Codex, for example:
+   `"Toriten and the local seafood" is about food. Move it and update the counts.`
 
 ## Step 4: Make the slides (10 minutes)
+
+Start a **New chat** (it uses less of your allowance), then paste:
 
 ```text
 $presentation-page Make a 7-minute deck from outputs/survey_summary.md for my seminar. Use the field theme.
 ```
 
 Codex first shows an **outline**: a list of slides, each with a title that
-states the takeaway. Read it. Change anything you would not say yourself,
-then reply `OK`.
+states the takeaway. Read it. Is the most important finding (the biggest
+difference between the two groups) in the first two slides? Change anything
+you would not say yourself, then reply `OK`.
 
 ## Step 5: Open and check the deck (5 minutes)
 
@@ -83,6 +101,9 @@ then reply `OK`.
 ```text
 Check outputs/deck/index.html against the checklist in .agents/skills/presentation-page/references/design-guide.md. For each item, say done or not done, then fix at most the three most important problems.
 ```
+
+Codex can check the design rules. Checking the numbers by hand stays your
+job (Step 3).
 
 ## Step 6: Save it as a PDF (2 minutes)
 
@@ -98,7 +119,10 @@ You get one slide per page, which works on any computer and on your course websi
 
 ## Step 7: Make it yours
 
-- Edit the AI-use note on the last slide so it is true for you.
+Start a **New chat** for these small changes; it uses much less.
+
+- Make the AI-use note on the last slide true for you:
+  `On the last slide of outputs/deck/index.html, change the AI-use note to: "[your sentence]". Change nothing else.`
 - Try another theme without rebuilding: `In outputs/deck/index.html, change only data-theme on the html tag to editorial.`
 - Use your own survey: first install the skills for your own projects
   ([04, Part A](../04-make-a-skill/#part-a-install-the-example-skills-5-minutes)),

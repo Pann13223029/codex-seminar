@@ -39,10 +39,11 @@ what the AI did and what you did. A template:
 During the preparation of this [thesis/report], the author used [OpenAI Codex] for [writing and running analysis code / organizing notes / language revision / drafting parts of section X]. The author designed the analysis, checked the data and results, reviewed and edited all AI-assisted material, and takes full responsibility for the content.
 ```
 
-You can ask Codex to draft it, then edit it so it is true:
+You can ask Codex to draft it, then edit it so it is true. Codex cannot
+see what you checked outside the chat, so tell it:
 
 ```text
-Look at what we did in this project. Draft a two-sentence AI-use statement saying what you did and what I checked myself. Do not exaggerate either part.
+Look at what we did in this project (use outputs/ai-log.md if it exists). Draft a two-sentence AI-use statement saying what you did and what I did. I checked these myself: [what you checked by hand, for example "the main percentage in a spreadsheet"]. Do not exaggerate either part.
 ```
 
 Next: [04: Skills, Parts B to D](../04-make-a-skill/#part-b-use-a-skill-5-minutes): use a skill and make your own.

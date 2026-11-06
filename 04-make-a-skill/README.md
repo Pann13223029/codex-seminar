@@ -65,7 +65,9 @@ Which skills can you use right now? List each skill's name and its one-line desc
 **Skills** in the app's sidebar, to see them. (`$` works in **Codex**. In
 ChatGPT **Work** mode, skills use `@` instead.)
 
-> Not there? Close and reopen the ChatGPT app, then try A4 again.
+> Not there? Close and reopen the ChatGPT app, then try A4 again. Still
+> missing? The install did not happen: go back to A3 and approve the
+> permission request.
 
 If you open folder 98 or 99 later, Codex may list a skill twice (the copy in
 your home folder and the one in the track folder). That is fine.
@@ -84,10 +86,11 @@ Codex and paste:
 $data-explore Only describe this data in plain English (step 1 of the skill). Do not install, calculate or create anything yet.
 ```
 
-Watch what the skill makes Codex do: it lists every column and flags
-blanks, zeros and odd values, without you asking for any of that. **That is
-what a skill is for.** (Track 99 runs the full analysis, so this short
-check saves your usage.)
+Watch what the skill makes Codex do: it lists every column and explains
+what each one means, using the brief in `AGENTS.md`, without you asking
+for any of that. **That is what a skill is for.** (The full skill also
+counts blanks, zeros and odd values. Track 99 runs it, so this short check
+saves your usage.)
 
 How Codex decides to use a skill:
 
@@ -117,14 +120,20 @@ repeat (see the ideas at the end).
 skills. Copy and paste:
 
 ```text
-$skill-creator I want a new skill called meeting-notes. It turns my rough seminar meeting notes into a clean summary saved next to the original, with three parts: a five-line summary, a list of decisions, and a table of action items with columns Task, Who and By when. It must never invent tasks, names or dates that are not in my notes; if something is unclear, it marks it with [CHECK]. It should be used when I ask to summarize, tidy or clean up meeting notes, and not for other documents. Keep it instruction-only, with no scripts. Save it in my home folder's .agents/skills so I can use it in every project.
+$skill-creator I want a new skill called meeting-notes. It turns my rough seminar meeting notes into a clean summary saved next to the original, with three parts: a five-line summary, a list of decisions, and a table of action items with columns Task, Who and By when. It must never invent tasks, names or dates that are not in my notes; if something is unclear, it marks it with [CHECK]. Vague dates such as "before next week" are copied as written and marked [CHECK]. If the summary file already exists, it asks before replacing it. It should be used when I ask to summarize, tidy or clean up meeting notes, and not for other documents. Keep it instruction-only, with no scripts. Save it in my home folder's .agents/skills so I can use it in every project.
 ```
 
 Codex will ask **permission** to save the skill in `.agents`, a protected
 folder. Approve it.
 
+**Check:** Codex's reply must say it saved the skill in
+`.agents/skills/meeting-notes`. If it says it could not, or saved it
+somewhere else, reply:
+`Save it in .agents/skills/meeting-notes in my home folder and ask me for permission.`
+
 **C3. Answer its questions.** The skill creator may ask a few questions
-first. Suggested answers:
+first, or it may go straight to writing the skill. Either is fine.
+Suggested answers:
 
 | If Codex asks... | You can answer... |
 | --- | --- |
@@ -151,7 +160,7 @@ decide when to use the skill.
 paste:
 
 ```text
-Create a file notes/meeting-1.md with realistic but messy notes from a 30-minute student seminar meeting about a tourism survey project: half sentences, three people (Aiko, Ben, Chen), two decisions, four tasks, one deadline mentioned vaguely ("before next week").
+Create a file notes/meeting-1.md with realistic but messy notes from a 30-minute student seminar meeting about a tourism survey project: half sentences, three people (Aiko, Ben, Chen), two decisions, four tasks, one deadline mentioned vaguely ("before next week"). Mix the decisions and tasks into the running notes, with no headings or lists for them.
 ```
 
 **D2. Call your skill by name.**
@@ -176,13 +185,17 @@ description:
 Improve the description of my meeting-notes skill so it is used whenever I ask to summarize, tidy, clean up or organize meeting notes. Show me the new description.
 ```
 
-**D4. Change what it does.** Skills are easy to update:
+Codex will ask permission to change the skill file. Approve it.
+
+**D4. Change what it does.** Skills are easy to update. Start a **New
+chat** (long chats use more of your allowance), then paste:
 
 ```text
 Change my meeting-notes skill so the action-item table also has a Status column that starts as "To do". Show me what changed.
 ```
 
-Then run D2 again to see the change.
+Codex will ask permission to change the skill file. Approve it. Then run
+D2 again to see the change.
 
 ---
 
@@ -191,9 +204,9 @@ Then run D2 again to see the change.
 | Skill | What it could do |
 | --- | --- |
 | `literature-table` | Reading notes → a table of author, data, method and finding, marking anything unsure with [CHECK] |
-| `citation-check` | List every reference in a draft and the ones you still need to verify |
+| `citation-check` | List every reference in a draft, and mark the ones with no DOI, URL or page number so you can check them yourself |
 | `email-to-professor` | Turn your points into a short, polite email draft for you to edit |
-| `weekly-log` | Summarize what you did this week from your notes and files |
+| `weekly-log` | Summarize what you did this week from the files in `notes/` changed in the last 7 days |
 
 ## Good skills are
 
@@ -205,9 +218,10 @@ Then run D2 again to see the change.
 ## If something goes wrong
 
 - **The skill is not listed:** close and reopen the ChatGPT app.
-- **Codex says it cannot write to your home folder:** approve the
-  permission request, or ask it to install the skill into this project
-  instead: `Install it into .agents/skills in this project folder instead.`
+- **Codex says it cannot write the skill:** the skills folder `.agents` is
+  protected, in your home folder and in your project. Approve the
+  permission request when Codex asks. If it did not ask, reply:
+  `Please ask me for permission and try again.`
 - **It does not follow the steps:** `Read my meeting-notes skill again and tell me which step you skipped.`
 
 Next: use the skills in [98: Present your work](../98-present-your-work/)

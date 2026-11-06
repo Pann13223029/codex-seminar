@@ -7,7 +7,7 @@ notes, while you stay in charge of every decision and check the results.
 Seminar session by Pann Phetra (College of Sustainability and Tourism,
 Ritsumeikan Asia Pacific University).
 
-**Slides:** [view as PDF](slides/codex-for-research.pdf) · [open the web version](https://pann13223029.github.io/codex-seminar/slides/) · [all options](slides/)
+**Slides:** [view as PDF](slides/codex-for-research.pdf) · [open the web version](https://pann13223029.github.io/codex-seminar/slides/) · [all options](slides/) (on a phone, use the PDF)
 
 ## What you need
 
@@ -39,6 +39,13 @@ Ritsumeikan Asia Pacific University).
 
 > **Stuck on a basic step** (unzipping, hidden folders, opening a CSV,
 > counting rows)? See [computer basics](help/computer-basics.md).
+
+> **When Codex asks permission:** Codex works inside the folder you opened.
+> It asks first before it writes in a protected folder (`.git` or
+> `.agents`), writes outside your folder, or uses the internet (for example
+> to install pandas). Read what it wants to do. If it matches what you
+> asked for, approve. If Codex says it **cannot** do something and did not
+> ask, reply: `Please ask me for permission and try again.`
 
 ## Get the workshop files
 
@@ -76,7 +83,7 @@ do, then approve.
 Codex, start a **New chat**, and paste:
 
 ```text
-Read README.md in this folder. Then guide me through the workshop one step at a time, in simple English. Start with the first thing I need to do. After each step, wait until I say it is done. When a step says to open another folder, tell me to open it myself in the app. Do not open the answer-keys folder. Do not change any files unless I ask.
+Read README.md in this folder. Then guide me through the workshop one step at a time, in simple English: read each step page yourself and explain it to me. Start with the first thing I need to do. After each step, wait until I say it is done. Tell me to open a different folder in the app only when a step says to work in it, and warn me that this starts a new chat there; I can come back to this chat later. Answer from the workshop files; do not search the web. Do not open the answer-keys folder. Do not change any files unless I ask.
 ```
 
 You can still read every step yourself on this page. Codex is there to

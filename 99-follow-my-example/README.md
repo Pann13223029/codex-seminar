@@ -57,6 +57,9 @@ flowchart TD
 3. The folder already contains `AGENTS.md` (the project brief), the data,
    and the two skills it uses (in a hidden folder `.agents/skills`), so
    there is nothing to install.
+4. Do the [Python check](../00-install/#get-ready-for-the-data-tracks-python)
+   once. If Codex asks permission to use the internet to install pandas,
+   approve it.
 
 ## Step 1: Check that Codex read the brief (2 minutes)
 
@@ -67,11 +70,13 @@ Read AGENTS.md and summarize the project, the data and the rules in five bullet 
 ## Step 2: Analyse with `$data-explore` (10 minutes)
 
 ```text
-$data-explore I want to know whether "only about 4 in 10 incinerators generate electricity" understates how much waste is covered. For FY2005 and FY2024, calculate: (1) the share of records with a generator, (2) the share of waste burned at records that generate, and (3) the share of design capacity at records with a generator. Use the definitions in AGENTS.md. Also tell me the FY2024 share with a generator if blank power values were dropped instead of counted as zero.
+$data-explore I want to know whether "only about 4 in 10 incinerators generate electricity" understates how much waste is covered. For FY2005 and FY2024, calculate: (1) the share of records with a generator, (2) the share of waste burned at records that generate, and (3) the share of design capacity at records with a generator. Use the definitions in AGENTS.md. Also tell me the FY2024 share with a generator if blank power values were dropped instead of counted as zero, and, using data/README.md, explain in one sentence why the two ways give such different numbers.
 ```
 
-The skill makes Codex describe the data and ask about the decisions that
-change the answer before calculating. Suggested answers:
+The skill makes Codex describe the data and check the decisions that
+change the answer. Codex may ask you these questions, or it may use
+`AGENTS.md` and go straight to the results. Either is fine. Suggested
+answers:
 
 | If Codex asks... | You can answer... |
 | --- | --- |
@@ -105,12 +110,20 @@ List three ways the numbers in outputs/findings.md could be wrong, test the most
 
 ## Step 4: Make slides with `$presentation-page` (10 minutes)
 
+Start a **New chat** (it uses less of your allowance), then paste:
+
 ```text
 $presentation-page Make a 5-minute deck from outputs/findings.md for a seminar class. Use the editorial theme.
 ```
 
-Codex first shows an **outline**. Check that every slide title states a
-takeaway and every number comes from `findings.md`, then reply `OK`.
+Codex first shows an **outline**. Check that:
+
+- every slide title states a takeaway, and every number comes from
+  `findings.md`;
+- the slide about blanks says **41.1%** is the right number, and why;
+- "has a generator" (41.1%) and "generates" (40.4%) are not swapped.
+
+Then reply `OK`.
 
 Then:
 
@@ -123,10 +136,10 @@ Then:
 ## Step 5: Make your own skill (10 minutes)
 
 You just did a check you could repeat for any year or prefecture. Save it
-as a skill. Copy and paste:
+as a skill. Start a **New chat**, then paste:
 
 ```text
-$skill-creator Create a skill called coverage-check for this project. Given a fiscal year (and optionally a prefecture), it should calculate the three coverage percentages from data/incinerators_fy2005_fy2024.csv using the definitions in AGENTS.md, save the results to outputs/, and report one number the user should check by hand and how. It should be used when I ask about generator coverage or the coverage check, and not for other analyses. Keep it instruction-only, with no scripts. Save it in this project's .agents/skills folder.
+$skill-creator Create a skill called coverage-check for this project. Given a fiscal year (and optionally a prefecture), it should calculate the three coverage percentages from data/incinerators_fy2005_fy2024.csv using the definitions in AGENTS.md, save the results to outputs/, and report one number the user should check by hand and how. It should be used when I ask about generator coverage or the coverage check, and not for other analyses. It must never change the data file and never claim why plants were built or closed. Keep the skill instruction-only, with no scripts inside it. Save it in this project's .agents/skills folder.
 ```
 
 If the skill creator asks questions:
@@ -156,8 +169,11 @@ Show me the SKILL.md you made for coverage-check and explain each part in plain 
 ## Step 6: Write your AI-use statement (2 minutes)
 
 ```text
-Look at what we did in this folder. Draft a two-sentence AI-use statement saying what you did and what I checked myself. Do not exaggerate either part.
+Look at the files in this folder (AGENTS.md, outputs/ and the coverage-check skill). Draft a two-sentence AI-use statement saying what you did and what I did. I checked these myself: the FY2024 share with a generator (417 of 1,014, 41.1%) by hand in a spreadsheet, and the slide outline before you built it. Do not exaggerate either part.
 ```
+
+Change the list of what you checked so it is true for you, then correct
+anything else that is wrong.
 
 ## Extra task (optional): follow the same plants
 

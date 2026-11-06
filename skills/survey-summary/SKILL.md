@@ -34,7 +34,8 @@ may not program; explain each step in plain English.
    rating 1-5, open text) and its number of answers and blanks. Report
    duplicate submissions (rows with the same answers apart from the
    timestamp, or rows marked `repeat_contact`) and ask whether to remove
-   them.
+   them. Then stop: end your turn with that question and wait. Do not
+   continue the analysis until the user answers.
 3. **Rating questions.** For each rating question report the number of
    answers, the mean, and the share answering 4 or 5. Show the full
    distribution (how many 1s, 2s, 3s, 4s, 5s), because a mean alone hides it.
@@ -42,19 +43,26 @@ may not program; explain each step in plain English.
    the group is too small to compare.
 4. **Choice questions.** Frequency tables with counts and percentages, and
    cross-tabs against the comparison groups.
-5. **Open-ended questions.** Read every answer. Group them into 3-6 themes,
-   count how many answers fall in each, and quote 1-2 real answers per theme
-   word for word. Never invent or "improve" a quote. Note empty answers.
+5. **Open-ended questions.** Read every answer yourself (after step 1 they
+   contain no names). Group them into 3-6 themes **by meaning, not by
+   keyword matching**: "local seafood" is food, not scenery. For each theme
+   list the exact distinct answers in it and how often each appears, so the
+   user can check the grouping. Quote 1-2 real answers per theme word for
+   word. Never invent or "improve" a quote. Note empty answers.
 6. **Charts.** At most four PNG charts in `outputs/`: stacked or grouped
    bars for rating distributions, bars for theme counts. Plain titles, axis
    labels, number of respondents in each caption.
 7. **Write the summary.** Save `outputs/survey_summary.md` with: who
-   answered (number, groups), 3-5 key findings each with its number, the
+   answered (number, groups), 3-5 key findings with the most important
+   first (the largest difference that answers the user's question), each
+   with its number as a percentage and a count, such as "85.0% (51 of 60)";
+   check that every number in the text matches the tables. Then the
    theme table with quotes, the decisions made (duplicates, blanks),
    limitations (who did not answer, sample size, self-reported opinions), and
    a one-line note of what was done with AI assistance.
-8. **Hand-check.** Give one number to verify by hand in a spreadsheet, with
-   exact steps.
+8. **Hand-check.** Take the number behind the most important finding and
+   give a `COUNTIFS` formula for Excel or Google Sheets, with the column
+   letters of the original export and the expected result.
 
 ## Rules
 

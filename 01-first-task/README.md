@@ -28,6 +28,9 @@ Make this folder a Git repository if it is not one yet, and save a snapshot of a
 Codex may ask your permission first, because the snapshot folder (`.git`)
 is protected. Read the request, then approve.
 
+If Codex says Git needs your name ("Please tell me who you are"), paste:
+`Set my Git name to [your name] and email to [your email] for this folder only, then save the snapshot again.`
+
 ## 3. Ask it to change the file
 
 ```text
@@ -65,5 +68,8 @@ Then open the file and check for yourself.
 2. **Read before you accept.** You are responsible for what is in the folder.
 3. **Ask, do not assume.** If you are not sure what Codex did, ask it:
    `What exactly did you change, and why?`
+
+Steps 1 to 5 are short, so one chat is fine. For the next guide, start a
+**New chat**: long chats use more of your allowance.
 
 Next: the [prompting guide](../prompt-guide/).

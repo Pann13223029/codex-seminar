@@ -191,7 +191,7 @@ Start by asking me your first question.
 ### No other chatbot? Ask Codex to interview you
 
 ```text
-Before doing anything, interview me: ask me up to five questions, one at a time, about what I want, which files to use, what the result should look like and how I will check it. Then write the task back to me as Goal, Context, Task, Output, Checks and Limits, and wait for my OK before starting.
+Before doing anything, interview me: ask me up to five questions, one at a time, about what I want, which files to use, what my key words mean, what the result should look like and where to save it, and how I will check it. Then write the task back to me as six separate labelled lines: Goal, Context, Task, Output, Checks and Limits. Limits must include: do not change my original files; show a plan first; never invent data, quotes or references. Checks must give me one result I can verify by hand. Wait for my OK before starting.
 ```
 
 Next: with your own project, [04: Skills, Part A](../04-make-a-skill/#part-a-install-the-example-skills-5-minutes)

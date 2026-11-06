@@ -33,7 +33,9 @@ student who may not program, so explain every step in plain English.
    - what counts as a duplicate, and how many you found;
    - the exact definition of each measure (for example "has a generator =
      capacity above zero").
-   Wait for answers. If AGENTS.md already defines these, use it and say so.
+   Wait for answers. If AGENTS.md already defines these, use it and say so,
+   but still report the result under the other blank rule and explain in
+   one sentence why the two differ.
 3. **Clean into a new file.** Never change the original. Write a small
    Python script in `scripts/` (pandas, matplotlib) that saves the cleaned
    data to `outputs/clean_<name>.csv` and prints a log of every change
@@ -44,13 +46,15 @@ student who may not program, so explain every step in plain English.
    plain-language title, labelled axes with units, and the data source in a
    caption. Prefer bar and line charts. No 3D, no pie charts with more than
    four slices.
-6. **Hand-check.** Give the user one number to verify by hand in Excel or
-   Google Sheets, with the exact filter and count steps.
+6. **Hand-check.** Take the number behind the main finding and give a
+   `COUNTIFS` formula for Excel or Google Sheets, with the column letters of
+   the original file and the expected result.
 7. **Write the memo.** Save `outputs/findings.md` with:
    - the question, the data source and the number of rows used;
    - 3-5 findings, each one sentence with its number and the file that
      produced it;
-   - the decisions from step 2;
+   - the decisions from step 2, and, when a decision changes the answer a
+     lot, which result is correct and why;
    - limitations: what the data cannot show (causes, people or places not in
      the data);
    - a one-line note of what was done with AI assistance.

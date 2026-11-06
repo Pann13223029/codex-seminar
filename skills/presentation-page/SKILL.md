@@ -24,7 +24,10 @@ step in plain English.
    each with its layout (title, statement, big number, bar chart, compare,
    points, quote, chart image, table, sources) and its title written as a
    full-sentence takeaway. Show which number from the memo each slide uses.
-   Wait for the user's OK.
+   Put the most important finding in the first two slides. When a slide
+   compares two ways of calculating, its title says which result is correct
+   and why, and the accent goes on the correct number. Use the memo's exact
+   terms; do not swap similar ones. Wait for the user's OK.
 3. **Build.** Copy `assets/deck-template.html` from this skill folder to
    `outputs/deck/index.html`. Set the theme with `data-theme` on `<html>`,
    the `<title>` and the footer text. Replace the example slides with the

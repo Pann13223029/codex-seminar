@@ -41,8 +41,25 @@ information is the biggest gap for international visitors.
 | Payment | 10 | "More card payment at small shops." |
 | Opening hours | 8 | "Shops close early in the evening." |
 
-Your themes may be grouped differently; the counts of the exact answers
-should match.
+Your themes may be grouped differently. What must match are the counts of
+the eight different answers people gave:
+
+| Exact answer | Count |
+| --- | --: |
+| "Some areas felt crowded on weekends." | 13 |
+| "Buses between sights are infrequent." | 13 |
+| "More signs and maps in English, Korean and Chinese." | 12 |
+| "More parking near the hells." | 10 |
+| "Bus timetables were hard to understand." | 10 |
+| "More card payment at small shops." | 10 |
+| "Shops close early in the evening." | 8 |
+| "Hard to know onsen rules before entering." | 7 |
+
+Any grouping is fine if it uses these counts and puts each answer in a theme
+that fits its meaning.
+
+If your international share for language information is **16.4%** instead
+of 16.7%, the duplicate submission is still in your data.
 
 ## Privacy check
 

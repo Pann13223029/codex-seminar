@@ -20,7 +20,7 @@
   * { box-sizing: border-box; }
   html, body { margin: 0; height: 100%; overflow: hidden; background: var(--paper); color: var(--ink);
     font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif; font-variant-numeric: tabular-nums lining-nums; }
-  #stage { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+  #stage { position: fixed; left: 0; top: 0; transform-origin: 0 0; }
   .slide { position: absolute; inset: 0; padding: 56px 80px 64px; display: none; flex-direction: column; overflow: hidden; }
   .slide.active { display: flex; }
   .body { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 34px; min-height: 0; }
@@ -117,13 +117,17 @@
   .loop span.step.accent { border-color: var(--accent); color: var(--accent); }
 
   /* Print and PDF: every slide on its own 1280 x 720 page, no motion. */
+  #phone { display: none; }
+  @media (max-width: 700px) and (orientation: portrait) {
+    #phone { display: block; position: fixed; top: 0; left: 0; right: 0; z-index: 10; padding: 14px 16px; background: var(--accent); color: #fff; font: 600 16px/1.4 "Avenir Next", "Segoe UI", Arial, sans-serif; text-align: center; text-decoration: none; }
+  }
   @media print {
     @page { size: 1280px 720px; margin: 0; }
     html, body { height: auto; overflow: visible; background: var(--paper); }
     #stage { position: static; transform: none !important; width: 1280px !important; height: auto !important; }
     .slide { display: flex !important; position: relative; width: 1280px; height: 720px; break-after: page; }
     .slide *, .slide.active * { animation: none !important; }
-    #nav, #progress, .footer { display: none !important; }
+    #nav, #progress, .footer, #phone { display: none !important; }
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
 
@@ -692,6 +696,7 @@ Mark unclear with [CHECK]</div>
 <div class="footer"><span>Codex for Research</span><span id="count"></span></div>
 </div>
 <div id="nav">Arrow keys or click to move. F for full screen.</div>
+<a id="phone" href="codex-for-research.pdf">On a phone? Open the PDF version, or turn your phone sideways.</a>
 <script>
   const slides = [...document.querySelectorAll('.slide')];
   const stage = document.getElementById('stage');

@@ -79,6 +79,8 @@ Tracks 98 and 99 and the data skills use **Python** with two add-ons,
 Check whether Python, pandas and matplotlib are installed on this computer. If Python itself is missing, explain step by step how to install it on my system (Windows or Mac), then stop. If only pandas or matplotlib is missing, ask my permission, then install them with pip for my user account.
 ```
 
+Installing needs the internet, so Codex will ask permission. Approve it.
+
 - **Windows, if Python is missing:** install it from
   [python.org/downloads](https://www.python.org/downloads/). On the first
   installer screen tick **"Add python.exe to PATH"**. Then close and reopen

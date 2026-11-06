@@ -19,7 +19,9 @@ flowchart TD
 ## 1. Put your project in its own folder
 
 Copy only the files Codex needs (data, notes, drafts) into one folder and
-open that folder in Codex. Leave out anything private (see the README).
+open that folder in Codex. Put data files in a folder called `data` and
+notes in a folder called `notes`. Leave out anything private (see the
+README).
 
 ## 2. Write a brief: `AGENTS.md`
 
@@ -31,7 +33,7 @@ You do not need to write it yourself. Codex creates it from a template and
 interviews you to fill it in. Copy and paste:
 
 ```text
-Create a file called AGENTS.md in this folder from the template below. Then ask me questions one at a time to fill in every part in [square brackets], and keep the Rules section as it is unless I ask to change it. When we are done, show me the finished file.
+Create a file called AGENTS.md in this folder from the template below. Look at my files first. Then ask me questions one at a time to fill in every part in [square brackets], including My question; do not fill any part in yourself. Keep the Rules section as it is unless I ask to change it. When we are done, show me the finished file.
 
 # Project brief
 
@@ -51,9 +53,11 @@ Create a file called AGENTS.md in this folder from the template below. Then ask 
 - Every number you report must come from a file you ran; tell me which one.
 - Never invent references, quotes or statistics. If you are unsure, say so.
 - Write in clear English for a reader who is not a programmer.
+- After each task, add one line to outputs/ai-log.md: what you did and which files changed.
 ```
 
-Then check that Codex read it:
+Then start a **New chat** (the interview made the first chat long) and
+check that Codex read the brief:
 
 ```text
 Summarize the instructions in AGENTS.md in five bullet points.
@@ -66,7 +70,7 @@ Not sure how to phrase it? Use the six parts in the
 
 
 ```text
-I want to [goal]. Before changing any files, write a short plan: the steps, which files you will create, how I can check each result, and anything you need from me. Wait for my OK.
+I want to [goal]. Before changing any files, write a short plan: the steps, which files you will create, how I can check each result, and anything you need from me. Include one number I can check by hand in a spreadsheet. Wait for my OK.
 ```
 
 Read the plan. Change it if it is wrong. Only then say `OK, do step 1 only.`
