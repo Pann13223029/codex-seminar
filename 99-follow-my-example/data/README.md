@@ -12,9 +12,8 @@ the source cited, under terms compatible with Creative Commons Attribution
 **Processing:** parsed and de-duplicated for the graduation thesis of Pann
 Phetra (Ritsumeikan Asia Pacific University). `facility_id` links the same
 plant across years even though the official facility codes changed. Only the
-columns used in this workshop are kept, with English labels; see
-`tools/build_dataset.py` in this repository. Column meanings are in
-`../AGENTS.md`.
+columns used in this workshop are kept, with English labels. Column
+meanings are in `../AGENTS.md`.
 
 Note: in FY2024 the survey leaves generator fields blank for most plants
 without a generator, while FY2005 records them as 0. Treat blanks as zero.

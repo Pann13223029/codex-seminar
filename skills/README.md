@@ -25,8 +25,7 @@ flowchart LR
 **Install them** for your own projects: follow
 [04: Skills, Part A](../04-make-a-skill/#part-a-install-the-example-skills-5-minutes).
 You do not create or edit any file yourself; Codex copies them after you
-approve. The practice tracks 98 and 99 already include the skills they use
-(copies made by `tools/sync_skills.py`).
+approve. The practice tracks 98 and 99 already include the skills they use.
 
 **What they will not do:** invent numbers, quotes or references; analyse
 without telling you how blanks and duplicates were handled; or leave out

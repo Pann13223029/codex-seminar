@@ -40,8 +40,6 @@ Look at what changed. Because you saved a snapshot, the app's review pane
 can show the lines that were added and removed. The easiest way is to ask:
 `Show me exactly what changed since the last snapshot.`
 
-<!-- Screenshot to add: ![](../assets/screenshots/01-review.png) -->
-
 Ask yourself: is this what I asked for? Did it change anything I did not ask
 it to change?
 

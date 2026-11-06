@@ -15,8 +15,8 @@ Ritsumeikan Asia Pacific University).
    the desktop app with the **GPT-6 Luna** model, with usage limits. Some
    accounts may not have it yet
    ([Codex pricing](https://learn.chatgpt.com/docs/pricing),
-   [models](https://learn.chatgpt.com/docs/models)). Everything here was
-   tested with Luna.
+   [models](https://learn.chatgpt.com/docs/models)). Everything in this
+   guide works with Luna.
 2. A laptop running **macOS, Windows or Linux** with the **ChatGPT desktop
    app** installed ([official quickstart](https://learn.chatgpt.com/docs/quickstart)).
 3. Optional but recommended: **Git**. The app uses it to show what Codex
@@ -60,8 +60,6 @@ flowchart LR
 click the green **Code** button, then **Download ZIP**. Unzip the file
 ([how to unzip](help/computer-basics.md#unzip-the-downloaded-repository)).
 You get a folder called `codex-seminar-main`.
-
-<!-- Screenshot to add: ![](assets/screenshots/04-download-zip.png) -->
 
 **Way 2: Let Codex download it.** Do [step 00](00-install/) first. Then
 create a new empty folder, for example `workshop` in your Documents folder,
@@ -149,8 +147,7 @@ include the example skills, so there is nothing to install.
 - **Skill:** a saved, reusable workflow (a folder with a `SKILL.md` file) that
   Codex can run again on request.
 
-## About the screenshots
+## If the app looks different
 
-Each step has marked places for screenshots (`assets/screenshots/`). Codex
-changes quickly, so if a button looks different from the text, follow the
-linked official page.
+Codex changes quickly. If a button looks different from the text here,
+follow the linked official page.

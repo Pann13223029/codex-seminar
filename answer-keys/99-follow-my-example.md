@@ -2,7 +2,7 @@
 
 Open this only after you have your own results. All numbers use the
 definitions in `AGENTS.md` (blank power values treated as zero). They match
-the analysis in the author's thesis.
+my thesis analysis.
 
 ## Step 2: Rows
 

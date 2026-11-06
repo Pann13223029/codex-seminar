@@ -8,8 +8,6 @@ Download the app for your system from the
 [official quickstart](https://learn.chatgpt.com/docs/quickstart). It is
 available for macOS, Windows and Linux (Linux is in preview).
 
-<!-- Screenshot to add: ![](../assets/screenshots/00-download.png) -->
-
 ## 2. Sign in
 
 Open the app and sign in with your ChatGPT account. A Free account works;
@@ -23,13 +21,9 @@ your Documents folder. Then open it in the app: press `⌘ O` (macOS) or
 
 Codex works **inside the folder you choose**. To change anything outside it, it must ask your permission first.
 
-<!-- Screenshot to add: ![](../assets/screenshots/00-open-folder.png) -->
-
 ## 4. Switch to Codex
 
 In the ChatGPT dropdown, select **Codex**, then start a **New chat**.
-
-<!-- Screenshot to add: ![](../assets/screenshots/00-select-codex.png) -->
 
 ## 5. Choose the model and effort
 
@@ -54,8 +48,6 @@ the reasoning effort yourself, open **Advanced**.
 
 More effort uses more of your allowance, so match it to the task.
 ([Official model guide](https://learn.chatgpt.com/docs/models))
-
-<!-- Screenshot to add: ![](../assets/screenshots/00-model-control.png) -->
 
 ## 6. Check it works
 

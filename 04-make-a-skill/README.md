@@ -40,8 +40,6 @@ You can read each recipe in the [skills folder](../skills/).
 ([two ways](../#get-the-workshop-files)). You now have a folder called
 `codex-seminar-main`.
 
-<!-- Screenshot to add: ![](../assets/screenshots/04-download-zip.png) -->
-
 **A2. Open that folder in Codex.** In the ChatGPT desktop app, open the
 folder `codex-seminar-main` and choose **Codex** (as in
 [step 00](../00-install/)).
@@ -55,8 +53,6 @@ Install the three skills in the skills/ folder of this project for me. Copy each
 Codex **will ask for your permission**, because the skills folder
 (`.agents` in your home folder) is outside the folder you opened. Read what it wants to do,
 then approve. If you do not approve, nothing is installed.
-
-<!-- Screenshot to add: ![](../assets/screenshots/04-approve.png) -->
 
 **A4. Check they are installed.** Start a **New chat** and paste:
 
