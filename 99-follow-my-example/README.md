@@ -15,6 +15,49 @@ incinerators generate electricity. That sounds low. But a small plant and a
 huge plant each count as one. Is most of the **waste** actually burned at
 plants that generate?
 
+## The nine steps at a glance
+
+```mermaid
+flowchart TD
+    subgraph U["Understand"]
+        S1["1 Check the brief"] --> S2["2 Explore the data"]
+    end
+    subgraph A["Analyse"]
+        S3["3 Ask for a plan<br/>wait for your OK"] --> S4["4 Run the analysis"]
+    end
+    subgraph C["Check"]
+        S5["5 Check one number<br/>by hand in a spreadsheet"]
+    end
+    subgraph S["Share"]
+        S6["6 Make a chart"] --> S7["7 Write a memo"]
+    end
+    subgraph R["Reuse and disclose"]
+        S8["8 Make a skill"] --> S9["9 AI-use statement"]
+    end
+    S2 --> S3
+    S4 --> S5
+    S5 --> S6
+    S7 --> S8
+    S9 --> K(["Compare with the answer key"])
+```
+
+## What your folder will look like
+
+```
+99-follow-my-example/
+├── AGENTS.md                         the brief (given)
+├── data/
+│   └── incinerators_fy2005_fy2024.csv   the data (given, never changed)
+├── scripts/
+│   └── coverage.py                   step 4: Codex writes it
+├── outputs/
+│   ├── coverage.csv                  step 4: the three percentages
+│   ├── coverage.png                  step 6: the chart
+│   └── memo.md                       step 7: the memo
+└── .agents/skills/coverage-check/
+    └── SKILL.md                      step 8: your skill
+```
+
 ## Set up (5 minutes)
 
 1. On this repository's GitHub page, choose **Code → Download ZIP** and

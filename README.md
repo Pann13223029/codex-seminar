@@ -5,7 +5,9 @@ own laptop: read data, write and run analysis code, make charts and draft
 notes, while you stay in charge of every decision and check the results.
 
 Seminar session by Pann Phetra (College of Sustainability and Tourism,
-Ritsumeikan Asia Pacific University). The slides are in [slides](slides/).
+Ritsumeikan Asia Pacific University).
+
+**Slides:** [view as PDF](slides/codex-for-research.pdf) · [open the web version](https://pann13223029.github.io/codex-seminar/slides/) · [all options](slides/)
 
 ## What you need
 
@@ -27,6 +29,37 @@ Ritsumeikan Asia Pacific University). The slides are in [slides](slides/).
 > **Academic integrity:** APU treats undisclosed AI assistance as a possible
 > form of plagiarism. If AI helps with a thesis or assignment, say so. Step 03
 > shows how.
+
+## Your route through the workshop
+
+```mermaid
+flowchart TD
+    A["00 Install and sign in"] --> B["01 First task"]
+    B --> C{"Do you have your own project?"}
+    C -- "Yes" --> D["02 Work on your project"]
+    D --> E["03 Verify and disclose"]
+    E --> F["04 Make a skill"]
+    C -- "No" --> G["99 Follow my example<br/>prepared data and copy-and-paste prompts"]
+    F --> H(["Finished: a result you checked<br/>and an AI-use statement"])
+    G --> H
+```
+
+## How you will work with Codex
+
+Every task follows the same loop. You stay in charge of the two decision
+points.
+
+```mermaid
+flowchart TD
+    B["Brief<br/>AGENTS.md"] --> P["Plan<br/>Codex proposes"]
+    P --> OK{"You approve?"}
+    OK -- "No, change it" --> P
+    OK -- "Yes" --> S["One small step<br/>Codex does it"]
+    S --> C{"You check it"}
+    C -- "Wrong, undo" --> S
+    C -- "Right" --> N["Next step"]
+    N --> P
+```
 
 ## Follow the workshop
 

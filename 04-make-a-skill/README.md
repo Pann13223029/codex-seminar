@@ -26,6 +26,22 @@ in `~/.agents/skills/` for skills you want in every project).
   skill on its own when your request fits. So the description must say
   clearly when to use it, and when not to.
 
+## How Codex decides to use a skill
+
+```mermaid
+flowchart TD
+    R["Your request"] --> Q{"Did you type $skill-name?"}
+    Q -- "Yes" --> L["Codex opens that skill's SKILL.md"]
+    Q -- "No" --> D["Codex reads the description<br/>of every skill"]
+    D --> M{"Does one match<br/>your request?"}
+    M -- "Yes" --> L
+    M -- "No" --> W["Codex works without a skill"]
+    L --> RUN["Codex follows the steps in SKILL.md"]
+```
+
+This is why the `description` matters: it is the only part Codex reads
+before deciding.
+
 ## Way 1: let Codex write it (easiest)
 
 Codex has a built-in skill for making skills. Copy and paste, then edit the

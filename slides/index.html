@@ -115,6 +115,17 @@
   .loop { display: grid; grid-template-columns: repeat(9, auto); align-items: center; gap: 14px; font-size: 26px; font-weight: 600; }
   .loop span.step { border: 1px solid var(--ink); padding: 14px 18px; }
   .loop span.step.accent { border-color: var(--accent); color: var(--accent); }
+
+  /* Print and PDF: every slide on its own 1280 x 720 page, no motion. */
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    html, body { height: auto; overflow: visible; background: var(--paper); }
+    #stage { position: static; transform: none !important; width: 1280px !important; height: auto !important; }
+    .slide { display: flex !important; position: relative; width: 1280px; height: 720px; break-after: page; }
+    .slide *, .slide.active * { animation: none !important; }
+    #nav, #progress, .footer { display: none !important; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
 </style>
 </head>
 <body>

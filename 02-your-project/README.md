@@ -4,8 +4,16 @@ Time: as long as you like. Goal: a way of working that keeps you in charge.
 
 The loop for every task:
 
-```
-Brief  →  Plan  →  One small step  →  Check  →  Next step
+```mermaid
+flowchart TD
+    B["Brief<br/>AGENTS.md"] --> P["Plan<br/>Codex proposes"]
+    P --> OK{"You approve?"}
+    OK -- "No, change it" --> P
+    OK -- "Yes" --> S["One small step<br/>Codex does it"]
+    S --> C{"You check it"}
+    C -- "Wrong, undo" --> S
+    C -- "Right" --> N["Next step"]
+    N --> P
 ```
 
 ## 1. Put your project in its own folder

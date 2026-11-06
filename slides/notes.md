@@ -1,7 +1,8 @@
 # Speaker notes: Codex for Research (45 minutes)
 
-Open `slides/index.html` in a browser (or serve the repo with
-`python3 -m http.server` and open `/slides/`). Arrow keys move; **F** is full
+Present from the web version (https://pann13223029.github.io/codex-seminar/slides/)
+or open `slides/index.html` in a browser. The PDF (`codex-for-research.pdf`) is
+the backup if a browser or projector misbehaves. Arrow keys move; **F** is full
 screen; `#N` in the address jumps to slide N.
 
 | # | Slide | Time | Running |
