@@ -1,3 +1,5 @@
+**English** · [日本語](README.ja.md)
+
 # Example skills
 
 Four ready-made skills for seminar work and job hunting. Each folder is one skill: a

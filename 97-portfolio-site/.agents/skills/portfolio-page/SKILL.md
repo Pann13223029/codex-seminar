@@ -7,8 +7,8 @@ description: Build a one-page personal portfolio website for job hunting (one HT
 
 Turn facts the user gives you into a clean one-page portfolio site they can
 put online for job hunting. The user may not program and may be writing in
-their second language; explain each step in plain English and keep them in
-charge of every word that goes public.
+their second language; explain each step in plain language and keep them in
+charge of every word that goes public. Reply in the language the user writes in (for example Japanese or English).
 
 ## Inputs
 
@@ -29,7 +29,7 @@ charge of every word that goes public.
    `references/profile-template.md` from this skill folder as the form.
    Fill it only with facts from the user's files or
    answers. Ask about the empty parts **one question at a time**, in simple
-   English, and at most about ten questions: ask only what is missing. For
+   language, and at most about ten questions: ask only what is missing. For
    every story ask: when it happened, the problem, what the user did
    themselves, and the result. Do not take a story's dates from other
    dates, such as the degree. For every number ask how they know it. If

@@ -1,3 +1,5 @@
+**English** · [日本語](README.ja.md)
+
 # 02: Work on your own project
 
 Time: as long as you like. Goal: a way of working that keeps you in charge.

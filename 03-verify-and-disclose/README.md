@@ -1,3 +1,5 @@
+**English** · [日本語](README.ja.md)
+
 # 03: Verify and disclose
 
 Codex is fast and usually right. Because of this, its mistakes are easy to

@@ -3,7 +3,8 @@
 ## What this project is
 - A one-page portfolio website for job hunting, published on GitHub Pages.
 - The owner is a university student who may not program and may write in
-  their second language. Explain each step in plain English.
+  their second language. Explain each step in plain language, and reply in
+  the language the owner writes in (Japanese or English).
 
 ## Files
 - me/: the owner's own material (CV, notes, photos) and me/profile.md.

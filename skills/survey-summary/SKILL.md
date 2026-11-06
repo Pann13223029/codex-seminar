@@ -6,7 +6,7 @@ description: Summarize a survey export (Google Forms, Microsoft Forms, Qualtrics
 # Survey summary
 
 Turn a survey export into a checked summary a seminar can present. The user
-may not program; explain each step in plain English.
+may not program; explain each step in plain language. Reply in the language the user writes in (for example Japanese or English).
 
 ## Inputs
 
@@ -17,7 +17,7 @@ may not program; explain each step in plain English.
 ## Steps
 
 0. **Check the tools.** Check that Python with pandas and matplotlib is
-   available. If Python itself is missing, explain in plain English how to
+   available. If Python itself is missing, explain in plain language how to
    install it on the user's system (Windows or Mac) and stop. If only pandas
    or matplotlib is missing, ask permission, then install them with pip for
    the user's account. Never install anything without their OK.

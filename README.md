@@ -1,3 +1,5 @@
+**English** · [日本語](README.ja.md)
+
 # Codex for Research: a Seminar Workshop
 
 Use Codex, OpenAI's coding agent, to do real research work in a folder on your

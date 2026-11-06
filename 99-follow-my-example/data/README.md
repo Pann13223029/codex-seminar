@@ -1,3 +1,5 @@
+**English** · [日本語](README.ja.md)
+
 # Data
 
 `incinerators_fy2005_fy2024.csv`: 2,332 municipal waste incinerator records

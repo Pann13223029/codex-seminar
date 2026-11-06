@@ -1,0 +1,804 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>研究に使う Codex（日本語版）</title>
+<style>
+  /* One accent, hairlines instead of cards, square corners throughout. */
+  :root {
+    --paper: #f6f6f4;
+    --ink: #1c1f23;
+    --muted: #5f6670;
+    --soft: #9aa1a8;
+    --line: #d6d9d5;
+    --accent: #1f4e8c;
+    --accent-tint: #dbe4f0;
+    --ease: cubic-bezier(.16, 1, .3, 1);
+  }
+  @property --p { syntax: "<number>"; inherits: false; initial-value: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: var(--paper); color: var(--ink);
+    font-family: "Avenir Next", "Hiragino Sans", "Yu Gothic UI", "Noto Sans JP", "Segoe UI", "Helvetica Neue", Arial, sans-serif; font-variant-numeric: tabular-nums lining-nums; }
+  #stage { position: fixed; left: 0; top: 0; transform-origin: 0 0; }
+  .slide { position: absolute; inset: 0; padding: 56px 80px 64px; display: none; flex-direction: column; overflow: hidden; }
+  .slide.active { display: flex; }
+  .body { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 34px; min-height: 0; }
+  h1 { font-size: 66px; font-weight: 600; line-height: 1.04; letter-spacing: -0.02em; margin: 0; max-width: 15ch; }
+  h2 { font-size: 40px; font-weight: 600; line-height: 1.12; letter-spacing: -0.015em; margin: 0; max-width: 30ch; }
+  h3 { font-size: 21px; font-weight: 600; margin: 0 0 6px; }
+  p { font-size: 22px; line-height: 1.42; margin: 0; }
+  .muted { color: var(--muted); }
+  .small { font-size: 17px; }
+  .accent { color: var(--accent); }
+  .num { font-weight: 600; letter-spacing: -0.02em; }
+  .big { font-size: 64px; line-height: 1; }
+  .huge { font-size: 96px; line-height: .95; }
+  .rule { border-top: 1px solid var(--ink); padding: 16px 0 18px; }
+  .hair { border-top: 1px solid var(--line); padding: 16px 0 18px; }
+  .tall-rows > * { padding-top: var(--row, 26px) !important; padding-bottom: var(--row, 26px) !important; }
+  .tall-rows .arrow { padding-top: 24px !important; }
+  .statement { font-size: 28px; line-height: 1.32; max-width: 40ch; border-left: 3px solid var(--accent); padding-left: 22px; }
+  .grid { display: grid; gap: 28px 40px; }
+  .footer { position: absolute; left: 80px; right: 80px; bottom: 24px; display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); }
+  .arrow { color: var(--soft); font-size: 22px; align-self: start; }
+  /* data marks */
+  .ring { --p: var(--to); width: 210px; height: 210px; border-radius: 50%; background: conic-gradient(var(--c, var(--accent)) calc(var(--p) * 1%), var(--line) 0); display: grid; place-items: center; }
+  .ring::after { content: ""; width: 168px; height: 168px; border-radius: 50%; background: var(--paper); grid-area: 1 / 1; }
+  .ring > span { grid-area: 1 / 1; z-index: 1; font-size: 44px; font-weight: 600; }
+  .hrow { display: grid; grid-template-columns: 180px 1fr 90px; align-items: center; gap: 16px; font-size: 20px; }
+  .hbar { height: 30px; background: var(--accent); transform-origin: left center; }
+  .vbars { display: flex; align-items: flex-end; justify-content: space-around; height: 300px; border-bottom: 2px solid var(--ink); }
+  .vbar { width: 96px; background: var(--accent); position: relative; transform-origin: bottom center; }
+  .vbar span { position: absolute; top: -34px; left: -20px; right: -20px; text-align: center; font-size: 24px; font-weight: 600; }
+  .vbar.tail { background: repeating-linear-gradient(135deg, var(--accent) 0 9px, var(--accent-tint) 9px 18px); }
+  .vlabels { display: flex; justify-content: space-around; padding-top: 10px; font-size: 18px; color: var(--muted); }
+  .vlabels div { width: 96px; text-align: center; }
+  .div-row { display: grid; grid-template-columns: 170px 1fr 1fr; align-items: center; height: 58px; }
+  .div-left { position: relative; height: 42px; border-right: 2px solid var(--ink); }
+  .div-right { position: relative; height: 42px; }
+  .div-left i, .div-right i { position: absolute; top: 0; bottom: 0; font-style: normal; font-size: 19px; font-weight: 600; display: flex; align-items: center; padding: 0 12px; white-space: nowrap; color: #fff; }
+  .div-left i { right: 0; background: var(--accent); transform-origin: right center; }
+  .div-right i { left: 0; background: var(--soft); transform-origin: left center; }
+  .timeline { position: relative; height: 170px; }
+  .timeline .axis { position: absolute; left: 0; right: 0; top: 60px; height: 2px; background: var(--ink); }
+  .tick { position: absolute; top: 52px; width: 2px; height: 18px; background: var(--ink); }
+  .tick span { position: absolute; top: 26px; left: -28px; width: 58px; text-align: center; font-size: 17px; color: var(--muted); }
+  .gap { position: absolute; top: 48px; height: 26px; background: var(--accent); transform-origin: left center; }
+  .gap-label { position: absolute; top: 4px; font-size: 18px; font-weight: 600; color: var(--accent); white-space: nowrap; }
+  .pol { display: flex; align-items: flex-end; justify-content: space-around; height: 260px; border-bottom: 2px solid var(--ink); }
+  .pol .pair { display: flex; align-items: flex-end; gap: 10px; }
+  .pol .b { width: 64px; position: relative; transform-origin: bottom center; }
+  .pol .b span { position: absolute; top: -28px; left: -16px; right: -16px; text-align: center; font-size: 19px; font-weight: 600; }
+  .legend { display: flex; gap: 26px; font-size: 16px; color: var(--muted); }
+  .legend i { display: inline-block; width: 14px; height: 14px; vertical-align: -1px; margin-right: 8px; }
+  img.fig { width: 100%; max-height: 420px; object-fit: contain; display: block; mix-blend-mode: multiply; }
+  .check { display: grid; grid-template-columns: 34px 1fr; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 20px; }
+  .check b { color: var(--accent); }
+  .check.open b { color: var(--soft); }
+  .tag { font-size: 15px; color: var(--accent); font-weight: 600; margin-top: 6px; }
+  .res { display: grid; grid-template-columns: 1.7fr 1fr; gap: 44px; align-items: center; }
+  .res img { width: 100%; max-height: 470px; object-fit: contain; display: block; mix-blend-mode: multiply; }
+  .res.stack { grid-template-columns: 1fr !important; gap: 30px; }
+  .res.stack .note { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
+  .res.stack .note h3 { margin-top: 0; grid-row: 1; }
+  .res.stack .note p { grid-row: 2; }
+  .note h3 { font-size: 19px; margin-top: 18px; }
+  .note h3:first-child { margin-top: 0; }
+  .note p { font-size: 18px; color: var(--muted); }
+  table.data { border-collapse: collapse; width: 100%; font-size: 17px; }
+  table.data th { text-align: left; font-weight: 600; color: var(--muted); font-size: 15px; padding: 0 10px 8px 0; border-bottom: 1px solid var(--ink); }
+  table.data td { padding: .45em 10px .45em 0; border-bottom: 1px solid var(--line); }
+  table.data td.n, table.data th.n { text-align: right; }
+  table.data tr.hl td { color: var(--accent); font-weight: 600; }
+  #nav { position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); color: var(--muted); font: 13px "Avenir Next", Arial, sans-serif; }
+  #progress { position: absolute; left: 0; top: 0; height: 4px; background: var(--accent); transition: width .4s var(--ease); }
+
+  /* Motion: elements enter in reading order and charts grow from their
+     baseline, so the eye follows the argument. Off under reduced motion. */
+  @media (prefers-reduced-motion: no-preference) {
+    .slide.active .in { animation: rise .7s var(--ease) both; animation-delay: calc(var(--i, 0) * 85ms); }
+    .slide.active .hbar, .slide.active .div-left i, .slide.active .div-right i, .slide.active .gap { animation: growx .9s var(--ease) both; animation-delay: calc(350ms + var(--j, 0) * 90ms); }
+    .slide.active .vbar, .slide.active .pol .b { animation: growy .9s var(--ease) both; animation-delay: calc(350ms + var(--j, 0) * 90ms); }
+    .slide.active .ring { animation: sweep 1.2s var(--ease) both; animation-delay: calc(250ms + var(--j, 0) * 120ms); }
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  @keyframes growx { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes growy { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  @keyframes sweep { from { --p: 0; } to { --p: var(--to); } }
+
+  .code { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 17px; line-height: 1.5; background: #fff; border: 1px solid var(--line); padding: 18px 22px; white-space: pre-wrap; margin: 0; }
+  .code b { color: var(--accent); font-weight: 600; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 0 56px; }
+  .two h3 { font-size: 24px; }
+  .two p { font-size: 21px; padding: 10px 0; border-top: 1px solid var(--line); }
+  .loop { display: grid; grid-template-columns: repeat(9, auto); align-items: center; gap: 14px; font-size: 26px; font-weight: 600; }
+  .loop span.step { border: 1px solid var(--ink); padding: 14px 18px; }
+  .loop span.step.accent { border-color: var(--accent); color: var(--accent); }
+
+  /* Print and PDF: every slide on its own 1280 x 720 page, no motion. */
+  #phone { display: none; }
+  @media (max-width: 700px) and (orientation: portrait) {
+    #phone { display: block; position: fixed; top: 0; left: 0; right: 0; z-index: 10; padding: 14px 16px; background: var(--accent); color: #fff; font: 600 16px/1.4 "Avenir Next", "Hiragino Sans", "Yu Gothic UI", "Noto Sans JP", "Segoe UI", Arial, sans-serif; text-align: center; text-decoration: none; }
+  }
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    html, body { height: auto; overflow: visible; background: var(--paper); }
+    #stage { position: static; transform: none !important; width: 1280px !important; height: auto !important; }
+    .slide { display: flex !important; position: relative; width: 1280px; height: 720px; break-after: page; }
+    .slide *, .slide.active * { animation: none !important; }
+    #nav, #progress, .footer, #phone { display: none !important; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  /* ---------- Visual components (figures, not decoration) ---------- */
+  .cap { font-size: 16px; color: var(--muted); }
+  .center { text-align: center; }
+  .row { display: flex; align-items: center; gap: 18px; }
+  .col { display: flex; flex-direction: column; gap: 14px; }
+
+  /* Mock app window */
+  .win { background: #fff; border: 1px solid var(--line); box-shadow: 0 10px 30px rgba(28,31,35,.07); display: flex; flex-direction: column; overflow: hidden; }
+  .win .bar { height: 30px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 7px; padding: 0 12px; font-size: 13px; color: var(--muted); }
+  .win .bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); display: inline-block; }
+  .win .bar span { margin-left: 8px; }
+  .win .inside { display: grid; grid-template-columns: 150px 1fr; flex: 1; min-height: 0; }
+  .win .side { border-right: 1px solid var(--line); padding: 12px; font-size: 13px; color: var(--muted); display: flex; flex-direction: column; gap: 8px; background: #fafaf8; }
+  .win .side b { color: var(--ink); font-weight: 600; }
+  .win .main { padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .composer { margin-top: auto; border: 1px solid var(--line); padding: 10px 12px; font-size: 14px; color: var(--soft); display: flex; justify-content: space-between; align-items: center; }
+  .pill { font-size: 13px; padding: 3px 10px; border: 1px solid var(--line); color: var(--ink); background: var(--paper); white-space: nowrap; }
+  .pill.on { border-color: var(--accent); color: var(--accent); background: var(--accent-tint); font-weight: 600; }
+  .callout { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+  /* Chat bubbles */
+  .msg { max-width: 88%; padding: 9px 13px; font-size: 15px; line-height: 1.4; }
+  .msg.me { align-self: flex-end; background: var(--accent); color: #fff; }
+  .msg.ai { align-self: flex-start; background: #f0f1ee; color: var(--ink); }
+  .msg.big { font-size: 18px; }
+  .who { font-size: 12px; color: var(--muted); margin-bottom: -6px; }
+  .act { font-size: 14px; color: var(--muted); display: flex; gap: 8px; align-items: baseline; }
+  .act b { color: var(--accent); }
+
+  /* File card with folded corner */
+  .file { position: relative; background: #fff; border: 1px solid var(--line); padding: 14px 16px 14px; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; line-height: 1.55; color: var(--muted); white-space: pre-wrap; box-shadow: 0 8px 24px rgba(28,31,35,.06); }
+  .file::before { content: ""; position: absolute; top: -1px; right: -1px; border-width: 0 18px 18px 0; border-style: solid; border-color: var(--paper) var(--paper) var(--line) var(--line); }
+  .file .name { display: block; font-family: "Avenir Next", "Hiragino Sans", "Yu Gothic UI", "Noto Sans JP", "Segoe UI", Arial, sans-serif; font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+  .file b { color: var(--accent); font-weight: 600; }
+  .file.hl { border-color: var(--accent); }
+
+  /* Flow nodes */
+  .flow { display: flex; align-items: stretch; gap: 0; }
+  .node { flex: 1; border: 1.5px solid var(--ink); padding: 14px 14px; display: flex; flex-direction: column; gap: 6px; background: var(--paper); min-width: 0; }
+  .node .k { font-size: 13px; color: var(--muted); }
+  .node .t { font-size: 20px; font-weight: 600; line-height: 1.2; }
+  .node.acc { border-color: var(--accent); background: var(--accent-tint); }
+  .node.acc .t { color: var(--accent); }
+  .node.ghost { border-style: dashed; border-color: var(--soft); }
+  .arr { width: 44px; flex: none; display: flex; align-items: center; justify-content: center; color: var(--soft); font-size: 26px; }
+  .num-dot { width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; font-size: 17px; flex: none; }
+  .num-dot.soft { background: var(--accent-tint); color: var(--accent); }
+
+  /* Usage meter */
+  .meter { height: 42px; display: flex; border: 1.5px solid var(--ink); }
+  .meter > div { height: 100%; border-right: 2px solid var(--paper); display: flex; align-items: center; padding-left: 10px; font-size: 14px; color: #fff; white-space: nowrap; overflow: hidden; }
+  .meter .left { background: transparent; color: var(--muted); border-right: none; }
+
+  /* Swimlanes */
+  .lanes { display: grid; grid-template-columns: 120px repeat(4, 1fr); border-top: 1.5px solid var(--ink); }
+  .lanes > div { padding: 12px 10px; border-bottom: 1px solid var(--line); font-size: 16px; }
+  .lanes .h { font-size: 13px; color: var(--muted); border-bottom: 1.5px solid var(--ink); }
+  .lanes .lane { font-weight: 600; display: flex; align-items: center; }
+  .chip { display: inline-block; padding: 6px 10px; font-size: 15px; line-height: 1.3; }
+  .chip.ai { background: #f0f1ee; }
+  .chip.me { background: var(--accent-tint); color: var(--accent); font-weight: 600; }
+
+  /* Mini theme previews */
+  .thumb { aspect-ratio: 16 / 9; padding: 18px 20px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--line); }
+  .thumb .tt { font-size: 17px; font-weight: 650; line-height: 1.2; }
+  .thumb .bn { font-size: 46px; font-weight: 650; line-height: 1; letter-spacing: -0.02em; }
+  .thumb .bars i { display: block; height: 9px; margin-top: 6px; }
+  .thumb .src { font-size: 10px; opacity: .7; }
+
+  /* Spreadsheet mini */
+  .sheet { border: 1px solid var(--line); background: #fff; font-size: 14px; font-family: "SF Mono", Menlo, Consolas, monospace; }
+  .sheet .fx { border-bottom: 1px solid var(--line); padding: 8px 10px; color: var(--accent); }
+  .sheet table { border-collapse: collapse; width: 100%; }
+  .sheet td { border: 1px solid #ecedea; padding: 5px 8px; color: var(--muted); }
+  .sheet td.sel { outline: 2px solid var(--accent); color: var(--ink); font-weight: 600; }
+
+  /* Cycle diagram */
+  .cycle text { font-family: "Avenir Next", "Hiragino Sans", "Yu Gothic UI", "Noto Sans JP", "Segoe UI", Arial, sans-serif; }
+
+  /* Gates */
+  .gate { border-left: 6px solid var(--accent); padding: 12px 16px; background: #fff; }
+  .gate .t { font-size: 20px; font-weight: 600; }
+  .gate .k { font-size: 14px; color: var(--muted); }
+  .pit .gate { padding: 26px 26px; } .pit .gate .t { font-size: 26px; } .pit .gate .k { font-size: 18px; margin-top: 8px; }
+  .flow .gate { padding: 18px 18px; } .flow .gate .k { font-size: 15px; margin-top: 4px; }
+  .x { color: #a33a2b; font-weight: 700; }
+  .ok { color: #2f6b4f; font-weight: 700; }
+  html:lang(ja) body { word-break: auto-phrase; line-break: strict; }
+  h1, h2 { letter-spacing: 0 !important; }
+  html:lang(ja) h2, html:lang(ja) .statement { max-width: none; }
+</style>
+</head>
+<body>
+<div id="stage">
+
+
+<!-- 1 Title -->
+<section class="slide">
+  <div class="body">
+    <div class="grid" style="grid-template-columns: 1.15fr 1fr; align-items: center; gap: 56px;">
+      <div>
+        <p class="muted in" style="font-size:20px;margin-bottom:22px">ゼミ ワークショップ</p>
+        <h1 class="in">研究に使う Codex</h1>
+        <p class="muted in" style="margin-top:22px">作業はエージェントに。判断は自分で。</p>
+        <p class="in small muted" style="margin-top:40px;line-height:1.6">Pann Phetra（サステイナビリティ観光学部）<br>立命館アジア太平洋大学</p>
+        <p class="in small" style="margin-top:22px"><span class="accent">日本語のスライド</span>　pann13223029.github.io/codex-seminar/slides/ja/</p>
+      </div>
+      <div class="win in" style="height:400px">
+        <div class="bar"><i></i><i></i><i></i><span>ChatGPT · Codex</span></div>
+        <div class="inside">
+          <div class="side"><b>my-seminar</b><span>data/</span><span>notes/</span><span>outputs/</span><span>AGENTS.md</span></div>
+          <div class="main">
+            <div class="msg me">グループ別に観光客の評価をグラフにして。まず計画から。</div>
+            <div class="msg ai">計画：1 データを整える · 2 グループを比較 · 3 グラフ1枚。OK？</div>
+            <div class="msg me">OK</div>
+            <div class="act"><b>✓</b> scripts/compare.py を実行</div>
+            <div class="act"><b>✓</b> outputs/ratings.png を保存</div>
+            <div class="composer"><span>Ask Codex…</span><span class="pill on">GPT-6 Luna · High</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 Chatbot vs agent -->
+<section class="slide">
+  <h2 class="in">チャットボットは答える。エージェントはフォルダの中で作業する。</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: 1fr 1fr; gap: 48px;">
+      <div class="col">
+        <h3 class="muted">チャットボット</h3>
+        <div class="win" style="height:300px"><div class="bar"><i></i><i></i><i></i><span>Chat</span></div>
+          <div class="main" style="padding:16px">
+            <div class="msg me">アンケートを分析して</div>
+            <div class="msg ai">実行できるコードはこちらです…</div>
+            <div class="msg me">どこに貼ればいい？</div>
+            <div class="msg ai">これをコピーして…</div>
+          </div>
+        </div>
+        <p class="cap">自分の手でコピーして出し入れする</p>
+      </div>
+      <div class="col">
+        <h3 class="accent">エージェント（Codex）</h3>
+        <div class="win" style="height:300px"><div class="bar"><i></i><i></i><i></i><span>Codex · my-seminar</span></div>
+          <div class="inside"><div class="side"><b>my-seminar</b><span>data/survey.csv</span><span class="accent">outputs/summary.md</span><span class="accent">outputs/chart.png</span></div>
+            <div class="main">
+              <div class="msg me">アンケートを分析して</div>
+              <div class="act"><b>✓</b> data/survey.csv を読む</div>
+              <div class="act"><b>✓</b> スクリプトを実行</div>
+              <div class="act"><b>✓</b> ファイルを2つ保存</div>
+              <div class="act"><b>↺</b> 確認、または元に戻す</div>
+            </div>
+          </div>
+        </div>
+        <p class="cap">ファイルを読み・書き・実行する。変更はすべてあなたが確認する</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 What you need -->
+<section class="slide">
+  <h2 class="in">必要なもの</h2>
+  <div class="body">
+    <div class="flow in" style="height:250px">
+      <div class="node"><span class="num-dot">1</span><div class="t" style="margin-top:10px">ChatGPT アカウント</div><div style="margin-top:auto"><span class="pill on">無料プラン · GPT-6 Luna</span></div></div>
+      <div class="arr">+</div>
+      <div class="node"><span class="num-dot">2</span><div class="t" style="margin-top:10px">デスクトップアプリ</div><div class="k" style="margin-top:auto">macOS · Windows · Linux</div></div>
+      <div class="arr">+</div>
+      <div class="node"><span class="num-dot">3</span><div class="t" style="margin-top:10px">フォルダ1つ</div><div class="file" style="margin-top:auto;padding:8px 10px;font-size:12px">my-seminar/
+  data/  notes/</div></div>
+    </div>
+    <div class="in"><p class="statement" style="font-size:24px">ガイド：github.com/Pann13223029/codex-seminar</p><p class="cap" style="margin-top:10px;padding-left:22px">入手方法：<b>Code → Download ZIP</b>、またはリンクを Codex に貼り、ダウンロードと案内を頼む</p></div>
+  </div>
+</section>
+
+<!-- 4 Install -->
+<section class="slide">
+  <h2 class="in">6ステップでインストール</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: 1fr 1.25fr; gap: 48px; align-items: center;">
+      <div class="col" style="gap:13px">
+        <div class="row"><span class="num-dot">1</span><span style="font-size:22px">ChatGPT アプリを<b>ダウンロード</b></span></div>
+        <div class="row"><span class="num-dot">2</span><span style="font-size:22px"><b>サインイン</b></span></div>
+        <div class="row"><span class="num-dot">3</span><span style="font-size:22px"><b>フォルダを開く</b></span></div>
+        <div class="row"><span class="num-dot">4</span><span style="font-size:22px"><b>Codex を選ぶ</b></span></div>
+        <div class="row"><span class="num-dot">5</span><span style="font-size:22px"><b>モデルを確認</b>：Luna High</span></div>
+        <div class="row"><span class="num-dot">6</span><span style="font-size:22px"><b>動くか確認</b></span></div>
+        <p class="cap" style="margin-top:6px">learn.chatgpt.com/docs/quickstart</p>
+      </div>
+      <div class="win" style="height:400px">
+        <div class="bar"><i></i><i></i><i></i><span>ChatGPT</span><span class="pill on" style="margin-left:auto">4 · Codex ▾</span></div>
+        <div class="inside">
+          <div class="side"><b class="callout" style="padding:2px 4px">3 · フォルダを開く</b><span>codex-practice</span></div>
+          <div class="main">
+            <div class="msg me">どのフォルダで作業していますか？</div>
+            <div class="msg ai">codex-practice です。中は空です。</div>
+            <div class="composer"><span>Ask Codex…</span><span class="pill on callout">5 · GPT-6 Luna · High</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 Free plan -->
+<section class="slide">
+  <h2 class="in">無料プランでは、利用枠を長持ちさせる</h2>
+  <div class="body">
+    <div class="in col" style="gap:10px">
+      <p class="cap">利用枠：長くて散らかった1つのチャット</p>
+      <div class="meter"><div style="width:86%;background:#a33a2b">1つのチャットに多くの作業、毎回すべて読み直し</div><div class="left">残り</div></div>
+      <p class="cap" style="margin-top:14px">同じ利用枠：小さく、計画した作業</p>
+      <div class="meter"><div style="width:12%;background:var(--accent)">作業1</div><div style="width:10%;background:var(--accent)">作業2</div><div style="width:14%;background:var(--accent)">作業3</div><div style="width:9%;background:var(--accent)">作業4</div><div class="left">たっぷり残る</div></div>
+    </div>
+    <div class="grid in" style="grid-template-columns: repeat(4, 1fr);">
+      <div class="hair"><h3>作業ごとに New chat</h3></div>
+      <div class="hair"><h3>簡単な作業は Light</h3></div>
+      <div class="hair"><h3>作業の前に計画</h3></div>
+      <div class="hair"><h3>プロンプトは別の場所で下書き</h3></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 Loop -->
+<section class="slide">
+  <h2 class="in">仕事の進め方</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: 1.1fr 1fr; align-items:center; gap: 40px;">
+      <svg class="cycle" viewBox="0 0 520 390" style="width:100%;max-height:440px">
+        <circle cx="260" cy="195" r="150" fill="none" stroke="#d6d9d5" stroke-width="3"/>
+        <g fill="#9aa1a8">
+          <path d="M-8,-7 L8,0 L-8,7 Z" transform="translate(348,74) rotate(36)"/>
+          <path d="M-8,-7 L8,0 L-8,7 Z" transform="translate(403,241) rotate(108)"/>
+          <path d="M-8,-7 L8,0 L-8,7 Z" transform="translate(260,345) rotate(180)"/>
+          <path d="M-8,-7 L8,0 L-8,7 Z" transform="translate(117,241) rotate(252)"/>
+          <path d="M-8,-7 L8,0 L-8,7 Z" transform="translate(172,74) rotate(324)"/>
+        </g>
+        <g font-size="19" font-weight="600" text-anchor="middle">
+          <rect x="195" y="22" width="130" height="50" fill="#f6f6f4" stroke="#1c1f23" stroke-width="1.5"/><text x="260" y="53">指示書</text>
+          <rect x="340" y="120" width="130" height="50" fill="#f6f6f4" stroke="#1c1f23" stroke-width="1.5"/><text x="405" y="151">計画</text>
+          <rect x="285" y="288" width="130" height="50" fill="#dbe4f0" stroke="#1f4e8c" stroke-width="2"/><text x="350" y="319" fill="#1f4e8c">あなたが許可</text>
+          <rect x="105" y="288" width="130" height="50" fill="#f6f6f4" stroke="#1c1f23" stroke-width="1.5"/><text x="170" y="319">小さなステップ</text>
+          <rect x="50" y="120" width="130" height="50" fill="#dbe4f0" stroke="#1f4e8c" stroke-width="2"/><text x="115" y="151" fill="#1f4e8c">あなたが確認</text>
+        </g>
+        <text x="260" y="200" text-anchor="middle" font-size="15" fill="#5f6670">作業ごとに</text>
+        <text x="260" y="220" text-anchor="middle" font-size="15" fill="#5f6670">くり返す</text>
+      </svg>
+      <div class="col" style="gap:18px">
+        <div class="rule"><h3>Codex：指示書・計画・実行</h3><p class="muted small">指示書を読み、提案し、1ステップずつ進める</p></div>
+        <div class="rule" style="border-color:var(--accent)"><h3 class="accent">あなた：許可と確認</h3><p class="muted small">青い2つの枠はあなたの役目。省略しないこと。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 AGENTS.md -->
+<section class="slide">
+  <h2 class="in">AGENTS.md：Codex が作業の前に毎回読む指示書</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: 1fr 70px 1fr; align-items:center;">
+<div class="file hl"><span class="name">AGENTS.md</span><b># プロジェクト</b>
+問い：観光客がいちばん低く評価するものは？
+
+<b>## ファイル</b>
+data/survey.csv
+
+<b>## ルール</b>
+- まず計画し、私のOKを待つ
+- 元のデータは変更しない
+- 数字や引用を作らない</div>
+      <svg viewBox="0 0 70 260" style="width:70px;height:260px"><g stroke="#9aa1a8" stroke-width="2" fill="none"><path d="M0,130 C35,130 35,30 66,30"/><path d="M0,130 L66,130"/><path d="M0,130 C35,130 35,230 66,230"/></g></svg>
+      <div class="col" style="gap:22px">
+        <div class="msg me big" style="align-self:stretch">作業1：データを説明する</div>
+        <div class="msg me big" style="align-self:stretch">作業2：2つのグループを比較する</div>
+        <div class="msg me big" style="align-self:stretch">作業3：グラフを1枚作る</div>
+      </div>
+    </div>
+    <p class="cap in">一度書けば、ルールはすべての作業に適用されます。Codex に書いてもらうこともできます（ステップ02）。</p>
+  </div>
+</section>
+
+<!-- 8 Six parts -->
+<section class="slide">
+  <h2 class="in">よいプロンプトは6つの要素でできている</h2>
+  <div class="body">
+    <div class="in" style="display:grid;grid-template-columns:150px 1fr;row-gap:6px;font-size:20px;align-items:stretch">
+      <div class="num-dot" style="width:auto;border-radius:0;height:auto;padding:10px">1 目的</div><div class="hair" style="padding:10px 14px">海外からの観光客は別府を低く評価する？発表で使う。</div>
+      <div class="num-dot" style="width:auto;border-radius:0;height:auto;padding:10px;opacity:.88">2 前提</div><div class="hair" style="padding:10px 14px">data/survey.csv。「海外」＝日本以外から来た人。</div>
+      <div class="num-dot" style="width:auto;border-radius:0;height:auto;padding:10px;opacity:.76">3 作業</div><div class="hair" style="padding:10px 14px">データを説明してから、2つのグループを比較する。</div>
+      <div class="num-dot" style="width:auto;border-radius:0;height:auto;padding:10px;opacity:.64">4 成果物</div><div class="hair" style="padding:10px 14px">outputs/results.csv に表を1つと、棒グラフを1枚。</div>
+      <div class="num-dot" style="width:auto;border-radius:0;height:auto;padding:10px;opacity:.52">5 確認</div><div class="hair" style="padding:10px 14px">手で確認できる数字を1つ教えて。</div>
+      <div class="num-dot" style="width:auto;border-radius:0;height:auto;padding:10px;opacity:.40">6 制約</div><div class="hair" style="padding:10px 14px">ファイルは変更しない。まず計画し、OKを待つ。</div>
+    </div>
+    <p class="cap in">「データを分析して」だけでは不十分。コピーできる例：prompt-guide/</p>
+  </div>
+</section>
+
+<!-- 9 Prompt builder -->
+<section class="slide">
+  <h2 class="in">普通のチャットボットにプロンプトを書いてもらう</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: 1fr 50px 0.9fr 50px 0.8fr; align-items:center;">
+      <div class="win" style="height:330px"><div class="bar"><i></i><i></i><i></i><span>Claude · Gemini · ChatGPT Chat</span></div>
+        <div class="main">
+          <div class="msg me">[プロンプト作成役] 観光客の評価を比較したい</div>
+          <div class="msg ai">Q1. データはどのファイル？</div>
+          <div class="msg me">survey.csv</div>
+          <div class="msg ai">Q2. どのグループを比較する？</div>
+        </div>
+      </div>
+      <div class="arr">→</div>
+<div class="file hl" style="font-size:12px"><span class="name">6つの要素からなるプロンプト</span><b>目的：</b> …
+<b>前提：</b> [ファイル]
+<b>作業：</b> …
+<b>成果物：</b> …
+<b>確認：</b> …
+<b>制約：</b> …</div>
+      <div class="arr">→</div>
+      <div class="node acc" style="height:150px;justify-content:center"><div class="t">Codex</div><div class="k">あなたが貼り付ける</div></div>
+    </div>
+    <div class="grid in" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="hair"><p class="small"><b>節約</b> <span class="muted">Codex の利用枠</span></p></div>
+      <div class="hair"><p class="small"><b>記入</b> <span class="muted">[空欄] は自分で埋める</span></p></div>
+      <div class="hair"><p class="small"><b>禁止</b> <span class="muted">個人情報の貼り付け</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 Example 1 -->
+<section class="slide">
+  <h2 class="in">例1：私の卒業論文</h2>
+  <div class="body">
+    <p class="in" style="font-size:26px;max-width:40ch">「発電しているごみ焼却施設は10施設に4施設」。これは低い？</p>
+    <div class="grid in" style="grid-template-columns: repeat(3, 1fr); justify-items: center; text-align: center;">
+      <div><div class="ring" style="--to:41.1;--c:var(--soft);--j:0"><span>41%</span></div><p style="margin-top:16px"><b>施設数で</b></p></div>
+      <div><div class="ring" style="--to:80.1;--j:1"><span>80%</span></div><p style="margin-top:16px"><b>ごみの量で</b></p></div>
+      <div><div class="ring" style="--to:70.5;--j:2"><span>70%</span></div><p style="margin-top:16px"><b>処理能力で</b></p></div>
+    </div>
+    <p class="cap in">大きな施設ほど発電している。環境省の20年分のデータ、23,593件のレコードを1,690施設の履歴につなげて分析。FY2024。</p>
+  </div>
+</section>
+
+<!-- 11 Who did what -->
+<section class="slide">
+  <h2 class="in">誰が何をしたか</h2>
+  <div class="body">
+    <div class="lanes in">
+      <div class="h"></div><div class="h">データ</div><div class="h">分析</div><div class="h">執筆</div><div class="h">意味づけ</div>
+      <div class="lane">AI</div>
+      <div><span class="chip ai">20個の表を読むコード</span></div>
+      <div><span class="chip ai">私が選んだ統計を実行</span></div>
+      <div><span class="chip ai">図・下書き</span></div>
+      <div></div>
+      <div class="lane accent">私</div>
+      <div><span class="chip me">何を1施設と数えるか</span></div>
+      <div><span class="chip me">定義・手での確認</span></div>
+      <div><span class="chip me">最終稿・修正</span></div>
+      <div><span class="chip me">問いと答え</span></div>
+    </div>
+    <p class="statement in" style="font-size:24px">AIは速い手であって、頭ではない。論文にはAIの使い方を明記しています。</p>
+  </div>
+</section>
+
+<!-- 12 Checks -->
+<section class="slide">
+  <h2 class="in">ミスを見逃さない仕組みを作る</h2>
+  <div class="body">
+    <div class="flow in" style="align-items:center">
+      <div class="file" style="flex:none;width:150px;font-size:22px"><span class="name">結果</span>41.1%</div>
+      <div class="arr">→</div>
+      <div class="gate" style="flex:1"><div class="t">コード内のテスト</div><div class="k">既知の施設は必ずつながる</div></div>
+      <div class="arr">→</div>
+      <div class="gate" style="flex:1"><div class="t">ビルドが止まる</div><div class="k">数字がずれたら</div></div>
+      <div class="arr">→</div>
+      <div class="gate" style="flex:1"><div class="t">模擬審査</div><div class="k">AIの1つが攻め、1つが守る</div></div>
+      <div class="arr">→</div>
+      <div class="node acc" style="flex:none;width:130px"><div class="t">あなたが決める</div></div>
+    </div>
+    <p class="statement in" style="font-size:24px">エージェントに自己チェックさせ、そのチェックを自分で確かめる。</p>
+  </div>
+</section>
+
+<!-- 13 Example 2 -->
+<section class="slide">
+  <h2 class="in">例2：データ分析のキャップストーン</h2>
+  <div class="body">
+    <p class="in" style="font-size:24px;max-width:46ch">Google Merchandise Store、903,653件のウェブセッション。予算をかけるべき集客チャネルは？</p>
+    <div class="grid in" style="grid-template-columns: 1fr 1fr 1fr;">
+      <div class="col"><div class="big num accent"><span data-count="41">41</span>%</div><div class="meter" style="height:14px;border-width:1px"><div style="width:41%;background:var(--accent)"></div></div><p class="cap">売上のうち Google 社員による割合</p></div>
+      <div class="col"><div class="big num"><span data-count="98.8" data-decimals="1">98.8</span>%</div><div class="meter" style="height:14px;border-width:1px"><div style="width:98.8%;background:var(--ink)"></div></div><p class="cap">教材モデルが選んだ上位「購入者」のうち社員の割合</p></div>
+      <div class="col"><div class="big num"><span data-count="89">89</span>%</div><div class="meter" style="height:14px;border-width:1px"><div style="width:89%;background:var(--ink)"></div></div><p class="cap">Display 広告の成果のうち1人の購入者による割合</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 14 Lesson -->
+<section class="slide">
+  <h2 class="in">モデルを作る前に「誰が買っているか」を問う</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: 1fr 1fr; gap: 48px;">
+      <div class="col">
+        <h3 class="muted">モデルが先</h3>
+        <div class="flow"><div class="node ghost"><div class="t" style="font-size:17px">全訪問者</div></div><div class="arr">→</div><div class="node ghost"><div class="t" style="font-size:17px">モデル</div></div><div class="arr">→</div><div class="node ghost"><div class="t" style="font-size:17px">「購入者」＝社員</div></div></div>
+        <p class="cap"><span class="x">✕</span> 正確に見えるが、狙う相手を間違える</p>
+      </div>
+      <div class="col">
+        <h3 class="accent">問いが先</h3>
+        <div class="flow"><div class="node"><div class="t" style="font-size:17px">誰が買う？</div></div><div class="arr">→</div><div class="node"><div class="t" style="font-size:17px">社員を除く</div></div><div class="arr">→</div><div class="node acc"><div class="t" style="font-size:17px">本当の顧客</div></div></div>
+        <p class="cap"><span class="ok">✓</span> 元の情報源でフィルターを確認：99.2%</p>
+      </div>
+    </div>
+    <p class="statement in" style="font-size:22px">AIは記憶だけで事実を述べ、2回間違えた。情報源を確認して気づけた。</p>
+  </div>
+</section>
+
+<!-- 15 Missing-value trap -->
+<section class="slide">
+  <h2 class="in">空欄のルールが2つなら、答えも2つ</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: 1.2fr 1fr; align-items: end;">
+      <div>
+        <div class="vbars" style="height:280px">
+          <div class="vbar" style="height:115px;--j:0"><span>41.1%</span></div>
+          <div class="vbar tail" style="height:278px;--j:1"><span>99.5%</span></div>
+        </div>
+        <div class="vlabels"><div style="width:160px">空欄＝ゼロ</div><div style="width:160px">空欄を除外</div></div>
+      </div>
+      <div class="col" style="gap:16px">
+        <div class="sheet"><div class="fx">power_capacity_kw</div><table><tr><td>1200</td></tr><tr><td class="sel">（空欄）</td></tr><tr><td>0</td></tr><tr><td class="sel">（空欄）</td></tr></table></div>
+        <p class="accent"><b>必ず聞く：欠損値をどう扱った？</b></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 16 Skills kit -->
+<section class="slide">
+  <h2 class="in">すぐ使える3つの見本のスキル</h2>
+  <div class="body">
+    <div class="flow in" style="align-items:center">
+      <div class="file" style="flex:none;width:150px"><span class="name">data.csv</span>または survey.csv</div>
+      <div class="arr">→</div>
+      <div class="node acc" style="height:120px;justify-content:center"><div class="t">$data-explore</div><div class="k">または $survey-summary</div></div>
+      <div class="arr">→</div>
+      <div class="file hl" style="flex:none;width:190px"><span class="name">findings.md</span>または survey_summary.md
+確認済みの結果 3〜5件</div>
+      <div class="arr">→</div>
+      <div class="node acc" style="height:120px;justify-content:center"><div class="t">$presentation-page</div><div class="k">まず構成案</div></div>
+      <div class="arr">→</div>
+      <div class="file" style="flex:none;width:150px"><span class="name">deck/index.html</span>+ PDF</div>
+    </div>
+    <div class="grid in" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="hair"><p class="small muted">空欄の扱いを確認・手で確かめる数字を1つ</p></div>
+      <div class="hair"><p class="small muted">まず名前とメールを削除・引用は原文どおり</p></div>
+      <div class="hair"><p class="small muted">1ファイル・オフラインで動く・PDFに保存</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 17 Make your own -->
+<section class="slide">
+  <h2 class="in">1つのプロンプトで自分のスキルを作る</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: 1.2fr 50px 0.8fr; align-items:center;">
+      <div class="win" style="height:340px"><div class="bar"><i></i><i></i><i></i><span>Codex</span></div>
+        <div class="main">
+          <div class="msg me">$skill-creator meeting-notes というスキルを作って：要約、決まったこと、タスク / 担当 / 期限の表。日付は作らない。</div>
+          <div class="msg ai">いつ使いますか？</div>
+          <div class="msg me">ミーティングのメモを整理してと頼んだとき。</div>
+          <div class="act"><b>✓</b> .agents/skills/meeting-notes/SKILL.md を作成</div>
+        </div>
+      </div>
+      <div class="arr">→</div>
+<div class="file hl"><span class="name">SKILL.md</span><b>name:</b> meeting-notes
+<b>description:</b> ミーティングの
+メモを整理する。ほかの文書
+には使わない。
+---
+1. 要約
+2. 決まったこと
+3. タスク表
+不明な点は [CHECK]</div>
+    </div>
+    <p class="cap in">あとはどこでも使える：<b>$meeting-notes</b>。プロンプトをもう1つ送れば改良できる。</p>
+  </div>
+</section>
+
+<!-- 18 Design -->
+<section class="slide">
+  <h2 class="in">AIが作ったように見えないスライド</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: repeat(3, 1fr); gap: 28px;">
+      <div class="thumb" style="background:#f6f5f1;color:#1d1f22"><div class="tt">海外からの観光客は言語サポートを最も低く評価</div><div class="bn" style="color:#1f4e8c">2.6</div><div class="bars"><i style="width:52%;background:#1f4e8c"></i><i style="width:87%;background:#a9afb6"></i></div><div class="src">editorial</div></div>
+      <div class="thumb" style="background:#15181c;color:#f1f0ec;border-color:#15181c"><div class="tt">温泉は誰にとっても強み</div><div class="bn" style="color:#e8a33d">90%</div><div class="bars"><i style="width:90%;background:#e8a33d"></i><i style="width:60%;background:#5d646c"></i></div><div class="src">bold</div></div>
+      <div class="thumb" style="background:#f2f4f1;color:#1b2420"><div class="tt">バスへのコメントは83件中23件</div><div class="bn" style="color:#2f6b4f">23</div><div class="bars"><i style="width:100%;background:#2f6b4f"></i><i style="width:83%;background:#a7b1aa"></i></div><div class="src">field</div></div>
+    </div>
+    <div class="grid in" style="grid-template-columns: 1fr 1fr; gap: 48px;">
+      <div class="hair"><p class="small"><span class="ok">✓</span> タイトル＝結論 · アクセントは1色 · すべての数字に出典</p></div>
+      <div class="hair"><p class="small"><span class="x">✕</span> グラデーション · 絵文字の箇条書き · 「unlock」「elevate」「delve」</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 19 Your turn -->
+<section class="slide">
+  <h2 class="in">あなたの番：ルートを選ぶ</h2>
+  <div class="body">
+    <div class="in col" style="gap:16px">
+      <div class="flow"><div class="node"><div class="k">00 · 01</div><div class="t">インストール、最初の作業</div></div><div class="arr">→</div><div class="node"><div class="k">プロンプト</div><div class="t">6つの要素</div></div><div class="arr">→</div><div class="node acc"><div class="k">自分のプロジェクトがある？</div><div class="t">選ぶ</div></div></div>
+      <div class="grid" style="grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+        <div class="node"><div class="k">ある</div><div class="t">04A → 02 → 03 → 04B</div><div class="k">自分のデータ、自分のスキル</div></div>
+        <div class="node"><div class="k">ない。アンケートが好き</div><div class="t">98 · 成果を発表する</div><div class="k">スキル付き</div></div>
+        <div class="node"><div class="k">ない。データが好き</div><div class="t">99 · 私の例をなぞる</div><div class="k">その後スキルを作る</div></div>
+      </div>
+    </div>
+    <p class="statement in" style="font-size:24px">github.com/Pann13223029/codex-seminar</p>
+  </div>
+</section>
+
+<!-- 20 Verify -->
+<section class="slide">
+  <h2 class="in">数字を1つ自分で確かめる</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: 1.1fr 1fr; gap: 48px; align-items:center;">
+      <div class="sheet"><div class="fx">=COUNTIFS(A:A,2024,H:H,"&gt;0")/COUNTIF(A:A,2024)</div>
+        <table><tr><td>fiscal_year</td><td>…</td><td>power_capacity_kw</td><td></td></tr><tr><td>2024</td><td>…</td><td>1200</td><td></td></tr><tr><td>2024</td><td>…</td><td></td><td class="sel">0.411</td></tr><tr><td>2024</td><td>…</td><td>0</td><td></td></tr></table>
+      </div>
+      <div class="col" style="gap:14px">
+        <div class="row"><span class="num-dot soft">1</span><span>手で計算し直す</span></div>
+        <div class="row"><span class="num-dot soft">2</span><span>空欄の扱いを聞く</span></div>
+        <div class="row"><span class="num-dot soft">3</span><span>参考文献が実在するか確認</span></div>
+        <div class="row"><span class="num-dot soft">4</span><span>AIの利用を申告する</span></div>
+      </div>
+    </div>
+    <p class="cap in">申告しないAIの利用は、盗用とみなされることがあります。授業のルールを確認しましょう。申告文の例はステップ03に。</p>
+  </div>
+</section>
+
+<!-- 21 Pitfalls -->
+<section class="slide">
+  <h2 class="in">よくある4つの失敗</h2>
+  <div class="body">
+    <div class="grid in pit" style="grid-template-columns: repeat(2, 1fr); gap: 28px 40px;">
+      <div class="gate" style="border-color:#a33a2b"><div class="t"><span class="x">✕</span> 個人情報をフォルダに入れる</div><div class="k">インタビュー、名前、パスワードは入れない</div></div>
+      <div class="gate" style="border-color:#a33a2b"><div class="t"><span class="x">✕</span> 存在しない参考文献</div><div class="k">本物に見える。1つずつ検索する</div></div>
+      <div class="gate" style="border-color:#a33a2b"><div class="t"><span class="x">✕</span> 自信のある答えを信じる</div><div class="k">出典とファイルを求める</div></div>
+      <div class="gate" style="border-color:#a33a2b"><div class="t"><span class="x">✕</span> 考えることをAIに任せる</div><div class="k">問いと意味づけはあなたのもの</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 22 Portfolio -->
+<section class="slide">
+  <h2 class="in">授業のあと：97 ポートフォリオサイトを公開する</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: 1fr 1.05fr; gap: 48px; align-items:center;">
+      <div class="col" style="gap:12px">
+        <div class="row"><span class="num-dot">1</span><span style="font-size:21px"><b>履歴書とメモ</b>を <code>me/</code> に入れる</span></div>
+        <div class="row"><span class="num-dot">2</span><span style="font-size:21px"><b>$portfolio-page</b> があなたに質問</span></div>
+        <div class="row"><span class="num-dot">3</span><span style="font-size:21px">事実はすべて<b>あなたが確認</b></span></div>
+        <div class="row"><span class="num-dot">4</span><span style="font-size:21px"><b>1ページ</b>、英語と日本語</span></div>
+        <div class="row"><span class="num-dot">5</span><span style="font-size:21px"><b>GitHub Pages で無料公開</b></span></div>
+        <p class="cap" style="margin-top:6px">ガイド：97-portfolio-site · 自宅で約2時間</p>
+      </div>
+      <div class="win" >
+        <div class="bar"><i></i><i></i><i></i><span>https://yourname.github.io</span></div>
+        <div class="main" style="padding:22px 26px;gap:12px">
+          <span class="cap">希望：<b class="accent">観光マーケティング</b>（2027年4月から）</span>
+          <div style="font-size:34px;font-weight:650;line-height:1.1">あなたの名前</div>
+          <div style="font-size:16px;line-height:1.45;max-width:34ch">お客様の声を、実行できる改善策に変えます。</div>
+          <div class="grid" style="grid-template-columns:repeat(3,1fr);gap:12px;border-top:1px solid var(--line);padding-top:12px;margin-top:4px">
+            <div><b class="accent" style="font-size:22px">120</b><div class="cap" style="font-size:13px">調査した観光客</div></div>
+            <div><b class="accent" style="font-size:22px">2年</b><div class="cap" style="font-size:13px">フロント勤務</div></div>
+            <div><b class="accent" style="font-size:22px">860</b><div class="cap" style="font-size:13px">TOEIC</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="cap in">例：pannphetra.com · 載せる数字はすべて、面接で説明できるものに。</p>
+  </div>
+</section>
+
+<!-- 23 Thanks -->
+<section class="slide">
+  <div class="body">
+    <p class="muted in" style="font-size:22px">1つだけ覚えるなら</p>
+    <p class="in" style="font-size:46px;font-weight:600;line-height:1.18;letter-spacing:-0.015em;max-width:24em">作業はエージェントに。<span class="accent">判断は自分で</span>。そして、信じる前に確かめる。</p>
+    <div class="grid in" style="grid-template-columns: 1fr 1fr;">
+      <div class="rule"><h3>ガイド</h3><p class="muted small">github.com/Pann13223029/codex-seminar</p></div>
+      <div class="rule"><h3>質問</h3><p class="muted small">ありがとうございました</p></div>
+    </div>
+  </div>
+</section>
+
+<div id="progress"></div>
+<div class="footer"><span>研究に使う Codex</span><span id="count"></span></div>
+</div>
+<div id="nav">矢印キーかクリックで移動。F で全画面。</div>
+<a id="phone" href="../codex-for-research-ja.pdf">スマートフォンの方は PDF 版を開くか、横向きにしてください。</a>
+<script>
+  const slides = [...document.querySelectorAll('.slide')];
+  const stage = document.getElementById('stage');
+  const BASE_W = 1280, MIN_H = 720, MAX_H = 860;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let i = 0;
+  try { i = Math.min(slides.length - 1, Math.max(0, parseInt(location.hash.slice(1), 10) - 1 || 0)); } catch (e) {}
+  let shown = 0;
+
+  // Reading order for the entrance sequence.
+  slides.forEach(slide => slide.querySelectorAll('.in').forEach((el, k) => el.style.setProperty('--i', k)));
+
+  function format(value, decimals) {
+    return value.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+  }
+  // Key numbers count up when their slide opens; the final value is in the
+  // markup, so the page reads correctly without script or motion.
+  function countUp(slide) {
+    if (reduceMotion) return;
+    slide.querySelectorAll('[data-count]').forEach(el => {
+      const target = parseFloat(el.dataset.count);
+      const decimals = parseInt(el.dataset.decimals || '0', 10);
+      const start = performance.now(), duration = 1100;
+      const tick = now => {
+        const t = Math.min(1, (now - start) / duration);
+        el.textContent = format(target * (1 - Math.pow(1 - t, 3)), decimals);
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  }
+
+  function show(n) {
+    if (shown++ > 0) document.getElementById('nav').style.display = 'none';
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, k) => s.classList.toggle('active', k === i));
+    countUp(slides[i]);
+    document.getElementById('count').textContent = (i + 1) + ' / ' + slides.length;
+    document.getElementById('progress').style.width = ((i + 1) / slides.length * 100) + '%';
+    history.replaceState(null, '', '#' + (i + 1));
+  }
+  // Fill the window: keep the design width, give the stage the window's
+  // shape (within limits so layouts stay balanced), then scale uniformly.
+  function fit() {
+    const ratio = window.innerWidth / window.innerHeight;
+    let w = BASE_W, h = BASE_W / ratio;
+    if (h < MIN_H) { h = MIN_H; w = MIN_H * ratio; }
+    if (h > MAX_H) { h = MAX_H; }
+    const scale = Math.min(window.innerWidth / w, window.innerHeight / h);
+    stage.style.width = w + 'px';
+    stage.style.height = h + 'px';
+    stage.style.transform = 'translate(' + (window.innerWidth - w * scale) / 2 + 'px,' + (window.innerHeight - h * scale) / 2 + 'px) scale(' + scale + ')';
+  }
+  document.addEventListener('keydown', e => {
+    if (['ArrowRight', 'PageDown', ' ', 'Enter'].includes(e.key)) { e.preventDefault(); show(i + 1); }
+    if (['ArrowLeft', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); show(i - 1); }
+    if (e.key === 'Home') show(0);
+    if (e.key === 'End') show(slides.length - 1);
+    if (e.key === 'f' || e.key === 'F') { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); }
+  });
+  document.addEventListener('click', e => { show(e.clientX > window.innerWidth / 3 ? i + 1 : i - 1); });
+  window.addEventListener('resize', fit);
+  window.addEventListener('hashchange', () => {
+    const n = parseInt(location.hash.slice(1), 10);
+    if (n && n - 1 !== i) show(n - 1);
+  });
+  fit(); show(i);
+</script>
+</body>
+</html>

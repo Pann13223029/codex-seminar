@@ -6,7 +6,7 @@ description: Explore, clean and summarize a spreadsheet (CSV or Excel) into chec
 # Data explore
 
 Turn one data file into a short, checked findings memo. The user is a
-student who may not program, so explain every step in plain English.
+student who may not program, so explain every step in plain language. Reply in the language the user writes in (for example Japanese or English).
 
 ## Inputs
 
@@ -18,7 +18,7 @@ student who may not program, so explain every step in plain English.
 ## Steps
 
 0. **Check the tools.** Check that Python with pandas and matplotlib is
-   available. If Python itself is missing, explain in plain English how to
+   available. If Python itself is missing, explain in plain language how to
    install it on the user's system (Windows or Mac) and stop. If only pandas
    or matplotlib is missing, ask permission, then install them with pip for
    the user's account. Never install anything without their OK.

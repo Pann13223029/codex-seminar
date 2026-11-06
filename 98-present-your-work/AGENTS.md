@@ -21,3 +21,5 @@
 - Quotes on slides must be exact answers from the data.
 - Say clearly on the slides that the data is synthetic (made up for practice).
 - Plan first and wait for my OK before changing files.
+- Reply in the language I write in (Japanese or English). Survey answers
+  stay in their original language when quoted.

@@ -1,3 +1,5 @@
+**English** · [日本語](99-follow-my-example.ja.md)
+
 # Answer key
 
 Open this only after you have your own results. All numbers use the

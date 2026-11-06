@@ -1,3 +1,5 @@
+**English** · [日本語](README.ja.md)
+
 # 99: Follow my example
 
 No project of your own? Repeat a small version of the analysis from my

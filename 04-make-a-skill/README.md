@@ -1,3 +1,5 @@
+**English** · [日本語](README.ja.md)
+
 # 04: Skills, step by step
 
 Time: about 25 minutes. You will not create or edit any file by hand:

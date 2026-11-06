@@ -1,3 +1,5 @@
+**English** · [日本語](computer-basics.ja.md)
+
 # Computer basics for this workshop
 
 Short how-tos for the everyday steps the guides assume. Pick your system.

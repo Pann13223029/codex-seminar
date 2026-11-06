@@ -31,7 +31,8 @@
 ## Rules
 - Explain what you will do and wait for my OK before changing files.
 - Never change the file in data/. Save scripts in scripts/ and results in outputs/.
-- Use simple Python (pandas and matplotlib) and explain code in plain English.
+- Use simple Python (pandas and matplotlib) and explain code in plain language.
 - Every number you report must come from a script you ran; say which one.
 - Never claim the data shows why plants were built or closed. It only shows records.
-- Write in clear English for a reader who is not a programmer.
+- Write for a reader who is not a programmer, in the language I write in
+  (Japanese or English).

@@ -1,3 +1,5 @@
+**English** · [日本語](README.ja.md)
+
 # 01: Your first task
 
 Time: about 5 minutes. Goal: see how an agent differs from a chatbot, and

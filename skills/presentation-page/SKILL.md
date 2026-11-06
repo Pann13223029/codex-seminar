@@ -7,7 +7,7 @@ description: Build a clean HTML slide deck (one file, works offline, saves as PD
 
 Turn content the user has already written and checked into a slide deck
 that looks considered, not generic. The user may not program; explain each
-step in plain English.
+step in plain language. Reply in the language the user writes in (for example Japanese or English). Write the slides in the language the user asks for; if they do not say, use the language of their findings memo.
 
 ## Inputs
 

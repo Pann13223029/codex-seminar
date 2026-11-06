@@ -1,3 +1,5 @@
+**English** · [日本語](README.ja.md)
+
 # Prompting guide
 
 A good prompt is not clever wording. It is a clear brief: what you want,

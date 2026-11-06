@@ -1,3 +1,5 @@
+**English** · [日本語](README.ja.md)
+
 # Slides
 
 Three ways to view the deck. Pick whichever works on your device.

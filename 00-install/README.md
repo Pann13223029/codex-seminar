@@ -1,3 +1,5 @@
+**English** · [日本語](README.ja.md)
+
 # 00: Install and sign in
 
 Time: about 5 minutes.
