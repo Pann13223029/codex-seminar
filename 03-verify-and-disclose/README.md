@@ -48,4 +48,9 @@ see what you checked outside the chat, so tell it:
 Look at what we did in this project (use outputs/ai-log.md if it exists). Draft a two-sentence AI-use statement saying what you did and what I did. I checked these myself: [what you checked by hand, for example "the main percentage in a spreadsheet"]. Do not exaggerate either part.
 ```
 
+With the example skills installed ([04, Part A](../04-make-a-skill/#part-a-install-the-example-skills-5-minutes)),
+`$ai-use-statement` does this for you: it lists what Codex did from your files,
+asks what you checked, and drafts a statement for the report and a line for
+your last slide.
+
 Next: [04: Skills, Parts B to D](../04-make-a-skill/#part-b-use-a-skill-5-minutes): use a skill and make your own.

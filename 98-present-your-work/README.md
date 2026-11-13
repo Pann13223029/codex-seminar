@@ -3,7 +3,7 @@
 # 98: Present your work
 
 Turn a survey into a short, good-looking presentation in about 40 minutes,
-using two of the example skills. No programming needed.
+using three of the example skills. No programming needed.
 
 You will use a **synthetic** (made-up) survey of visitors to Beppu, shaped
 exactly like a Google Forms export, including the email addresses real
@@ -24,10 +24,10 @@ flowchart LR
   ([Get the workshop files](../#get-the-workshop-files)).
 - In the ChatGPT app, open the folder **`98-present-your-work`** (inside
   `codex-seminar-main`) and choose **Codex**.
-- Nothing to install: this folder already contains the two skills it uses,
+- Nothing to install: this folder already contains the three skills it uses,
   in a hidden folder `.agents/skills`. Check with:
   `Which skills can you use right now? List their names.`
-  You should see `survey-summary` and `presentation-page` (there may be many
+  You should see `survey-summary`, `presentation-page` and `ai-use-statement` (there may be many
   others).
 - Do the [Python check](../00-install/#get-ready-for-the-data-tracks-python)
   once. If Codex asks permission to use the internet to install pandas,
@@ -122,11 +122,12 @@ You get one slide per page, which works on any computer and on your course websi
 ## Step 7: Write your AI-use statement (2 minutes)
 
 ```text
-Look at the files in this folder (AGENTS.md and outputs/). Draft a two-sentence AI-use statement saying what you did and what I did. I checked these myself: that the names and emails were removed, the domestic share I counted by hand in a spreadsheet, and the slide outline before you built it. Do not exaggerate either part.
+$ai-use-statement I checked these myself: that the names and emails were removed, the domestic share I counted by hand in a spreadsheet, and the slide outline before you built it.
 ```
 
-Change the list of what you checked so it is true for you, then correct
-anything else that is wrong. Your course rules say where the statement goes
+Change the list of what you checked so it is true for you. The skill asks
+a few more questions, then drafts a statement for your report and a line for
+your last slide. Correct anything that is wrong. Your course rules say where the statement goes
 (see [03: Verify and disclose](../03-verify-and-disclose/)).
 
 ## Step 8: Make it yours
@@ -147,7 +148,8 @@ Start a **New chat** for these small changes; it uses much less.
      new folder.
   3. Install the skills for your own projects
      ([04, Part A](../04-make-a-skill/#part-a-install-the-example-skills-5-minutes)),
-     put the copy in a new folder with an `AGENTS.md` like this one, and
+     put the copy in a new folder with a brief made from the
+     [survey template](../templates/AGENTS-survey.md), and
      repeat steps 2-7.
 
 ## Finished?

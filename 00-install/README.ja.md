@@ -83,11 +83,11 @@ Codexにこう頼みます：`git --version を実行して、Gitがインスト
 ## データを使うコースの準備：Python
 
 コース98・99とデータ用のスキルは、**Python** と、2つの追加機能
-**pandas** と **matplotlib** を使います。確認はCodexに任せましょう。
+**pandas**（表）、**matplotlib**（グラフ）、**openpyxl**（Excel ファイル）を使います。確認はCodexに任せましょう。
 コピーして貼り付けます：
 
 ```text
-このパソコンに Python・pandas・matplotlib がインストールされているか確認してください。Python そのものがない場合は、私のシステム（Windows または Mac）へのインストール方法を一歩ずつ説明して、そこで止まってください。pandas か matplotlib だけがない場合は、私に許可を求めてから、pip で私のユーザーアカウントにインストールしてください。
+このパソコンに Python・pandas・matplotlib・openpyxl がインストールされているか確認してください。Python そのものがない場合は、私のシステム（Windows または Mac）へのインストール方法を一歩ずつ説明して、そこで止まってください。pandas・matplotlib・openpyxl のどれかがないだけの場合は、私に許可を求めてから、pip で私のユーザーアカウントにインストールしてください。
 ```
 
 インストールにはインターネットが必要なので、Codexは許可を求めます。

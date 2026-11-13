@@ -54,9 +54,13 @@ Create a file called AGENTS.md in this folder from the template below. Look at m
 - Use simple Python or spreadsheets and explain code in plain English.
 - Every number you report must come from a file you ran; tell me which one.
 - Never invent references, quotes or statistics. If you are unsure, say so.
+- Never put names, email addresses, ID numbers or other personal data in the chat, outputs or charts. If a file seems to contain them, stop and tell me.
 - Write in clear English for a reader who is not a programmer.
 - After each task, add one line to outputs/ai-log.md: what you did and which files changed.
 ```
+
+Working with a real survey? Use the survey version in [brief templates](../templates/)
+instead; it adds rules for personal data and quotes.
 
 Then start a **New chat** (the interview made the first chat long) and
 check that Codex read the brief:

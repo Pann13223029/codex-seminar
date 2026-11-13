@@ -18,14 +18,17 @@ student who may not program, so explain every step in plain language. Reply in t
 ## Steps
 
 0. **Check the tools.** Check that Python with pandas and matplotlib is
-   available. If Python itself is missing, explain in plain language how to
-   install it on the user's system (Windows or Mac) and stop. If only pandas
-   or matplotlib is missing, ask permission, then install them with pip for
+   available, and openpyxl if the file is Excel (.xlsx). If Python itself is missing, explain in plain language how to
+   install it on the user's system (Windows or Mac) and stop. If only pandas,
+   matplotlib or openpyxl is missing, ask permission, then install them with pip for
    the user's account. Never install anything without their OK.
 1. **Describe before touching.** Report rows and columns, what each column
    seems to mean, data types, and for each column the number of blanks,
    zeros and unusual values (negative numbers, impossible dates, typos in
-   categories). Do not change any file yet.
+   categories). Do not change any file yet. If a column looks like names,
+   email addresses, phone numbers or ID numbers, stop and warn the user
+   before going further: suggest a copy without those columns (never change
+   the original), and keep them out of every output, chart and reply.
 2. **Ask about the decisions that change answers.** Before calculating,
    ask the user to confirm, in one short list:
    - how blanks should be treated (as zero, as "not reported", or dropped),
@@ -45,7 +48,9 @@ student who may not program, so explain every step in plain language. Reply in t
 5. **Chart.** Make at most three charts in `outputs/` (PNG), each with a
    plain-language title, labelled axes with units, and the data source in a
    caption. Prefer bar and line charts. No 3D, no pie charts with more than
-   four slices.
+   four slices. If any label is in Japanese, use a font that shows it
+   (Hiragino Sans on a Mac, Yu Gothic or Meiryo on Windows) and check the
+   PNG has no empty boxes.
 6. **Hand-check.** Take the number behind the main finding and give a
    `COUNTIFS` formula for Excel or Google Sheets, with the column letters of
    the original file and the expected result.

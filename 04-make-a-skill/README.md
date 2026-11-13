@@ -24,6 +24,7 @@ flowchart LR
 | `data-explore` | Any spreadsheet → cleaned data, charts and a checked findings memo | [99](../99-follow-my-example/), your own data |
 | `survey-summary` | A Google Forms export → anonymous summary, charts and quotes | [98](../98-present-your-work/) |
 | `presentation-page` | Your findings → a clean slide deck you can open offline and save as PDF | [98](../98-present-your-work/), [99](../99-follow-my-example/) |
+| `ai-use-statement` | What you did and what Codex did → an honest AI-use statement and a line for your last slide | [03](../03-verify-and-disclose/), [98](../98-present-your-work/), [99](../99-follow-my-example/) |
 | `meeting-notes` | You make this one in Part C | Your seminar notes |
 
 You can read each recipe in the [skills folder](../skills/).
@@ -49,7 +50,7 @@ folder `codex-seminar-main` and choose **Codex** (as in
 **A3. Ask Codex to install them.** Copy and paste:
 
 ```text
-Install the three skills in the skills/ folder of this project for me. Copy each skill folder (data-explore, survey-summary and presentation-page, with everything inside them) into the folder .agents/skills in my home folder, and create that folder if it does not exist. Do not change anything else. When you are done, list the skills you installed and where.
+Install four skills from the skills/ folder of this project for me. Copy each skill folder (data-explore, survey-summary, presentation-page and ai-use-statement, with everything inside them) into the folder .agents/skills in my home folder, and create that folder if it does not exist. Do not change anything else. When you are done, list the skills you installed and where.
 ```
 
 Codex **will ask for your permission**, because the skills folder
@@ -62,8 +63,8 @@ then approve. If you do not approve, nothing is installed.
 Which skills can you use right now? List each skill's name and its one-line description.
 ```
 
-**Check:** You should see `data-explore`, `survey-summary` and
-`presentation-page`. You can also type `$` in the message box, or open
+**Check:** You should see `data-explore`, `survey-summary`,
+`presentation-page` and `ai-use-statement`. You can also type `$` in the message box, or open
 **Skills** in the app's sidebar, to see them. (`$` works in **Codex**. In
 ChatGPT **Work** mode, skills use `@` instead.)
 
@@ -132,6 +133,27 @@ folder. Approve it.
 `.agents/skills/meeting-notes`. If it says it could not, or saved it
 somewhere else, reply:
 `Save it in .agents/skills/meeting-notes in my home folder and ask me for permission.`
+
+**C2, other way: draft it in a free chat (saves usage).** `$skill-creator`
+is the easiest way, but it uses your Codex allowance. On the Free plan you
+can let a free chatbot (Claude, Gemini or ChatGPT chat) write the file
+instead, and let Codex only save it.
+
+1. In the free chatbot, paste:
+
+```text
+Write a SKILL.md file for a Codex skill called meeting-notes. Start with YAML front matter that has only two fields, name and description. The description must say what the skill does, when to use it and when not to. Then write numbered steps. The skill turns rough seminar meeting notes into a five-line summary, a list of decisions and an action-item table with columns Task, Who and By when, saved next to the original. It must never invent tasks, names or dates; anything unclear is marked [CHECK]. Ask me any questions first, then give me the whole file in one code block.
+```
+
+2. Copy the whole file it gives you. In Codex, paste the line below, then
+   the file under it:
+
+```text
+Save the text below exactly as SKILL.md in a new folder .agents/skills/meeting-notes in my home folder. Do not change the text. Ask me for permission first.
+```
+
+Then go on to C4. Check the name and description yourself: they decide when
+Codex uses the skill.
 
 **C3. Answer its questions.** The skill creator may ask a few questions
 first, or it may go straight to writing the skill. Either is fine.

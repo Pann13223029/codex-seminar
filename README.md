@@ -41,6 +41,8 @@ Ritsumeikan Asia Pacific University).
 
 > **Stuck on a basic step** (unzipping, hidden folders, opening a CSV,
 > counting rows)? See [computer basics](help/computer-basics.md).
+> **Something not working**, or ran out of usage mid-step? See
+> [troubleshooting](help/troubleshooting.md).
 
 > **When Codex asks permission:** Codex works inside the folder you opened.
 > It asks first before it writes in a protected folder (`.git` or
@@ -138,10 +140,12 @@ flowchart TD
 | [02: Work on your own project](02-your-project/) | Write a short brief, ask for a plan first, then work in small steps. |
 | [03: Verify and disclose](03-verify-and-disclose/) | Check the results yourself and write an AI-use statement. |
 | [04: Skills, step by step](04-make-a-skill/) | Install the example skills, use one, and make your own, all by copy-and-paste prompts. |
-| [98: Present your work](98-present-your-work/) | A practice survey → checked summary → slides and PDF, with two example skills. |
+| [98: Present your work](98-present-your-work/) | A practice survey → checked summary → slides and PDF, with three example skills. |
 | [99: Follow my example](99-follow-my-example/) | Repeat a small version of my thesis analysis with the example skills, then make your own skill. |
 | [97: Your portfolio site, live](97-portfolio-site/) | **After class, for job hunting:** build a one-page portfolio site from your CV and put it online for free. |
-| [Example skills](skills/) | `data-explore`, `survey-summary`, `presentation-page` and `portfolio-page`, ready to install. |
+| [Example skills](skills/) | `data-explore`, `survey-summary`, `presentation-page`, `ai-use-statement` and `portfolio-page`, ready to install. |
+| [Brief templates](templates/) | `AGENTS.md` starting points for your own project or a real survey. |
+| [Troubleshooting](help/troubleshooting.md) | Fixes for the common problems, including running out of usage. |
 
 Follow **00 → 01 → Prompting guide**, then either your own project
 (**04 Part A → 02 → 03 → 04 Parts B to D**) or a practice track: **98**
@@ -158,6 +162,25 @@ include the example skills, so there is nothing to install. After class,
   every task in that folder.
 - **Skill:** a saved, reusable workflow (a folder with a `SKILL.md` file) that
   Codex can run again on request.
+- **Home folder:** your own folder on the computer: `/Users/yourname` on a
+  Mac, `C:\Users\yourname` on Windows. Skills for every project go in its
+  `.agents/skills`.
+- **Protected folder:** a folder Codex asks permission before writing in:
+  `.git` (snapshots) and `.agents` (skills). Their names start with a dot,
+  so they are hidden ([how to see them](help/computer-basics.md#see-hidden-folders-like-agents)).
+- **CSV file:** a spreadsheet saved as plain text, one row per line. Excel
+  and Google Sheets open it.
+- **`.md` file (Markdown):** plain text with `#` headings. Open it in any
+  text editor, or ask Codex to show it.
+- **Script:** a small Python program Codex writes in `scripts/` and runs, so
+  every number can be traced to the code that made it. **pandas** reads
+  tables; **matplotlib** draws charts.
+- **`outputs/`:** where results go: cleaned data, charts, memos, slides.
+  Your original files stay unchanged.
+- **Snapshot (Git):** a saved copy of the folder, so you can see and undo
+  what Codex changed.
+- **`[CHECK]`:** a marker Codex or a skill puts on anything it could not
+  confirm. Fix each one yourself before you use the work.
 
 ## If the app looks different
 

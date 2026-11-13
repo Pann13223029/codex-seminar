@@ -74,11 +74,11 @@ Ask Codex: `Run git --version to check whether Git is installed. If it is not, t
 
 ## Get ready for the data tracks: Python
 
-Tracks 98 and 99 and the data skills use **Python** with two add-ons,
-**pandas** and **matplotlib**. Let Codex check for you. Copy and paste:
+Tracks 98 and 99 and the data skills use **Python** with three add-ons:
+**pandas** (tables), **matplotlib** (charts) and **openpyxl** (Excel files). Let Codex check for you. Copy and paste:
 
 ```text
-Check whether Python, pandas and matplotlib are installed on this computer. If Python itself is missing, explain step by step how to install it on my system (Windows or Mac), then stop. If only pandas or matplotlib is missing, ask my permission, then install them with pip for my user account.
+Check whether Python, pandas, matplotlib and openpyxl are installed on this computer. If Python itself is missing, explain step by step how to install it on my system (Windows or Mac), then stop. If only pandas, matplotlib or openpyxl is missing, ask my permission, then install them with pip for my user account.
 ```
 
 Installing needs the internet, so Codex will ask permission. Approve it.

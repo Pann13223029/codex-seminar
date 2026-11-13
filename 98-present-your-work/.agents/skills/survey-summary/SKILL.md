@@ -17,9 +17,9 @@ may not program; explain each step in plain language. Reply in the language the 
 ## Steps
 
 0. **Check the tools.** Check that Python with pandas and matplotlib is
-   available. If Python itself is missing, explain in plain language how to
-   install it on the user's system (Windows or Mac) and stop. If only pandas
-   or matplotlib is missing, ask permission, then install them with pip for
+   available, and openpyxl if the file is Excel (.xlsx). If Python itself is missing, explain in plain language how to
+   install it on the user's system (Windows or Mac) and stop. If only pandas,
+   matplotlib or openpyxl is missing, ask permission, then install them with pip for
    the user's account. Never install anything without their OK.
 1. **Protect respondents first.** Before any analysis, find columns with
    personal data (email, name, phone, student ID, free-text that names
@@ -51,7 +51,9 @@ may not program; explain each step in plain language. Reply in the language the 
    word. Never invent or "improve" a quote. Note empty answers.
 6. **Charts.** At most four PNG charts in `outputs/`: stacked or grouped
    bars for rating distributions, bars for theme counts. Plain titles, axis
-   labels, number of respondents in each caption.
+   labels, number of respondents in each caption. If any label is in
+   Japanese, use a font that shows it (Hiragino Sans on a Mac, Yu Gothic or
+   Meiryo on Windows) and check the PNG has no empty boxes.
 7. **Write the summary.** Save `outputs/survey_summary.md` with: who
    answered (number, groups), 3-5 key findings with the most important
    first (the largest difference that answers the user's question), each

@@ -47,6 +47,7 @@ flowchart TD
 └── .agents/skills/            hidden folder of skills
     ├── data-explore/          given
     ├── presentation-page/     given
+    ├── ai-use-statement/      given
     └── coverage-check/        step 5: the skill you make
 ```
 
@@ -171,7 +172,7 @@ Show me the SKILL.md you made for coverage-check and explain each part in plain 
 ## Step 6: Write your AI-use statement (2 minutes)
 
 ```text
-Look at the files in this folder (AGENTS.md, outputs/ and the coverage-check skill). Draft a two-sentence AI-use statement saying what you did and what I did. I checked these myself: the FY2024 share with a generator (417 of 1,014, 41.1%) by hand in a spreadsheet, and the slide outline before you built it. Do not exaggerate either part.
+$ai-use-statement Also look at the coverage-check skill I made. I checked these myself: the FY2024 share with a generator (417 of 1,014, 41.1%) by hand in a spreadsheet, and the slide outline before you built it.
 ```
 
 Change the list of what you checked so it is true for you, then correct

@@ -36,3 +36,5 @@
 - Never claim the data shows why plants were built or closed. It only shows records.
 - Write for a reader who is not a programmer, in the language I write in
   (Japanese or English).
+- After each task, add one line to outputs/ai-log.md: what you did and which
+  files changed.

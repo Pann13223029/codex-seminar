@@ -23,3 +23,5 @@
 - Plan first and wait for my OK before changing files.
 - Reply in the language I write in (Japanese or English). Survey answers
   stay in their original language when quoted.
+- After each task, add one line to outputs/ai-log.md: what you did and which
+  files changed.
