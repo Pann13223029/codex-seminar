@@ -25,6 +25,7 @@ flowchart LR
 | `survey-summary` | A Google Forms export → anonymous summary, charts and quotes | [98](../98-present-your-work/) |
 | `presentation-page` | Your findings → a clean slide deck you can open offline and save as PDF | [98](../98-present-your-work/), [99](../99-follow-my-example/) |
 | `ai-use-statement` | What you did and what Codex did → an honest AI-use statement and a line for your last slide | [03](../03-verify-and-disclose/), [98](../98-present-your-work/), [99](../99-follow-my-example/) |
+| `source-check` | A draft with references → each source looked up online; any that cannot be found or do not match are flagged | [03](../03-verify-and-disclose/), your thesis or report |
 | `meeting-notes` | You make this one in Part C | Your seminar notes |
 
 You can read each recipe in the [skills folder](../skills/).
@@ -50,7 +51,7 @@ folder `codex-seminar-main` and choose **Codex** (as in
 **A3. Ask Codex to install them.** Copy and paste:
 
 ```text
-Install four skills from the skills/ folder of this project for me. Copy each skill folder (data-explore, survey-summary, presentation-page and ai-use-statement, with everything inside them) into the folder .agents/skills in my home folder, and create that folder if it does not exist. Do not change anything else. When you are done, list the skills you installed and where.
+Install five skills from the skills/ folder of this project for me. Copy each skill folder (data-explore, survey-summary, presentation-page, ai-use-statement and source-check, with everything inside them) into the folder .agents/skills in my home folder, and create that folder if it does not exist. Do not change anything else. When you are done, list the skills you installed and where.
 ```
 
 Codex **will ask for your permission**, because the skills folder
@@ -64,7 +65,7 @@ Which skills can you use right now? List each skill's name and its one-line desc
 ```
 
 **Check:** You should see `data-explore`, `survey-summary`,
-`presentation-page` and `ai-use-statement`. You can also type `$` in the message box, or open
+`presentation-page`, `ai-use-statement` and `source-check`. You can also type `$` in the message box, or open
 **Skills** in the app's sidebar, to see them. (`$` works in **Codex**. In
 ChatGPT **Work** mode, skills use `@` instead.)
 
@@ -228,7 +229,6 @@ D2 again to see the change.
 | Skill | What it could do |
 | --- | --- |
 | `literature-table` | Reading notes → a table of author, data, method and finding, marking anything unsure with [CHECK] |
-| `citation-check` | List every reference in a draft, and mark the ones with no DOI, URL or page number so you can check them yourself |
 | `email-to-professor` | Turn your points into a short, polite email draft for you to edit |
 | `weekly-log` | Summarize what you did this week from the files in `notes/` changed in the last 7 days |
 

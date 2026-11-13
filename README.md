@@ -143,7 +143,7 @@ flowchart TD
 | [98: Present your work](98-present-your-work/) | A practice survey → checked summary → slides and PDF, with three example skills. |
 | [99: Follow my example](99-follow-my-example/) | Repeat a small version of my thesis analysis with the example skills, then make your own skill. |
 | [97: Your portfolio site, live](97-portfolio-site/) | **After class, for job hunting:** build a one-page portfolio site from your CV and put it online for free. |
-| [Example skills](skills/) | `data-explore`, `survey-summary`, `presentation-page`, `ai-use-statement` and `portfolio-page`, ready to install. |
+| [Example skills](skills/) | `data-explore`, `survey-summary`, `presentation-page`, `ai-use-statement`, `source-check` and `portfolio-page`, ready to install. |
 | [Brief templates](templates/) | `AGENTS.md` starting points for your own project or a real survey. |
 | [Troubleshooting](help/troubleshooting.md) | Fixes for the common problems, including running out of usage. |
 

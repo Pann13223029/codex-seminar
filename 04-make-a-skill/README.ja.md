@@ -24,6 +24,7 @@ flowchart LR
 | `survey-summary` | Google フォームの書き出し → 匿名の要約・グラフ・回答の引用 | [98](../98-present-your-work/README.ja.md) |
 | `presentation-page` | 分析結果 → オフラインで開けて PDF に保存できる、すっきりしたスライド | [98](../98-present-your-work/README.ja.md)、[99](../99-follow-my-example/README.ja.md) |
 | `ai-use-statement` | あなたがしたことと Codex がしたこと → 正直なAI利用の申告文と、最後のスライド用の1行 | [03](../03-verify-and-disclose/README.ja.md)、[98](../98-present-your-work/README.ja.md)、[99](../99-follow-my-example/README.ja.md) |
+| `source-check` | 参考文献のある下書き → 1つずつネットで調べ、見つからないものや合わないものに印をつける | [03](../03-verify-and-disclose/README.ja.md)、卒論やレポート |
 | `meeting-notes` | パートC で自分で作ります | ゼミのメモ |
 
 それぞれのレシピは [skills フォルダ](../skills/README.ja.md) で読めます。
@@ -51,7 +52,7 @@ Codex にダウンロードしてもらうこともできます
 **A3. Codex にインストールを頼む。** 次をコピーして貼り付けます。
 
 ```text
-このプロジェクトの skills/ フォルダから4つのスキルをインストールしてください。それぞれのスキルのフォルダ（data-explore・survey-summary・presentation-page・ai-use-statement、中身もすべて）を、ホームフォルダの .agents/skills フォルダにコピーしてください。そのフォルダがなければ作ってください。ほかには何も変更しないでください。終わったら、インストールしたスキルとその場所を一覧にしてください。
+このプロジェクトの skills/ フォルダから5つのスキルをインストールしてください。それぞれのスキルのフォルダ（data-explore・survey-summary・presentation-page・ai-use-statement・source-check、中身もすべて）を、ホームフォルダの .agents/skills フォルダにコピーしてください。そのフォルダがなければ作ってください。ほかには何も変更しないでください。終わったら、インストールしたスキルとその場所を一覧にしてください。
 ```
 
 Codex は**許可を求めてきます**。スキルのフォルダ（ホームフォルダの `.agents`）は、
@@ -65,7 +66,7 @@ Codex は**許可を求めてきます**。スキルのフォルダ（ホーム�
 今使えるスキルはどれですか？それぞれのスキルの名前と、1行の説明を一覧にしてください。
 ```
 
-**確認：** `data-explore`・`survey-summary`・`presentation-page`・`ai-use-statement` が表示されるはずです。
+**確認：** `data-explore`・`survey-summary`・`presentation-page`・`ai-use-statement`・`source-check` が表示されるはずです。
 メッセージ欄に `$` と入力するか、アプリのサイドバーで **Skills**（スキル）を開いても
 確認できます。（`$` は **Codex** で使えます。ChatGPT の **Work**（作業モード）では、
 スキルには `$` ではなく `@` を使います。）
@@ -229,7 +230,6 @@ Codex はスキルのファイルを変更するための許可を求めてき�
 | スキル | できそうなこと |
 | --- | --- |
 | `literature-table` | 文献の読書メモ → 著者・データ・方法・結果の表。確かでないところには [CHECK] と印をつける |
-| `citation-check` | 下書きの参考文献をすべて一覧にし、DOI・URL・ページ番号がないものに印をつける。印のついたものは自分で確認する |
 | `email-to-professor` | 伝えたいことを、短く丁寧なメールの下書きにする。下書きは自分で手直しする |
 | `weekly-log` | `notes/` の中で、この7日間に変更したファイルから、今週したことをまとめる |
 

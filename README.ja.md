@@ -150,7 +150,7 @@ flowchart TD
 | [98：成果を発表する](98-present-your-work/README.ja.md) | 練習用アンケート → 確認した要約 → スライドとPDF。見本のスキル3つ付き。 |
 | [99：私の例をなぞる](99-follow-my-example/README.ja.md) | 私の論文の分析を小さくしたものを、見本のスキルを使ってくり返します。そのあと、自分のスキルを作ります。 |
 | [97：ポートフォリオサイトを公開する](97-portfolio-site/README.ja.md) | **授業のあと、就職活動（就活）用：** 履歴書（CV）から1ページのポートフォリオサイトを作り、無料でオンラインに公開します。 |
-| [見本のスキル](skills/README.ja.md) | `data-explore`・`survey-summary`・`presentation-page`・`ai-use-statement`・`portfolio-page`。すぐにインストールできます。 |
+| [見本のスキル](skills/README.ja.md) | `data-explore`・`survey-summary`・`presentation-page`・`ai-use-statement`・`source-check`・`portfolio-page`。すぐにインストールできます。 |
 | [指示書のテンプレート](templates/README.ja.md) | 自分のプロジェクトや本物のアンケート用の `AGENTS.md` のたたき台。 |
 | [うまくいかないとき](help/troubleshooting.ja.md) | よくある問題の直し方。途中で利用枠を使い切ったときも。 |
 

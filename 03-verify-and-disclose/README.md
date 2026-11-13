@@ -19,7 +19,9 @@ Before you use any result:
 - [ ] **Ask what could be wrong.**
       `List three ways this result could be wrong, and test the most likely one.`
 - [ ] **Check every reference yourself.** Search for each one. AI can invent
-      references that look real.
+      references that look real. `$source-check` looks each one up and flags
+      any it cannot find or that do not match; then open the flagged ones
+      yourself.
 - [ ] **Read every sentence you submit.** If you cannot explain a sentence in
       your own words, rewrite it or remove it.
 
