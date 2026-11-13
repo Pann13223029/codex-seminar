@@ -565,6 +565,56 @@ data/survey.csv
   </div>
 </section>
 
+<!-- 16a What a skill is -->
+<section class="slide">
+  <h2 class="in">A skill is a saved recipe</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: 0.9fr 50px 1.1fr; align-items:center;">
+<div class="file" style="font-size:18px;padding:22px 24px"><span class="name" style="font-size:17px">A skill is a folder</span><b>meeting-notes/</b>
+  <b>SKILL.md</b>     the recipe
+  references/  longer guides
+  scripts/     code it can run
+  assets/      templates</div>
+      <div class="arr">→</div>
+<div class="file hl" style="font-size:16px;padding:20px 24px"><span class="name" style="font-size:17px">Inside SKILL.md</span>---
+<b>name:</b> meeting-notes
+<b>description:</b> Tidy rough
+  meeting notes. Use when I ask
+  to clean up notes. Not for
+  other documents.
+---
+1. Five-line summary
+2. Decisions
+3. Task / Who / By when
+Never invent dates: mark [CHECK]</div>
+    </div>
+    <div class="grid in" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="hair"><p class="small"><b>Name</b> <span class="muted">what you type after $</span></p></div>
+      <div class="hair"><p class="small"><b>Description</b> <span class="muted">when Codex should use it</span></p></div>
+      <div class="hair"><p class="small"><b>Steps</b> <span class="muted">what it does, every time</span></p></div>
+    </div>
+    <p class="cap in">Only SKILL.md is required. Save it in .agents/skills in your home folder for every project, or in one project folder for that project only.</p>
+  </div>
+</section>
+
+
+<!-- 16b How Codex uses a skill -->
+<section class="slide">
+  <h2 class="in">How Codex picks and runs a skill</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: 1fr 50px 1fr 50px 1fr; align-items:stretch;">
+      <div class="node" style="padding:22px 22px;gap:10px"><div class="k" style="font-size:18px">1 · Every chat starts</div><div class="t" style="font-size:28px">A short list</div><div class="k" style="font-size:18px">Codex sees only each skill's name and description</div></div>
+      <div class="arr">→</div>
+      <div class="node" style="padding:22px 22px;gap:10px"><div class="k" style="font-size:18px">2 · Your request</div><div class="t" style="font-size:28px">A match</div><div class="k" style="font-size:18px">You type $meeting-notes, or what you ask fits a description</div></div>
+      <div class="arr">→</div>
+      <div class="node acc" style="padding:22px 22px;gap:10px"><div class="k" style="font-size:18px">3 · Only then</div><div class="t" style="font-size:28px">It opens SKILL.md</div><div class="k" style="font-size:18px">Follows the steps, and reads the extra files only if needed</div></div>
+    </div>
+    <p class="statement in">The description decides when. The steps decide how.</p>
+    <p class="cap in">So ten installed skills cost almost nothing until one is used. A vague description means the skill is never picked.</p>
+  </div>
+</section>
+
+
 <!-- 16 Skills kit -->
 <section class="slide">
   <h2 class="in">Three example skills, ready to use</h2>
@@ -616,6 +666,38 @@ Mark unclear with [CHECK]</div>
     <p class="cap in">Then use it anywhere: <b>$meeting-notes</b>. Improve it with one more prompt.</p>
   </div>
 </section>
+
+<!-- 17a Draft a skill in a free chat -->
+<section class="slide">
+  <h2 class="in">Save usage: draft the skill in a free chat</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: 1fr 50px 0.85fr 50px 0.8fr; align-items:center;">
+      <div class="win" style="height:330px"><div class="bar"><i></i><i></i><i></i><span>Claude · Gemini · ChatGPT Chat</span></div>
+        <div class="main">
+          <div class="msg me">Write a SKILL.md for a Codex skill called meeting-notes. Start with name and description. Ask me questions first.</div>
+          <div class="msg ai">Q1. What should the summary include?</div>
+          <div class="msg me">Decisions and a task table.</div>
+          <div class="msg ai">Here is the whole file…</div>
+        </div>
+      </div>
+      <div class="arr">→</div>
+<div class="file hl" style="font-size:13px"><span class="name">SKILL.md (draft)</span><b>name:</b> meeting-notes
+<b>description:</b> …
+---
+1. …
+2. …
+3. …</div>
+      <div class="arr">→</div>
+      <div class="node acc" style="height:170px;justify-content:center"><div class="t">Codex</div><div class="k">one prompt: save it as .agents/skills/meeting-notes/SKILL.md</div></div>
+    </div>
+    <div class="grid in" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="hair"><p class="small"><b>Saves</b> <span class="muted">your Codex usage</span></p></div>
+      <div class="hair"><p class="small"><b>Check</b> <span class="muted">the name and description yourself</span></p></div>
+      <div class="hair"><p class="small"><b>Test</b> <span class="muted">it with $meeting-notes</span></p></div>
+    </div>
+  </div>
+</section>
+
 
 <!-- 18 Design -->
 <section class="slide">

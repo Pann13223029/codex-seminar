@@ -568,6 +568,56 @@ data/survey.csv
   </div>
 </section>
 
+<!-- 16a What a skill is -->
+<section class="slide">
+  <h2 class="in">スキルは「保存したレシピ」</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: 0.9fr 50px 1.1fr; align-items:center;">
+<div class="file" style="font-size:18px;padding:22px 24px"><span class="name" style="font-size:17px">スキルは1つのフォルダ</span><b>meeting-notes/</b>
+  <b>SKILL.md</b>     レシピ本体
+  references/  長い手引き
+  scripts/     実行できるコード
+  assets/      テンプレート</div>
+      <div class="arr">→</div>
+<div class="file hl" style="font-size:16px;padding:20px 24px"><span class="name" style="font-size:17px">SKILL.md の中身</span>---
+<b>name:</b> meeting-notes
+<b>description:</b> ミーティングの
+  メモを整理する。メモの整理を
+  頼まれたときに使う。ほかの
+  文書には使わない。
+---
+1. 5行の要約
+2. 決まったこと
+3. タスク / 担当 / 期限
+日付は作らない：[CHECK] を付ける</div>
+    </div>
+    <div class="grid in" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="hair"><p class="small"><b>name（名前）</b> <span class="muted">$ のあとに打つ名前</span></p></div>
+      <div class="hair"><p class="small"><b>description（説明）</b> <span class="muted">Codex がいつ使うか</span></p></div>
+      <div class="hair"><p class="small"><b>手順</b> <span class="muted">毎回やること</span></p></div>
+    </div>
+    <p class="cap in">必要なのは SKILL.md だけ。ホームフォルダの .agents/skills に置けばすべてのプロジェクトで、プロジェクトのフォルダに置けばそのプロジェクトだけで使える。</p>
+  </div>
+</section>
+
+
+<!-- 16b How Codex uses a skill -->
+<section class="slide">
+  <h2 class="in">Codex がスキルを選んで動かすしくみ</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: 1fr 50px 1fr 50px 1fr; align-items:stretch;">
+      <div class="node" style="padding:22px 22px;gap:10px"><div class="k" style="font-size:18px">1 · チャットの最初に</div><div class="t" style="font-size:28px">短い一覧</div><div class="k" style="font-size:18px">Codex が見るのは、各スキルの名前と説明だけ</div></div>
+      <div class="arr">→</div>
+      <div class="node" style="padding:22px 22px;gap:10px"><div class="k" style="font-size:18px">2 · あなたの依頼</div><div class="t" style="font-size:28px">一致</div><div class="k" style="font-size:18px">$meeting-notes と打つか、依頼が説明に合う</div></div>
+      <div class="arr">→</div>
+      <div class="node acc" style="padding:22px 22px;gap:10px"><div class="k" style="font-size:18px">3 · そのときだけ</div><div class="t" style="font-size:28px">SKILL.md を開く</div><div class="k" style="font-size:18px">手順どおりに動き、追加のファイルは必要なときだけ読む</div></div>
+    </div>
+    <p class="statement in">「いつ使うか」は説明が決め、「どうやるか」は手順が決める。</p>
+    <p class="cap in">だからスキルを10個入れても、使うまではほとんど利用枠を使わない。説明があいまいだと、そのスキルは選ばれない。</p>
+  </div>
+</section>
+
+
 <!-- 16 Skills kit -->
 <section class="slide">
   <h2 class="in">すぐ使える3つの見本のスキル</h2>
@@ -619,6 +669,38 @@ data/survey.csv
     <p class="cap in">あとはどこでも使える：<b>$meeting-notes</b>。プロンプトをもう1つ送れば改良できる。</p>
   </div>
 </section>
+
+<!-- 17a Draft a skill in a free chat -->
+<section class="slide">
+  <h2 class="in">利用枠を節約：スキルは無料のチャットで下書きする</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: 1fr 50px 0.85fr 50px 0.8fr; align-items:center;">
+      <div class="win" style="height:330px"><div class="bar"><i></i><i></i><i></i><span>Claude · Gemini · ChatGPT Chat</span></div>
+        <div class="main">
+          <div class="msg me">meeting-notes という Codex のスキルの SKILL.md を書いて。name と description から始めて。先に私に質問して。</div>
+          <div class="msg ai">Q1. 要約には何を入れますか？</div>
+          <div class="msg me">決まったことと、タスクの表。</div>
+          <div class="msg ai">ファイル全体はこちらです…</div>
+        </div>
+      </div>
+      <div class="arr">→</div>
+<div class="file hl" style="font-size:13px"><span class="name">SKILL.md（下書き）</span><b>name:</b> meeting-notes
+<b>description:</b> …
+---
+1. …
+2. …
+3. …</div>
+      <div class="arr">→</div>
+      <div class="node acc" style="height:170px;justify-content:center"><div class="t">Codex</div><div class="k">プロンプト1つで .agents/skills/meeting-notes/SKILL.md に保存</div></div>
+    </div>
+    <div class="grid in" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="hair"><p class="small"><b>節約</b> <span class="muted">Codex の利用枠</span></p></div>
+      <div class="hair"><p class="small"><b>確認</b> <span class="muted">名前と説明は自分で確かめる</span></p></div>
+      <div class="hair"><p class="small"><b>テスト</b> <span class="muted">$meeting-notes で試す</span></p></div>
+    </div>
+  </div>
+</section>
+
 
 <!-- 18 Design -->
 <section class="slide">
