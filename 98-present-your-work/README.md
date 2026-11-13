@@ -119,17 +119,36 @@ Open the deck in **Chrome** or **Edge**, then **Print** (`Ctrl P` or
 
 You get one slide per page, which works on any computer and on your course website.
 
-## Step 7: Make it yours
+## Step 7: Write your AI-use statement (2 minutes)
+
+```text
+Look at the files in this folder (AGENTS.md and outputs/). Draft a two-sentence AI-use statement saying what you did and what I did. I checked these myself: that the names and emails were removed, the domestic share I counted by hand in a spreadsheet, and the slide outline before you built it. Do not exaggerate either part.
+```
+
+Change the list of what you checked so it is true for you, then correct
+anything else that is wrong. Your course rules say where the statement goes
+(see [03: Verify and disclose](../03-verify-and-disclose/)).
+
+## Step 8: Make it yours
 
 Start a **New chat** for these small changes; it uses much less.
 
-- Make the AI-use note on the last slide true for you:
-  `On the last slide of outputs/deck/index.html, change the AI-use note to: "[your sentence]". Change nothing else.`
+- Put your statement on the last slide. The deck's AI-use note is marked
+  `[CHECK]` until you do:
+  `On the last slide of outputs/deck/index.html, change the AI-use note to: "[the first sentence of your statement]". Change nothing else.`
 - Try another theme without rebuilding: `In outputs/deck/index.html, change only data-theme on the html tag to editorial.`
-- Use your own survey: first install the skills for your own projects
-  ([04, Part A](../04-make-a-skill/#part-a-install-the-example-skills-5-minutes)),
-  then put the export in a new folder with an `AGENTS.md` like this one and
-  repeat steps 2-6.
+- Use your own survey. Real answers are personal data, so:
+  1. Use only a survey you are allowed to analyse: the people who answered
+     agreed, and your seminar's ethics rules are followed. If unsure, ask
+     your supervisor first.
+  2. Before Codex sees the file, open the export in Excel or Google Sheets,
+     **delete the columns with names, email addresses, student IDs or any
+     other contact details**, and save a copy. Only that copy goes into the
+     new folder.
+  3. Install the skills for your own projects
+     ([04, Part A](../04-make-a-skill/#part-a-install-the-example-skills-5-minutes)),
+     put the copy in a new folder with an `AGENTS.md` like this one, and
+     repeat steps 2-7.
 
 ## Finished?
 

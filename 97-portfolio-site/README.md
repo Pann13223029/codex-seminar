@@ -64,6 +64,13 @@ Put what you have into the `me` folder: a CV (PDF, Word or text), notes
 about your seminar project, part-time job, club or internship. No CV? That
 is fine: Codex will ask you.
 
+> **Use a cut-down copy of your CV.** Codex reads everything in `me`, so
+> remove your phone number, home address, date of birth and photo first.
+> A Japanese 履歴書 has all four. Save a copy without them, or type a plain
+> list of your education, jobs and skills instead. None of those details
+> belong on a public site anyway; the site's contact line can be an email
+> you are happy to share.
+
 Think about 2 to 4 stories. For each one, write down:
 
 - **Problem:** what was wrong or needed?

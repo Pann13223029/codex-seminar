@@ -177,6 +177,10 @@ Look at the files in this folder (AGENTS.md, outputs/ and the coverage-check ski
 Change the list of what you checked so it is true for you, then correct
 anything else that is wrong.
 
+Then put it on your slides. The deck's AI-use note is marked `[CHECK]`
+until you do. In a **New chat**:
+`On the last slide of outputs/deck/index.html, change the AI-use note to: "[the first sentence of your statement]". Change nothing else.`
+
 ## Extra task (optional): follow the same plants
 
 Between FY2005 and FY2024 the share rose from 22% to 41%. My thesis found

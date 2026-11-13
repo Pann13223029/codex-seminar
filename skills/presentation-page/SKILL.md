@@ -51,4 +51,8 @@ step in plain language. Reply in the language the user writes in (for example Ja
   user's files. If a slide needs something missing, ask.
 - Keep the template's fonts, colours and layouts. No external fonts,
   images or scripts from the internet, so the file works offline.
-- Keep the AI-use note on the last slide; the user may edit its wording.
+- Keep the AI-use note on the last slide and write it from what actually
+  happened in this project: what Codex did (for example the analysis code,
+  the memo, the slide text, the layout) and what the user says they checked.
+  Never claim the user wrote or checked something they did not say. If you
+  are not sure, leave the note marked [CHECK] and tell the user to fix it.

@@ -32,7 +32,8 @@ colours; each theme already has one accent.
 - **Quotes are exact** and never identify a person.
 - **About one slide per minute** of talking. A 10-minute talk is about
   8-12 slides.
-- **Last slide: sources, and a one-line AI-use note.**
+- **Last slide: sources, and a one-line AI-use note** that says truthfully
+  what Codex did and what you checked yourself.
 
 ## Do not (the usual AI-generated look)
 

@@ -7,7 +7,14 @@ learn to review and undo its changes.
 
 ## 1. Give Codex something to work with
 
-In your workshop folder, copy and paste:
+Open your practice folder, `codex-practice` from [step 00](../00-install/),
+in Codex. Do not use `codex-seminar-main` (the workshop guide) or the
+`workshop` folder you may have downloaded it into: step 2 turns this folder
+into a Git repository, so it should hold only your practice files. If Codex
+is guiding you from `codex-seminar-main`, open `codex-practice` now; this
+starts a new chat there.
+
+Then copy and paste:
 
 ```text
 Create a file called notes.md with five made-up seminar meeting notes, each with a date, three bullet points and one action item. Then tell me what you created.
