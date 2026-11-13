@@ -753,13 +753,45 @@ data/survey.csv
   </div>
 </section>
 
+<!-- 20a Source check -->
+<section class="slide">
+  <h2 class="in">存在しない参考文献を見つける</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: 0.95fr 50px 1.05fr; align-items:center;">
+      <div class="win" style="height:320px"><div class="bar"><i></i><i></i><i></i><span>Codex</span></div>
+        <div class="main">
+          <div class="msg me">$source-check draft.docx</div>
+          <div class="msg ai">5件の参考文献をネットで調べてもいいですか？送るのはタイトル・著者・DOI だけです。</div>
+          <div class="msg me">はい。</div>
+          <div class="act"><b>✓</b> outputs/source-check.md を保存</div>
+        </div>
+      </div>
+      <div class="arr">→</div>
+      <table class="data" style="font-size:18px">
+        <tr><th>下書きの参考文献</th><th>結果</th></tr>
+        <tr><td>Fellegi &amp; Sunter (1969)</td><td><span class="ok">✓</span> 確認済み</td></tr>
+        <tr><td>Psomopoulos et al. (2009)</td><td><span class="ok">✓</span> 確認済み</td></tr>
+        <tr><td>荒井（2015）、CiNii で確認</td><td><span class="ok">✓</span> 確認済み</td></tr>
+        <tr><td>Tanaka &amp; Smith (2021)</td><td><span class="x">✕</span> DOI が存在しない</td></tr>
+        <tr><td>Yamamoto (2019)</td><td><span class="x">✕</span> どこにも見つからない</td></tr>
+      </table>
+    </div>
+    <div class="grid in" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="hair"><p class="small"><b>調べる先</b> <span class="muted">doi.org, Crossref, OpenAlex, CiNii</span></p></div>
+      <div class="hair"><p class="small"><b>禁止</b> <span class="muted">代わりの文献を勧めること</span></p></div>
+      <div class="hair"><p class="small"><b>あなた</b> <span class="muted">印のついたものを自分で開く</span></p></div>
+    </div>
+  </div>
+</section>
+
+
 <!-- 21 Pitfalls -->
 <section class="slide">
   <h2 class="in">よくある4つの失敗</h2>
   <div class="body">
     <div class="grid in pit" style="grid-template-columns: repeat(2, 1fr); gap: 28px 40px;">
       <div class="gate" style="border-color:#a33a2b"><div class="t"><span class="x">✕</span> 個人情報をフォルダに入れる</div><div class="k">インタビュー、名前、パスワードは入れない</div></div>
-      <div class="gate" style="border-color:#a33a2b"><div class="t"><span class="x">✕</span> 存在しない参考文献</div><div class="k">本物に見える。1つずつ検索する</div></div>
+      <div class="gate" style="border-color:#a33a2b"><div class="t"><span class="x">✕</span> 存在しない参考文献</div><div class="k">本物に見える。$source-check で調べ、印のついたものは自分で開く</div></div>
       <div class="gate" style="border-color:#a33a2b"><div class="t"><span class="x">✕</span> 自信のある答えを信じる</div><div class="k">出典とファイルを求める</div></div>
       <div class="gate" style="border-color:#a33a2b"><div class="t"><span class="x">✕</span> 考えることをAIに任せる</div><div class="k">問いと意味づけはあなたのもの</div></div>
     </div>

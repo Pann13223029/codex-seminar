@@ -750,13 +750,45 @@ Mark unclear with [CHECK]</div>
   </div>
 </section>
 
+<!-- 20a Source check -->
+<section class="slide">
+  <h2 class="in">Catch invented references</h2>
+  <div class="body">
+    <div class="grid in" style="grid-template-columns: 0.95fr 50px 1.05fr; align-items:center;">
+      <div class="win" style="height:320px"><div class="bar"><i></i><i></i><i></i><span>Codex</span></div>
+        <div class="main">
+          <div class="msg me">$source-check draft.docx</div>
+          <div class="msg ai">OK to look up the 5 references online? Only titles, authors and DOIs are sent.</div>
+          <div class="msg me">Yes.</div>
+          <div class="act"><b>✓</b> saved outputs/source-check.md</div>
+        </div>
+      </div>
+      <div class="arr">→</div>
+      <table class="data" style="font-size:18px">
+        <tr><th>Reference in the draft</th><th>Status</th></tr>
+        <tr><td>Fellegi &amp; Sunter (1969)</td><td><span class="ok">✓</span> Verified</td></tr>
+        <tr><td>Psomopoulos et al. (2009)</td><td><span class="ok">✓</span> Verified</td></tr>
+        <tr><td>Arai (2015), via CiNii</td><td><span class="ok">✓</span> Verified</td></tr>
+        <tr><td>Tanaka &amp; Smith (2021)</td><td><span class="x">✕</span> DOI does not exist</td></tr>
+        <tr><td>Yamamoto (2019)</td><td><span class="x">✕</span> Not found anywhere</td></tr>
+      </table>
+    </div>
+    <div class="grid in" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="hair"><p class="small"><b>Looks up</b> <span class="muted">doi.org, Crossref, OpenAlex, CiNii</span></p></div>
+      <div class="hair"><p class="small"><b>Never</b> <span class="muted">suggests a replacement source</span></p></div>
+      <div class="hair"><p class="small"><b>You</b> <span class="muted">open every flagged one yourself</span></p></div>
+    </div>
+  </div>
+</section>
+
+
 <!-- 21 Pitfalls -->
 <section class="slide">
   <h2 class="in">Four ways to get it wrong</h2>
   <div class="body">
     <div class="grid in pit" style="grid-template-columns: repeat(2, 1fr); gap: 28px 40px;">
       <div class="gate" style="border-color:#a33a2b"><div class="t"><span class="x">✕</span> Private data in the folder</div><div class="k">Interviews, names, passwords: keep them out</div></div>
-      <div class="gate" style="border-color:#a33a2b"><div class="t"><span class="x">✕</span> Invented references</div><div class="k">They look real. Search for every one</div></div>
+      <div class="gate" style="border-color:#a33a2b"><div class="t"><span class="x">✕</span> Invented references</div><div class="k">They look real. Run $source-check, then open each flagged one</div></div>
       <div class="gate" style="border-color:#a33a2b"><div class="t"><span class="x">✕</span> Trusting a confident answer</div><div class="k">Ask for the source and the file</div></div>
       <div class="gate" style="border-color:#a33a2b"><div class="t"><span class="x">✕</span> Letting AI do your thinking</div><div class="k">The question and the meaning are yours</div></div>
     </div>
